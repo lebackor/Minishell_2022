@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:17:16 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/16 17:17:17 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_echo(t_data *s)
@@ -19,13 +31,12 @@ int	ft_echo(t_data *s)
 	return (0);
 }
 
-int ft_print_echo(t_data *s, int a)
+int	ft_print_echo(t_data *s, int a)
 {
 	if (a == 0)
 	{
 		write(1, &s->rdline[s->i + 3], ft_strlen(&s->rdline[s->i + 3]));
 	}
-
 	if (a == 1)
 	{
 		if (ft_strlen(s->rdline) == 4)

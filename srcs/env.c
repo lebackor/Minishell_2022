@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/16 17:17:34 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 t_env *put_env(t_env *env, char **envp, t_data *s)
 {
 	int		i;
-	(void)	s;
 
+	(void) s;
 	i = 0;
 	while (envp[i])
 	{
@@ -16,7 +28,7 @@ t_env *put_env(t_env *env, char **envp, t_data *s)
 	return (env);
 }
 
-void    ft_put_second_env(t_env *env, char **envp)
+void	ft_put_second_env(t_env *env, char **envp)
 {
 	int		i;
 	int		j;
