@@ -56,5 +56,5 @@ char 	*looking_access(t_env *env, t_data *s);
 /*								PARSING										  */
 /**************************************************************************** */
 int	check_syntax(char *str);
-
+char	**check_quotes(char *str, t_pipe *cmds_list);
 #endif

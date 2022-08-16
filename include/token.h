@@ -3,6 +3,11 @@
 
 # include "../include/minishell.h"
 
+typedef struct s_pipe
+{
+	char	**pipe;
+}	t_pipe;
+
 typedef struct s_token // Parsing au départ des éléments
 {
 	int		type;

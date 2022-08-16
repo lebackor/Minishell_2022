@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-int	minishell_init(t_data *s, t_env *env)
+int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
 	s->rdline = readline(">$");
 	ft_search_bultins(s, env);
@@ -10,6 +10,7 @@ int	minishell_init(t_data *s, t_env *env)
 			free(s->rdline);
 		add_history(s->rdline);
 		s->rdline = readline(">$");
+		check_quotes(s->rdline, cmds_list);
 		// s->words = ft_split(s->rdline, ' ');
 		ft_search_bultins(s, env);
 	}
@@ -24,6 +25,7 @@ int main(int ac, char **av, char **envp)
 {
 	t_data	*s;
 	t_env	*env;
+	t_pipe	cmds_list;
 
 	(void)av;
 	(void)envp;
@@ -35,7 +37,7 @@ int main(int ac, char **av, char **envp)
 		env = malloc(sizeof(t_env));
 			*env = (t_env){0};
 		env = put_env(env, envp, s);
-		minishell_init(s, env);
+		minishell_init(s, env, &cmds_list);
 		ft_clean(env, s);
 	}
 	return (0);
