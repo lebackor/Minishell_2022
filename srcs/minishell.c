@@ -3,6 +3,7 @@
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
 	s->rdline = readline(">$");
+	check_quotes(s->rdline, cmds_list);
 	ft_search_bultins(s, env);
 	while (ft_strcmp(s->rdline, "exit") != 0)
 	{
