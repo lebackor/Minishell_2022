@@ -88,7 +88,41 @@ char	*skip_isspace(char *str)
 	return (ret);
 }
 
+int	get_words(char *str)
+{
+	int	i;
+	int	countword;
 
+	countword = 0;
+	i = 0;
+	while (str[i] != '|' && str[i])
+	{
+		if (str[i] == 127)
+			i++;
+		i++;
+		countword++;
+	}
+	if (str[i] == '|')
+		countword = countword - 2;
+	return (countword);
+}
+
+void	update_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '|')
+		{
+			str[i] = 127;
+			return ;
+		}
+		str[i] = 127;
+		i++;
+	}
+}
 
 char	**check_quotes(char *str, t_pipe *cmds_list)
 {
@@ -101,31 +135,64 @@ char	**check_quotes(char *str, t_pipe *cmds_list)
 	i = 0;
 	y = 0;
 	count = check_pipe(str);
-	printf("count = %d\n", count);
 	test = skip_isspace(str);
-	printf("test = %s\n", test);
 	if (cmds_list->pipe[y])
 	{
 		free(cmds_list->pipe[y]);
 		y++;
 	}
 	y = 0;
-	cmds_list->pipe[y] = malloc(sizeof(char *) * (count));
-	while (test[i])
+	cmds_list->pipe = malloc(sizeof(char *) * (count));
+	while (y < count)
 	{
+		cmds_list->pipe[y] = malloc(sizeof(char) * (get_words(test) + 1));
 		x = 0;
-		while (test[i])
+		while (test[i] && test[i] != '|')
 		{
-			if (test [i] == '|')
-				break;
-			cmds_list->pipe[y][x] = test[i];
+			if (test[i] != 127)
+			{
+				cmds_list->pipe[y][x] = test[i];
+				x++;
+			}
 			i++;
-			x++;
 		}
 		cmds_list->pipe[y][x] = '\0';
+		printf("----------> cmds_list = %sB\n", cmds_list->pipe[y]);
+		update_str(test);
 		y++;
 	}
-	printf("cmds_list =  %s\n", cmds_list->pipe[y]);
-	free(test);
 	return (cmds_list->pipe);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 		x = 0;
+// 		while (test[i])
+// 		{
+// 			if (test [i] == '|')
+// 			{
+// 				i++;
+// 				break;
+// 			}
+// 			cmds_list->pipe[y][x] = test[i];
+// 			i++;
+// 			x++;
+// 		}
+// 		cmds_list->pipe[y][x] = '\0';
+// 		printf("cmds_list =  %sB\n", cmds_list->pipe[y]);
+// 		y++;
+// 	}
+// 	free(test);
+// 	return (cmds_list->pipe);
+// }
+
