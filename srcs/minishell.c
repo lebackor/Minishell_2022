@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/16 19:40:52 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:26:52 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int ac, char **av, char **envp)
 		env = NULL;
 		s = malloc(sizeof(t_data));
 			*s = (t_data){0};
-		env = malloc(sizeof(t_env));
-			*env = (t_env){0};
+		//env = malloc(sizeof(t_env));
+		//	*env = (t_env){0};
 		env = put_env(env, envp, s);
 		minishell_init(s, env);
 		ft_clean(env, s);

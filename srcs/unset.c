@@ -1,45 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 17:34:34 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:15:26 by lebackor         ###   ########.fr       */
+/*   Created: 2022/08/17 14:25:54 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/17 18:37:59 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_print_split(char **str)
+int	ft_unset(t_data *s, t_env *env)
 {
-	int	i;
+	t_env	*tmp;
 
-	i = -1;
-	while (str[++i])
-		printf("[%s] ", str[i]);
-	printf("\n");
-}
-/*
-void	print_list(t_env	*env)
-{
-	t_env *env;
-
-
-}
-*/
-
-int	ft_is_there_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	tmp = env;
+	if (ft_strcmp(tmp->content, ft_split_env(s->words[s->i_split + 1], 0)) == 0)
 	{
-		if(str[i] && str[i] == '=')
-			return (0);
-		i++;
+		printf("fOUNDED\n");
 	}
-	return (1);
+	while (tmp->next != NULL)
+	{
+		if (ft_strcmp(tmp->next->content, ft_split_env(s->words[s->i_split + 1], 0)) == 0)
+		{
+			printf("fOUNDED\n");
+			free(tmp->next->content);
+			free(tmp->next->value);
+			tmp->next = tmp->next->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }

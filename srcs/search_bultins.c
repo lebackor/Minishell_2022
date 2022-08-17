@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:34:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/16 18:34:42 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:33:14 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int ft_search_bultins(t_data *s, t_env *env)
+int	ft_search_bultins(t_data *s, t_env *env)
 {
 	s->i = 0;
 	while (s->rdline[s->i] == ' ')
@@ -23,25 +23,15 @@ int ft_search_bultins(t_data *s, t_env *env)
 		ft_env(env, s);
 	if (ft_search_export(s) == 0)
 		ft_export(s, env);
+	if (ft_search_unset(s) == 0)
+		ft_unset(s, env);
 	return (1);
 }
 
-int ft_search_echo(t_data *s)
+int	ft_search_echo(t_data *s)
 {
-  // s->i = 0;
-   if (s->rdline[s->i] == 'e' && s->rdline[s->i + 1] == 'c' && s->rdline[s->i + 2] == 'h' && s->rdline[s->i + 3] == 'o')
-	{
-		return (0);
-	}
-
-	else
-		return (1);
-}
-
-int ft_search_env(t_data *s)
-{
-  //  s->i = 0;
-	if (s->rdline[s->i] == 'e' && s->rdline[s->i + 1] == 'n' && s->rdline[s->i + 2] == 'v')
+	if (s->rdline[s->i] == 'e' && s->rdline[s->i + 1] == 'c'
+		&& s->rdline[s->i + 2] == 'h' && s->rdline[s->i + 3] == 'o')
 	{
 		return (0);
 	}
@@ -49,10 +39,34 @@ int ft_search_env(t_data *s)
 		return (1);
 }
 
-int ft_search_export(t_data *s)
+int	ft_search_env(t_data *s)
 {
-	//s->i = 0;
-	if (s->rdline[s->i] == 'e' && s->rdline[s->i + 1] == 'x' && s->rdline[s->i + 2] == 'p' && s->rdline[s->i + 3] == 'o' && s->rdline[s->i + 4] == 'r' && s->rdline[s->i + 5] == 't')
+	if (s->rdline[s->i] == 'e'
+		&& s->rdline[s->i + 1] == 'n' && s->rdline[s->i + 2] == 'v')
+	{
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	ft_search_export(t_data *s)
+{
+	if (s->rdline[s->i] == 'e' && s->rdline[s->i + 1] == 'x'
+		&& s->rdline[s->i + 2] == 'p' && s->rdline[s->i + 3] == 'o'
+		&& s->rdline[s->i + 4] == 'r' && s->rdline[s->i + 5] == 't')
+	{
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	ft_search_unset(t_data *s)
+{
+	if (s->rdline[s->i] && s->rdline[s->i] == 'u' && s->rdline[s->i + 1] == 'n'
+		&& s->rdline[s->i + 2] == 's' && s->rdline[s->i + 3] == 'e'
+		&& s->rdline[s->i + 4] == 't')
 	{
 		return (0);
 	}
