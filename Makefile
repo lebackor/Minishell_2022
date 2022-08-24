@@ -9,6 +9,9 @@ SRCS = 		srcs/minishell.c\
 			parsing/parsing.c\
 			srcs/utils.c\
 			srcs/unset.c\
+			srcs/cd.c\
+			srcs/pwd.c\
+			srcs/searchcmd.c\
 
 OBJS = ${SRCS:.c=.o}
 

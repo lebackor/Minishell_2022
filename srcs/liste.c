@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:33:57 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:23:51 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ t_env	*create_liste(t_env *env, char *content, char *value)
 	env = malloc(sizeof(t_env));
 	*env = (t_env){0};
 	env->next = NULL;
-	//if (content != NULL)
-		env->content = ft_strdup(content);
-	//if (value != NULL)
-		env->value = ft_strdup(value);
+	env->content = ft_strdup(content);
+	env->value = ft_strdup(value);
 	return (env);
 }
 
@@ -52,8 +50,5 @@ void	ft_addback_new_env(t_env *env, char *content, char *value)
 	tmp = env;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	//tmp->next = create_liste(tmp->next);//
 	tmp = ft_addback(&tmp, content, value);
-	// tmp->content = ft_strdup(content);
-	// tmp->value = ft_strdup(value);
 }

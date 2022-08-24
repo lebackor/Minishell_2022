@@ -1,50 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 17:34:34 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/18 17:55:02 by lebackor         ###   ########.fr       */
+/*   Created: 2022/08/24 16:50:24 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/24 16:53:08 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_print_split(char **str)
+int	ft_pwd(t_env *env, t_data *s)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		printf("[%s] ", str[i]);
-	printf("\n");
-}
-
-void	print_list(t_env	*env)
-{
-	t_env	*tmp;
+	(void) s;
+	t_env *tmp;
 
 	tmp = env;
-	while (tmp)
-	{
-		printf("%s\n", tmp->content);
+	while (ft_strcmp(tmp->content, "PWD") != 0)
 		tmp = tmp->next;
-	}
+	if (tmp->value)
+		printf("%s\n", tmp->value);
+	return (0);
 }
 
-
-int	ft_is_there_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if(str[i] && str[i] == '=')
-			return (0);
-		i++;
-	}
-	return (1);
-}

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:06:20 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:22:16 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_data
 	char	*rdline;
 	char	**cmd;
 	char	**words;
+	char	*pathexec;
+	char **env;
 	int		i;
 	int		i_split;
 }	t_data;
@@ -44,6 +46,7 @@ typedef struct t_env
 {
 	char			*content;
 	char			*value;
+//	struct t_data	*all;
 	struct t_env	*next;
 }	t_env;
 
@@ -62,13 +65,20 @@ int		ft_put_in_env(t_data *s, t_env *envp);
 void	ft_put_first_env(t_env *env, char **envp);
 void	ft_put_second_env(t_env *env, char **envp);
 void	ft_clean(t_env *env, t_data *s);
-char	*looking_for_path(t_env *env, t_data *s);
+int		looking_for_path(t_env *env, t_data *s);
 char	*looking_access(t_env *env, t_data *s);
 void	ft_print_split(char **str);
 char	*ft_split_env(char *str, int count);
 void	ft_addback_new_env(t_env *env, char *content, char *value);
 int		ft_search_unset(t_data *s);
 int		ft_unset(t_data *s, t_env *env);
+void	print_list(t_env	*env);
+int		ft_search_cd(t_data *s);
+int		ft_cd(t_env *env, t_data *s);
+int		ft_search_pwd(t_data *s);
+int		ft_pwd(t_env *env, t_data *s);
+int		ft_execution(t_env *env, t_data *s);
+char	*lookforpaths(t_env *env, t_data *s);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

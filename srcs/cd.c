@@ -1,50 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 17:34:34 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/18 17:55:02 by lebackor         ###   ########.fr       */
+/*   Created: 2022/08/24 16:44:44 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/24 16:48:02 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_print_split(char **str)
+int	ft_cd(t_env *env, t_data *s)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		printf("[%s] ", str[i]);
-	printf("\n");
-}
-
-void	print_list(t_env	*env)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp)
+	(void) env;
+	if (chdir(s->words[s->i_split + 1]) == -1)
 	{
-		printf("%s\n", tmp->content);
-		tmp = tmp->next;
+		printf("Error, not found directory\n");
 	}
-}
-
-
-int	ft_is_there_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if(str[i] && str[i] == '=')
-			return (0);
-		i++;
-	}
-	return (1);
+	else
+		printf("Entered\n");
+	return (0);
 }

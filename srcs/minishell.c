@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:26:52 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:15:22 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	minishell_init(t_data *s, t_env *env)
 		s->rdline = readline(">$");
 		s->words = ft_split(s->rdline, ' ');
 		ft_print_split(s->words);
-		ft_search_bultins(s, env);
+		if (ft_search_bultins(s, env) != 0)
+			ft_execution(env, s);
 		ft_free_table(s->words);
 	}
 	if (ft_strcmp(s->rdline, "exit") == 0)
@@ -45,9 +46,9 @@ int	main(int ac, char **av, char **envp)
 	{
 		env = NULL;
 		s = malloc(sizeof(t_data));
-			*s = (t_data){0};
-		//env = malloc(sizeof(t_env));
-		//	*env = (t_env){0};
+		*s = (t_data){0};
+		//env->all = s;
+		s->env = envp;
 		env = put_env(env, envp, s);
 		minishell_init(s, env);
 		ft_clean(env, s);

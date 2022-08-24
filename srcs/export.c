@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:38:38 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:58:24 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	ft_export(t_data *s, t_env *envp)
 {
 	s->i = 0;
-	if (!s->rdline[s->i])
-		return (ft_printf("declare -x not coded yet\n"));
 	while (s->rdline[s->i] && s->rdline[s->i] != ' ')
 		s->i++;
 	while (s->rdline[s->i] && s->rdline[s->i] == ' ')
 		s->i++;
+	if (!s->rdline[s->i])
+		return (ft_printf("declare -x not coded yet\n"));
 	while (s->rdline[s->i]
 		&& ((s->rdline[s->i] >= 'a' && s->rdline[s->i] <= 'z')
 			|| (s->rdline[s->i] >= 'A' && s->rdline[s->i] <= 'Z')
@@ -100,7 +100,6 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 		i++;
 	while (tmp != NULL)
 	{
-	//	printf("%s\n", tmp->content);
 		if (ft_strcmp(tmp->content, ft_split_env(s->words[s->i_split + 1], 0))
 			== 0)
 		{
@@ -113,15 +112,14 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 				free(tmp->value);
 				tmp->value = ft_strdup(ft_split_env(s->words[s->i_split + 1],
 							1));
-				return (1);
+				return (0);
 			}
 			if (ft_strcmp(tmp->value, ft_split_env(s->words[s->i_split + 1], 1))
 				== 0)
-				return (1); //ecrire u msg deror ou de dire c la mm lesdeux
+				return (0); //ecrire u msg deror ou de dire c la mm lesdeux
 		}
 		tmp = tmp->next;
 	}
-//	printf("%s %s\n", tmp->content, tmp->value);
 	ft_addback_new_env(envp, ft_split_env(s->words[s->i_split + 1], 0),
 		ft_split_env(s->words[s->i_split + 1], 1));
 	return (0);

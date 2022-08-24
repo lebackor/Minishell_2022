@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/17 19:24:12 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:16:28 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_env	*put_env(t_env *env, char **envp, t_data *s)
 		ft_addback(&env, NULL, NULL);
 		i++;
 	}
-	printf("REMPLISSAGE%d\n", i);
 	ft_put_first_env(env, envp);
 	ft_put_second_env(env, envp);
 	return (env);
@@ -55,7 +54,6 @@ void	ft_put_second_env(t_env *env, char **envp)
 		}
 		str[k] = '\0';
 		tmp->value = ft_strdup(str);
-		//printf("t = %s\n", tmp->value);
 		tmp = tmp->next;
 		free(str);
 		str = NULL;
@@ -95,8 +93,7 @@ void	ft_put_first_env(t_env *env, char **envp)
 int	ft_env(t_env *envp, t_data *s)
 {
 	t_env	*tmp;
-	int i =0;
-
+	(void )s;
 	tmp = envp;
 	while (tmp != NULL)
 	{
@@ -104,15 +101,6 @@ int	ft_env(t_env *envp, t_data *s)
 		printf("=");
 		printf("%s\n", tmp->value);
 		tmp = tmp->next;
-		i++;
 	}
-	printf("%d\n", i);
-/*	if (tmp->content)
-	{
-		printf("%s", tmp->content);
-		printf("=");
-		printf("%s\n", tmp->value);
-	}
-*/	looking_for_path(envp, s);
-	return (1);
+	return (0);
 }

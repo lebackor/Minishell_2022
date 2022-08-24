@@ -6,21 +6,24 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:14:59 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/16 17:45:28 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:22:37 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*looking_for_path(t_env *env, t_data *s)
+int	looking_for_path(t_env *env, t_data *s)
 {
 	t_env	*tmp;
 
 	tmp = env;
 	while (ft_strcmp(tmp->content, "PATH") != 0)
 		tmp = tmp->next;
-	s->cmd = ft_split(tmp->value, ':');
-	return (NULL);
+	if (ft_strcmp(tmp->content, "PATH") == 0)
+		s->cmd = ft_split(tmp->value, ':');
+	else
+		return (1);
+	return (0);
 }
 
 char	*looking_access(t_env *env, t_data *s)
