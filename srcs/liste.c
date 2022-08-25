@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/18 16:23:51 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:55:23 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_env	*ft_addback(t_env **stack, char *content, char *value)
 
 	if (*stack == NULL)
 	{
-		printf("e\n");
 		*stack = create_liste(*stack, content, value);
 	}
 	else

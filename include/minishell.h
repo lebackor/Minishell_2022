@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/24 17:22:16 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:20:57 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
 typedef struct s_data
 {
 	char	*rdline;
-	char	**cmd;
+	char	**cmd; //
 	char	**words;
 	char	*pathexec;
-	char **env;
+	char 	**env;
+	char	*cmd7; //cat
+	char	**arg7; // -e
 	int		i;
 	int		i_split;
 }	t_data;
