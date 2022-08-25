@@ -22,8 +22,9 @@
 typedef struct s_data
 {
 	char	*rdline;
-	char	**cmd;
 	char	**words;
+	char	**cmds;
+	char	**args;
 	int		i;
 }	t_data;
 
@@ -55,6 +56,7 @@ char 	*looking_access(t_env *env, t_data *s);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */
-int	check_syntax(char *str);
+int		check_syntax(char *str);
 char	**check_quotes(char *str, t_pipe *cmds_list);
+char	**ft_split_space(char const *s, char c);
 #endif

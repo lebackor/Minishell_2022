@@ -39,8 +39,6 @@ int	check_pipe(char *str)
 }
 
 
-
-//
 // void	better_strcpy(char *dest, char *src)
 // {
 // 	int	i;
@@ -115,17 +113,35 @@ int	check_pipe(char *str)
 char	**skip_isspace(char *str)
 {
 	char	**tmp;
+	char	***args;
 	int		i;
+	int		j;
+	int		x;
 
 	i = 0;
-	tmp = ft_split(str,'|');
-	i = 0;
+	tmp = ft_split(str, '|');
+	j = 0;
+	x = 0;
+	args = malloc(sizeof(char **) * 3);
 	while (tmp[i])
 	{
-		printf("before tmp[%d] = %s\n", i, tmp[i]);
-		printf("after tmp[%d] = %s\n", i, tmp[i]);
-		printf("-------------------------------\n");
+		args[x] = ft_split(tmp[i], ' ');
+		printf("tmp[%d] = %s\n", i, tmp[i]);
 		i++;
+		x++;
+	}
+	args[x] = NULL;
+	j = 0;
+	x = 0;
+	while (args[x])
+	{
+		j = 0;
+		while (args[x][j])
+		{
+			printf("args[%d] = %s\n", x, args[x][j]);
+			j++;
+		}
+		x++;
 	}
 	return (tmp);
 }

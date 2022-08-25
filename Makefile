@@ -7,6 +7,7 @@ SRCS = 		srcs/minishell.c\
 			srcs/cleaning.c\
 			srcs/pathparse.c\
 			parsing/parsing.c\
+			parsing/split_space1.c\
 
 OBJS = ${SRCS:.c=.o}
 
