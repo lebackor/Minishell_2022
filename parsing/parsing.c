@@ -125,7 +125,7 @@ char	**skip_isspace(char *str)
 	args = malloc(sizeof(char **) * 3);
 	while (tmp[i])
 	{
-		args[x] = ft_split(tmp[i], ' ');
+		args[x] = ft_split_space(tmp[i], ' ');
 		printf("tmp[%d] = %s\n", i, tmp[i]);
 		i++;
 		x++;

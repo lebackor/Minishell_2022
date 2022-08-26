@@ -23,6 +23,7 @@ typedef struct s_data
 {
 	char	*rdline;
 	char	**words;
+	char	**cmd;
 	char	**cmds;
 	char	**args;
 	int		i;

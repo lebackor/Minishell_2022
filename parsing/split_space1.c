@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-static int	ischarset(char c, char charset)
+static	int	ischarset(char c, char charset)
 {
 	if (c == charset)
 	{
@@ -9,38 +9,33 @@ static int	ischarset(char c, char charset)
 	return (0);
 }
 
-static unsigned int	countword(char const *str, char charset)
+static	unsigned int	countword(char const *str, char charset)
 {
 	unsigned int	i;
 	unsigned int	count;
-	char			*tmp;
 	int				quote;
 
-	tmp = (char *)str;
+	quote = 0;
 	count = 0;
 	i = 0;
-	quote = 0;
 	while (str[i])
 	{
-		if (str[i] == '"' && quote == 0)
-		{
+		if (str[i] == '"')
 			quote++;
+		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
+			i++;
+		if (str[i] && !ischarset(str[i], charset) && str[i] != '"')
 			count++;
-			while (str[i] != '"' && quote == 1)
-				i++;
-			if (str[i] == '"')
-				quote--;
+		while (str[i] && !ischarset(str[i], charset) && str[i] != '"')
 			i++;
-		}
-		while ((str[i] != '"' && ischarset(tmp[i], charset) && str[i]) || str[i] == ' ')
-			i++;
-		if (!ischarset(tmp[i], charset) && str[i] && str[i] != ' ')
+		while (quote == 1 && str[i++])
 		{
-			i++;
-			count++;
+			if (str[i] == '"')
+			{
+				count++;
+				quote--;
+			}
 		}
-		while ((str[i] != '"' && !ischarset(tmp[i],charset) && str[i]) || str[i] == ' ')
-			i++;
 	}
 	return (count);
 }
@@ -54,29 +49,19 @@ static int	lenword(char const *str, char charset)
 	quote = 0;
 	count = 0;
 	i = 0;
-	while (str[i])
+	while (str[i] != '"' && ischarset(str[i], charset) && str[i])
+		i++;
+	while (str[i] && !ischarset(str[i], charset))
 	{
-		if (str[i] == '"' && quote == 0)
-		{
+		if (str[i] == '"')
 			quote++;
-			while (str[i] != '"')
-			{
-				count++;
-				i++;
-			}
-			if (str[i] == '"')
-			{
-				quote--;
-				count++;
-				i++;
-			}
-		}
-		while ((str[i] != '"' && ischarset(str[i], charset) && str[i]) || str[i] == ' ')
-			i++;
-		while (str[i] != '"' && !ischarset(str[i], charset) && str[i] && str[i] != ' ')
+		count++;
+		i++;
+		while (quote == 1 && str[i++] && str[i])
 		{
 			count++;
-			i++;
+			if (str[i] == '"')
+				quote--;
 		}
 	}
 	return (count);
@@ -107,33 +92,27 @@ char	**ft_split_space(char const *s, char c)
 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
 	i = 0;
 	x = 0;
-	printf("%d countword\n", countword(s, c));
 	while (result && x < countword(s, c))
 	{
 		k = 0;
 		result[x] = malloc(sizeof(char) * (lenword(&s[i], c) + 1));
 		if (!result[x])
 			result = ft_free(result, x);
-		printf("lenword = %d\n", lenword(&s[i], c) +1);
-		while ((quote == 0 && (ischarset(s[i], c) && s[i])) || s[i] == ' ')
+		while (ischarset(s[i], c) && s[i])
 			i++;
-		while (!ischarset(s[i], c) && s[i] && s[i])
+		while (s[i] && !ischarset(s[i], c))
 		{
 			if (s[i] == '"')
+			{
 				quote++;
-			while (quote == 1 && s[i])
-			{
-				if (s[i] == '"')
-					quote--;
-				i++;
-				result[x][k++] = s[i++];
+				while (quote == 1 && s[i])
+				{
+					result[x][k++] = s[i++];
+					if (s[i] == '"')
+						quote--;
+				}
 			}
-			while (quote == 0 && s[i])
-			{
-				if (s[i] != ' ')
-					result[x][k++] = s[i];
-				i++;
-			}
+			result[x][k++] = s[i++];
 		}
 		result[x][k] = '\0';
 		x++;
