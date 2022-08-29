@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/24 17:16:28 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:16:00 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ void	ft_put_first_env(t_env *env, char **envp)
 
 int	ft_env(t_env *envp, t_data *s)
 {
-	t_env	*tmp;
 	(void )s;
+	env_node_to_str(envp);
+	/*t_env	*tmp;
 	tmp = envp;
 	while (tmp != NULL)
 	{
@@ -101,6 +102,6 @@ int	ft_env(t_env *envp, t_data *s)
 		printf("=");
 		printf("%s\n", tmp->value);
 		tmp = tmp->next;
-	}
+	}*/
 	return (0);
 }

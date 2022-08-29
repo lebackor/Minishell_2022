@@ -12,6 +12,7 @@ SRCS = 		srcs/minishell.c\
 			srcs/cd.c\
 			srcs/pwd.c\
 			srcs/searchcmd.c\
+			srcs/env_str.c\
 
 OBJS = ${SRCS:.c=.o}
 
