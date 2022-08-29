@@ -38,79 +38,21 @@ int	check_pipe(char *str)
 	return (count);
 }
 
+void	free_double_tab(char **str)
+{
+	int	i;
 
-// void	better_strcpy(char *dest, char *src)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	quote;
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
-// 	quote = 0;
-// 	i = 0;
-// 	j = 0;
-// 	while (src[i])
-// 	{
-// 		if (src[i] != ' ' && quote == 0)
-// 		{
-// 			if (src[i] == '"')
-// 				quote++;
-// 			dest[j] = src[i];
-// 			j++;
-// 		}
-// 		else if (src[i] && quote > 0)
-// 		{
-// 			while(src[i] && src[i] != '"')
-// 			{
-// 				dest[j] = src[i];
-// 				i++;
-// 				j++;
-// 			}
-// 			if (src[i] == '"')
-// 			{
-// 				quote--;
-// 				dest[j] = src[i];
-// 				j++;
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	dest[j] = '\0';
-// }
 
-// void	put_space(char *dest, char *src)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (src[i])
-// 	{
-// 		while (src[i] != '-' || src[i] != '"')
-// 		{
-// 			dest[j] = src[i];
-// 			j++;
-// 			i++;
-// 		}
-// 		if (src[i] == '"' || src[i] == '-')
-// 		{
-// 			printf("ici\n");
-// 			dest[j] = ' ';
-// 			j++;
-// 			break ;
-// 		}
-// 	}
-// 	while (src[i])
-// 	{
-// 		dest[j] = src[i];
-// 		j++;
-// 		i++;
-// 	}
-// 	dest[j] = '\0';
-// 	return ;
-// }
-
-char	**skip_isspace(char *str)
+char	***skip_isspace(char *str)
 {
 	char	**tmp;
 	char	***args;
@@ -126,10 +68,10 @@ char	**skip_isspace(char *str)
 	while (tmp[i])
 	{
 		args[x] = ft_split_space(tmp[i], ' ');
-		printf("tmp[%d] = %s\n", i, tmp[i]);
 		i++;
 		x++;
 	}
+	free_double_tab(tmp);
 	args[x] = NULL;
 	j = 0;
 	x = 0;
@@ -143,34 +85,120 @@ char	**skip_isspace(char *str)
 		}
 		x++;
 	}
-	return (tmp);
+	return (args);
 }
 
-// char	**skip_isspace(char *str)
-// {
-// 	char	**tmp;
-// 	int		i;
 
-// 	i = 0;
-// 	tmp = ft_split(str,'|');
-// 	i = 0;
-// 	while (tmp[i])
-// 	{
-// 		printf("before tmp[%d] = %s\n", i, tmp[i]);
-// 		better_strcpy(tmp[i], tmp[i]);
-// 		printf("after tmp[%d] = %s\n", i, tmp[i]);
-// 		printf("-------------------------------\n");
-// 		// printf("before tmp[%d] = %s\n", i, tmp[i]);
-// 		// put_space(tmp[i], tmp[i]);
-// 		// printf("after tmp[%d] = %s\n", i, tmp[i]);
-// 		i++;
-// 	}
-// 	return (tmp);
-// }
-
-char	**check_quotes(char *str, t_pipe *cmds_list)
+int	quote_or_not(char *str)
 {
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '"' || str[i] == '\'')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	which_quote(char *str)
+{
+	int	i;
+	int	double_quote;
+	int	quote;
+
+	i = 0;
+	quote = 0;
+	double_quote = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+			double_quote = i;
+		else if (str[i] == '\'')
+			quote = i;
+		if (quote < double_quote)
+			return (1);
+		else
+			return (0);
+		i++;
+	}
+	return (0);
+}
+
+void	removal(char *dest, char *src, char c)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	printf("src = %s\n", src);
+	while (src[i])
+	{
+		if (src[i] == c)
+			i++;
+		while (src[i] != c)
+			dest[j++] = src[i++];
+		i++;
+	}
+	dest[j] = '\0';
+	printf("dest = %s\n", dest);
+	return ;
+}
+
+void	remove_quote(char ***str)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	while (str[i])
+	{
+		y = 0;
+		while (str[i][y])
+		{
+			if (quote_or_not(str[i][y]))
+			{
+				if (which_quote(str[i][y]))
+					removal(str[i][y], str[i][y], '\'');
+				if (!(which_quote(str[i][y])))
+					removal(str[i][y], str[i][y], '"');
+			}
+		y++;
+		}
+	i++;
+	}
+	return ;
+}
+
+char	***check_quotes(char *str, t_pipe *cmds_list)
+{
+	char	***cmds_args;
+
 	(void)cmds_list;
-	skip_isspace(str);
-	return (NULL);
+	cmds_args = skip_isspace(str);
+	printf("AFTER ------------------------------\n");
+	remove_quote(cmds_args);
+	return (cmds_args);
+}
+
+void	destroy_cmds_args(char ***cmd_args)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	while (cmd_args[i])
+	{
+		y = 0;
+		while (cmd_args[i][y])
+		{
+			free(cmd_args[i][y]);
+			y++;
+		}
+		i++;
+	}
+	free(cmd_args);
 }

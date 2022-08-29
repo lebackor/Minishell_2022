@@ -3,103 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 21:11:42 by lebackor          #+#    #+#             */
-/*   Updated: 2021/12/06 20:35:09 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:04:08 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_not_sep(char const s, char c)
+static int	ischarset(char c, char charset)
 {
-	if (s == c)
-		return (0);
-	return (1);
+	if (c == charset)
+	{
+		return (1);
+	}
+	return (0);
 }
 
-int	count_words(char const *s, char c)
+static unsigned int	countword(char const *str, char charset)
 {
-	int	i;
-	int	count;
+	unsigned int	i;
+	unsigned int	count;
+	char			*strs;
 
-	i = 0;
+	strs = (char *)str;
 	count = 0;
-	while (s[i])
+	i = 0;
+	while (str[i])
 	{
-		if (((!is_not_sep(s[i - 1], c) || i == 0)
-				&& is_not_sep(s[i], c)) && s[i])
+		while (ischarset(strs[i], charset) && str[i])
+			i++;
+		if (!ischarset(strs[i], charset) && str[i])
 			count++;
+		while (!ischarset(strs[i], charset) && str[i])
+			i++;
+	}
+	return (count);
+}
+
+static int	lenword(char const *str, char charset)
+{
+	unsigned int	i;
+	unsigned int	count;
+
+	count = 0;
+	i = 0;
+	while (ischarset(str[i], charset) && str[i])
+		i++;
+	while (!ischarset(str[i], charset) && str[i])
+	{
+		count++;
 		i++;
 	}
 	return (count);
 }
 
-char	**ft_free_table(char **str)
+static char	**ft_free(char **str, int i)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
+	while (str[i] != 0)
 	{
-		free(str[i]);
-		i++;
+		free (str[i]);
+		i--;
 	}
 	free(str);
 	return (NULL);
 }
 
-char	*put_str_in_tab(char const *s, char c)
-{
-	int		i;
-	char	*tab;
-
-	i = 0;
-	while (s[i] && is_not_sep(s[i], c))
-		i++;
-	tab = malloc(sizeof(*tab) * (i + 1));
-	if (tab == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i] && is_not_sep(s[i], c) && s[i] != '\n')
-	{
-		tab[i] = s[i];
-		i++;
-	}
-	tab[i] = 0;
-	return (tab);
-}
-
 char	**ft_split(char const *s, char c)
 {
-	char	**tab;
-	int		i;
-	int		string;
+	unsigned int	i;
+	unsigned int	k;
+	unsigned int	x;
+	char			**result;
 
-	i = 0;
-	string = 0;
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof(*tab) * (count_words(s, c) + 1));
-	if (!tab)
-		return (NULL);
-	while (s[i] == ' ')
-		i++;
-	while (s[i])
+	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
+	i = 0;
+	x = 0;
+	while (result && x < countword(s, c))
 	{
-		if (((!is_not_sep(s[i - 1], c) || i == 0)
-				&& is_not_sep(s[i], c)) && s[i])
-		{
-			tab[string] = put_str_in_tab(&s[i], c);
-			if (!tab)
-				return (ft_free_table(tab));
-			string++;
-		}
-		i++;
+		k = 0;
+		result[x] = malloc(sizeof(char) * (lenword(&s[i], c) + 1));
+		if (!result[x])
+			result = ft_free(result, x);
+		while (ischarset(s[i], c) && s[i])
+			i++;
+		while (!ischarset(s[i], c) && s[i])
+			result[x][k++] = s[i++];
+		result[x][k] = '\0';
+		x++;
 	}
-	tab[string] = NULL;
-	return (tab);
+	return (result);
 }

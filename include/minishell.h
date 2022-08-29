@@ -58,6 +58,7 @@ char 	*looking_access(t_env *env, t_data *s);
 /*								PARSING										  */
 /**************************************************************************** */
 int		check_syntax(char *str);
-char	**check_quotes(char *str, t_pipe *cmds_list);
+char	***check_quotes(char *str, t_pipe *cmds_list);
 char	**ft_split_space(char const *s, char c);
+void	destroy_cmds_args(char ***cmd_args);
 #endif

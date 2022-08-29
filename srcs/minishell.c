@@ -2,8 +2,11 @@
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
+	char ***cmd_args;
+
 	s->rdline = readline(">$");
-	check_quotes(s->rdline, cmds_list);
+	cmd_args = check_quotes(s->rdline, cmds_list);
+	destroy_cmds_args(cmd_args);
 	ft_search_bultins(s, env);
 	while (ft_strcmp(s->rdline, "exit") != 0)
 	{
@@ -11,16 +14,14 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			free(s->rdline);
 		add_history(s->rdline);
 		s->rdline = readline(">$");
-		check_quotes(s->rdline, cmds_list);
-		// s->words = ft_split(s->rdline, ' ');
+		cmd_args = check_quotes(s->rdline, cmds_list);
 		ft_search_bultins(s, env);
+		destroy_cmds_args(cmd_args);
 	}
 	if (ft_strcmp(s->rdline, "exit") == 0)
 		return (free(s->rdline), printf("exit\n"), 1);
 	return (0);
 }
-
-
 
 int main(int ac, char **av, char **envp)
 {
