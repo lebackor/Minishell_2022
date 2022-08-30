@@ -2,28 +2,26 @@
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
-	char ***cmd_args;
+	char	***cmd_args;
 
-	s->rdline = readline(">$");
-	cmd_args = check_quotes(s->rdline, cmds_list);
-	destroy_cmds_args(cmd_args);
-	ft_search_bultins(s, env);
-	while (ft_strcmp(s->rdline, "exit") != 0)
+	s->rdline = readline(MINISH _GREEN"$ " _END);
+	while (s->rdline)
 	{
 		if (check_syntax(s->rdline) == 1)
 			free(s->rdline);
+		if (ft_strcmp(s->rdline, "exit") == 0)
+			return (free (s->rdline), printf("exit\n"), 1);
 		add_history(s->rdline);
-		s->rdline = readline(">$");
 		cmd_args = check_quotes(s->rdline, cmds_list);
 		ft_search_bultins(s, env);
 		destroy_cmds_args(cmd_args);
+		free(s->rdline);
+		s->rdline = readline(MINISH _GREEN"$ " _END);
 	}
-	if (ft_strcmp(s->rdline, "exit") == 0)
-		return (free(s->rdline), printf("exit\n"), 1);
 	return (0);
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_data	*s;
 	t_env	*env;

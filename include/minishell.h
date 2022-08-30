@@ -1,6 +1,15 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define _END "\e[0m"
+# define _RED "\e[31m"
+# define _GREY "\e[30m"
+# define _YELLOW "\e[33m"
+# define _GREEN "\e[32m"
+# define _BLUE "\e[34m"
+# define SYSCALLFAIL -1
+
+# define MINISH _GREEN "(╯°□°）╯ ︵ ┻━┻ minishell" _END
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>

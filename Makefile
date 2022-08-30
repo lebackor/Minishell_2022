@@ -1,3 +1,13 @@
+# COLORS/FORMAT #
+_END		=	\e[0m
+_BOLD		=	\e[1m
+_RESET		=	\033[2K
+_GREY		=	\e[30m
+_RED		=	\e[31m
+_GREEN		=	\e[32m
+_YELLOW		=	\e[33m
+_BLUE		=	\e[34m
+
 SRCS = 		srcs/minishell.c\
 			srcs/echo.c\
 			srcs/search_bultins.c\

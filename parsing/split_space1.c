@@ -90,12 +90,14 @@ char	**ft_split_space(char const *s, char c)
 	if (!s)
 		return (NULL);
 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
+	if (!result)
+		return (NULL);
 	i = 0;
 	x = 0;
 	while (result && x < countword(s, c))
 	{
 		k = 0;
-		result[x] = malloc(sizeof(char) * (lenword(&s[i], c) + 1));
+		result[x] = ft_calloc(lenword(&s[i], c) + 1, sizeof(char));
 		if (!result[x])
 			result = ft_free(result, x);
 		while (ischarset(s[i], c) && s[i])
