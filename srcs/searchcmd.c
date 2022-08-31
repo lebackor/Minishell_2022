@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/29 15:20:16 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:14:29 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_execution(t_env *env, t_data *s)
 	i = fork();
 	if (i == 0)
 	{
-		execve(s->pathexec, s->words, s->env);
+		execve(s->pathexec, s->words, env_node_to_str(env));
 		perror("execve");
 		return (0);
 	}

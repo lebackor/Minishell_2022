@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaning.c                                         :+:      :+:    :+:   */
+/*   redir_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 17:17:03 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/31 17:32:39 by lebackor         ###   ########.fr       */
+/*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/30 19:44:19 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+/*
+	dup2(p.f1, STDIN_FILENO);
+	dup2(p.end[1], STDOUT_FILENO);
 
-void	ft_clean(t_env *env, t_data *s)
+	dup2(p.end[0], STDIN_FILENO);
+	dup2(p.f2, STDOUT_FILENO);
+*/
+
+int	ft_redir_input(t_data *s)
 {
-	t_env	*tmp;
+	int fd;
 
-	tmp = env;
-	while (env->next)
+	if (ft_strcmp('<', s->words[0]))
 	{
-		tmp = env;
-		env = env->next;
-		if (tmp)
-			free(tmp);
+		fd = open(s->word[s->i_split + 1], O_RDONLY); //
+		
+
 	}
-	ft_free_table(s->cmd);
-	ft_free_table(s->words);
-	ft_free_table(s->env);
-	free(s->pathexec);
-	free(s);
+
+}
+
+int ft_redir_first_arg(t_data *s)
+{
+
 }

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/24 16:58:24 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:16:19 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_split_env(char *str, int count)
 			i++;
 		if (str[i] != '=')
 		{
-			printf("Error, export\n");
+			printf("Error, export 1\n");
 			return (NULL);
 		}
 		while (str[++i])
@@ -81,7 +81,7 @@ char	*ft_split_env(char *str, int count)
 	}
 	else
 	{
-		printf("Error, export\n");
+		printf("Error, export 2\n");
 		return (NULL);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:44:44 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/29 18:17:26 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:12:32 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_cd(t_env *env, t_data *s)
 	*/}
 	return (0);
 }
-
+/*
 int	is_point(t_data *s)
 {
 	int	i;
@@ -65,3 +65,4 @@ int	count_backslash(t_data *s)
 	}
 	return (count);
 }
+*/

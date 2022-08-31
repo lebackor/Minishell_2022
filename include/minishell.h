@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/29 18:16:58 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:32:45 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_data
 	char	**words;
 	char	*pathexec;
 	char	**env;
-	char	*cmd7; //cat
-	char	**arg7; // -e
+//	char	*cmd7; //cat
+//	char	**arg7; // -e
 	int		i;
 	int		i_split;
 }	t_data;
@@ -78,13 +78,11 @@ void	print_list(t_env	*env);
 int		ft_search_cd(t_data *s);
 int		ft_cd(t_env *env, t_data *s);
 int		ft_search_pwd(t_data *s);
-int		ft_pwd(t_env *env, t_data *s);
+int		ft_pwd(void);
 int		ft_execution(t_env *env, t_data *s);
 char	*lookforpaths(t_env *env, t_data *s);
-int		ft_pwd_maj(t_env *env, t_data *s);
 char	**env_node_to_str(t_env *env);
-int	is_point(t_data *s);
-
+int	ft_strlen_of_nodes(t_env *env);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

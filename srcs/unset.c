@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:25:54 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/24 16:58:39 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:21:09 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_unset(t_data *s, t_env *env)
 				tmp->next = NULL;
 				free(tmp->next);
 			}
-			return 0;
+			return (0);
 		}
 		tmp = tmp->next;
 	}
