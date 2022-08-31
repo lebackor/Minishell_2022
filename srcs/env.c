@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/31 17:14:16 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-t_env *put_env(t_env *env, char **envp, t_data *s)
+t_env	*put_env(t_env *env, char **envp, t_data *s)
 {
 	int		i;
-	(void)	s;
 
+	(void) s;
 	i = 0;
 	while (envp[i])
 	{
-		ft_addback(&env);
+		ft_addback(&env, NULL, NULL);
 		i++;
 	}
 	ft_put_first_env(env, envp);
@@ -16,7 +28,7 @@ t_env *put_env(t_env *env, char **envp, t_data *s)
 	return (env);
 }
 
-void    ft_put_second_env(t_env *env, char **envp)
+void	ft_put_second_env(t_env *env, char **envp)
 {
 	int		i;
 	int		j;
@@ -80,22 +92,15 @@ void	ft_put_first_env(t_env *env, char **envp)
 
 int	ft_env(t_env *envp, t_data *s)
 {
+	(void )s;
 	t_env	*tmp;
-
 	tmp = envp;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		printf("%s", tmp->content);
 		printf("=");
 		printf("%s\n", tmp->value);
 		tmp = tmp->next;
 	}
-	if (tmp->content)
-	{
-		printf("%s", tmp->content);
-		printf("=");
-		printf("%s\n", tmp->value);
-	}
-	looking_for_path(envp, s);
-	return (1);
+	return (0);
 }

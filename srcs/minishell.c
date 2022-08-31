@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/31 17:53:08 by vchan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
@@ -33,9 +45,9 @@ int	main(int ac, char **av, char **envp)
 	{
 		env = NULL;
 		s = malloc(sizeof(t_data));
-			*s = (t_data){0};
-		env = malloc(sizeof(t_env));
-			*env = (t_env){0};
+		*s = (t_data){0};
+		//env->all = s;
+		s->env = envp;
 		env = put_env(env, envp, s);
 		minishell_init(s, env, &cmds_list);
 		ft_clean(env, s);

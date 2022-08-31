@@ -1,30 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathparse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:14:59 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/29 15:14:04 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-char    *looking_for_path(t_env *env, t_data *s)
+int	looking_for_path(t_env *env, t_data *s)
 {
-	//int i = -1;
 	t_env	*tmp;
-	// char *str;
-	tmp = env;
 
-	while (ft_strcmp(tmp->content, "PATH") != 0)
+	tmp = env;
+	while (tmp != NULL && ft_strcmp(tmp->content, "PATH") != 0)
 		tmp = tmp->next;
-	s->cmd = ft_split(tmp->value, ':');
-	//str = looking_access(env, s);
-//	while (s->words[++i])
-//		printf("%s\n", s->words[i]);
-	return (NULL);
+	if (tmp == NULL)
+		return (1);
+	if (ft_strcmp(tmp->content, "PATH") == 0)
+		s->cmd = ft_split(tmp->value, ':');
+	else
+		return (printf("Not found PATH in the environment\n"));
+	return (0);
 }
 
-char 	*looking_access(t_env *env, t_data *s)
+char	*looking_access(t_env *env, t_data *s)
 {
+	int		i;
+	int		j;
+	char	*tmp;
+	char	*str;
+
 	(void) env;
 	(void) s;
-	int i;
-	int j;
-	char *tmp;
-	char *str;
-
 	i = -1;
 	j = 1;
 	while (s->cmd[++i] && j != 0)
@@ -43,7 +55,6 @@ char 	*looking_access(t_env *env, t_data *s)
 	}
 	return (NULL);
 }
-
 
 /*
 char	*parsep1(t_data *p)

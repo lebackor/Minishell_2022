@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/05/17 15:38:06 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:44:19 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	child_process(t_data p)
 		ft_putstr_fd(": command not found\n", STDOUT_FILENO);
 		exit(EXIT_FAILURE);
 	}
+	/*int i = -1;
+	ft_putstr_fd(p.str, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+
+	while (p.avsplit[++i])
+{
+	ft_putstr_fd(p.avsplit[i], STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+}*/
 	dup2(p.f1, STDIN_FILENO);
 	dup2(p.end[1], STDOUT_FILENO);
 	close(p.end[0]);

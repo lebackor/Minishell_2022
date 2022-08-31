@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   liste.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
+/*   Updated: 2022/08/25 18:55:23 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-t_env	*create_liste(t_env *env)
+t_env	*create_liste(t_env *env, char *content, char *value)
 {
-
 	env = malloc(sizeof(t_env));
-//	printf("node cree\n");
 	*env = (t_env){0};
 	env->next = NULL;
+	env->content = ft_strdup(content);
+	env->value = ft_strdup(value);
 	return (env);
 }
-t_env	*ft_addback(t_env **stack)
+
+t_env	*ft_addback(t_env **stack, char *content, char *value)
 {
 	t_env	*t_pile;
 
-	if (!(*stack))
+	if (*stack == NULL)
 	{
-		create_liste(*stack);
-	//	printf("MDR\n");
+		*stack = create_liste(*stack, content, value);
 	}
 	else
 	{
@@ -24,10 +36,18 @@ t_env	*ft_addback(t_env **stack)
 		while (t_pile->next != NULL)
 		{
 			t_pile = t_pile->next;
-		//	printf("test\n");
 		}
-		//printf("LOL\n");
-		t_pile->next = create_liste(t_pile->next);
+		t_pile->next = create_liste(t_pile->next, content, value);
 	}
 	return (*stack);
+}
+
+void	ft_addback_new_env(t_env *env, char *content, char *value)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp = ft_addback(&tmp, content, value);
 }

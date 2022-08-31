@@ -18,13 +18,19 @@ SRCS = 		srcs/minishell.c\
 			srcs/pathparse.c\
 			parsing/parsing.c\
 			parsing/split_space1.c\
+			srcs/utils.c\
+			srcs/unset.c\
+			srcs/cd.c\
+			srcs/pwd.c\
+			srcs/searchcmd.c\
+			srcs/env_str.c\
 
 OBJS = ${SRCS:.c=.o}
 
 CC	=	cc
 
-# CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
-CFLAGS = -Wall -Werror -Wextra -g3
+ CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address
+#CFLAGS = -Wall -Werror -Wextra -g3
 LDFLAGS = -L libft -lft
 
 
