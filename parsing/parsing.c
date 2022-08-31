@@ -41,6 +41,41 @@ int	check_syntax(char *str)
 	return (0);
 }
 
+int check_heredoc(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '<' && str[i +1] == '<')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+// int	do_heredoc(char *str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (quote_or_not(str))
+// 		no_sub_heredoc(str);
+// 	sub_heredoc(str);
+// 	return (0);
+// }
+
+// void	no_sub_heredoc(char *str)
+// {
+// 	int		i;
+// 	char	*line;
+
+// 	line = get_next_line(0);
+
+
+// }
+
 int	check_pipe(char *str)
 {
 	int	i;
@@ -227,7 +262,10 @@ char	***check_quotes(char *str, t_pipe *cmds_list)
 
 	(void)cmds_list;
 	cmds_args = skip_isspace(str);
-	remove_quote(cmds_args);
+	if (!check_heredoc(str))
+		remove_quote(cmds_args);
+	// else
+	// 	do_heredoc(str)
 	return (cmds_args);
 }
 
@@ -253,3 +291,4 @@ void	destroy_cmds_args(char ***cmd_args)
 	free(cmd_args);
 	cmd_args = NULL;
 }
+
