@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:44:44 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/30 18:12:32 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:03:58 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,14 @@
 int	ft_cd(t_env *env, t_data *s)
 {
 	(void) env;
-	if (chdir(s->words[s->i_split + 1]) == -1)
+	if (chdir(s->cmds_tab[s->i_split][s->i_split + 1]) == -1)
 	{
 		printf("Error, not found directory\n");
 	}
 	else
 	{
 		printf("Entered\n");
-		/*if (ft_strcmp(s->words[s->i_split + 1], ".." != 0)
-			&& ft_strcmp(s->words[s->i_split + 1], "." != 0))
-			ft_pwd_maj(env, s);
-		if (is_point(s) == 0)
-			ft_pwd_back(env, s);
-	*/}
+	}
 	return (0);
 }
 /*

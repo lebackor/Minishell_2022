@@ -1,250 +1,270 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.2.1
+# GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 31 17:55:11 2022
+# Make data base, printed on Thu Sep  1 21:44:23 2022
 
 # Variables
- 
 
-# automatic
-<D = $(patsubst %/,%,$(dir $<))
-# automatic
-?F = $(notdir $?)
 # environment
-DESKTOP_SESSION = ubuntu
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# environment
+TERMINATOR_DBUS_NAME = net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# makefile (from 'Makefile', line 2)
+_END = \e[0m
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
+VSCODE_CWD = /mnt/nfs/homes/lebackor/Minishell_v1
+# environment
+TERMINATOR_UUID = urn:uuid:5f5e490b-34a3-4d5d-bc1d-9377d52a60e3
+# environment
+LIBVIRT_DEFAULT_URI = qemu:///system
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /mnt/nfs/homes/lebackor/Minishell_v1
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/share/gnome:/mnt/nfs/homes/lebackor/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+OLDPWD = /mnt/nfs/homes/lebackor
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /mnt/nfs/homes/lebackor/.config/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session26
+# makefile (from 'Makefile', line 37)
+LIBFT = libft/libft.a
+# environment
+LANG = C
+# environment
+XAUTHORITY = /mnt/nfs/homes/lebackor/.Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# environment
+TERMINATOR_DBUS_PATH = /net/tenshu/Terminator2
+# makefile
+CURDIR := /mnt/nfs/homes/lebackor/Minishell_v1
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from 'Makefile', line 11)
+SRCS = srcs/minishell.c srcs/echo.c srcs/search_bultins.c srcs/env.c srcs/liste.c srcs/export.c srcs/cleaning.c srcs/pathparse.c parsing/parsing.c parsing/split_space1.c srcs/utils.c srcs/unset.c srcs/cd.c srcs/pwd.c srcs/searchcmd.c srcs/env_str.c 
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/101031/keyring/ssh
 # default
 .SHELLFLAGS := -c
 # environment
-XDG_SESSION_CLASS = user
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+ZSH = /mnt/nfs/homes/lebackor/.oh-my-zsh
+# environment
+VSCODE_PID = 710078
+# environment
+KRB5CCNAME = FILE:/tmp/krb5cc_101031_sEXdS4
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# environment
+SESSION_MANAGER = local/e1r3p7.clusters.42paris.fr:@/tmp/.ICE-unix/709601,unix/e1r3p7.clusters.42paris.fr:/tmp/.ICE-unix/709601
 # automatic
-@D = $(patsubst %/,%,$(dir $@))
+*F = $(notdir $*)
 # environment
-XAUTHORITY = /mnt/nfs/homes/vchan/.Xauthority
+IBUS_DISABLE_SNOOPER = 1
+ 
 # environment
-GDMSESSION = ubuntu
+CHROME_DESKTOP = code-url-handler.desktop
 # environment
-XMODIFIERS = @im=ibus
-# makefile
-CURDIR := /mnt/nfs/homes/vchan/Desktop/minishell
-# makefile
-SHELL = /bin/sh
-# makefile (from 'Makefile', line 6)
-_RED = \e[31m
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/101031/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# environment
-_ = /usr/share/code/code
-# makefile (from 'Makefile', line 32)
-CFLAGS = -Wall -Werror -Wextra -g3 
-# environment
-JOURNAL_STREAM = 9:868118
-# environment
-XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
-# makefile (from 'Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
-# automatic
-@F = $(notdir $@)
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
-# 'override' directive
-GNUMAKEFLAGS := 
-# environment
-MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
-# environment
-XDG_DATA_DIRS = /usr/share/gnome:/usr/share/ubuntu:/mnt/nfs/homes/vchan/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
-# environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/40674/bus
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
 # makefile (from 'Makefile', line 28)
 OBJS = ${SRCS:.c=.o}
 # environment
-MANAGERPID = 161958
-# environment
-VSCODE_CWD = /mnt/nfs/homes/vchan
-# makefile (from 'Makefile', line 4)
-_RESET = \033[2K
-# environment
-XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session4
-# environment
-KRB5CCNAME = FILE:/tmp/krb5cc_40674_4KbL4J
-# default
-MAKE_HOST := x86_64-pc-linux-gnu
-# makefile (from 'Makefile', line 8)
-_YELLOW = \e[33m
-# environment
-PATH = /mnt/nfs/homes/vchan/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-# makefile (from 'Makefile', line 2)
-_END = \e[0m
-# environment
-GPG_AGENT_INFO = /run/user/40674/gnupg/S.gpg-agent:0:1
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
-# environment
-SESSION_MANAGER = local/e1r12p19.clusters.42paris.fr:@/tmp/.ICE-unix/162477,unix/e1r12p19.clusters.42paris.fr:/tmp/.ICE-unix/162477
-# environment
-XDG_RUNTIME_DIR = /run/user/40674
-# makefile (from 'Makefile', line 5)
-_GREY = \e[30m
-# environment
-XDG_MENU_PREFIX = gnome-
-# environment
-ELECTRON_RUN_AS_NODE = 1
-# environment
-INVOCATION_ID = 5d8bb44a2c9c4bcaa57e679955da983c
-# makefile (from 'Makefile', line 34)
-LDFLAGS = -L libft -lft
-# default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
-# environment
-XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/vchan
-# environment
-LS_COLORS = 
-# environment
-XDG_SESSION_DESKTOP = ubuntu
-# environment
-SSH_AUTH_SOCK = /run/user/40674/keyring/ssh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 162939
-# automatic
-%F = $(notdir $%)
-# environment
-DISPLAY = :0
-# environment
-PWD = /mnt/nfs/homes/vchan/Desktop/minishell
-# default
-.LOADED := 
-# environment
-SSH_AGENT_PID = 162440
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
-# environment
-GTK_MODULES = gail:atk-bridge
-# makefile (from 'Makefile', line 9)
-_BLUE = \e[34m
-# environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
-HOME = /mnt/nfs/homes/vchan
-# environment
-VSCODE_CODE_CACHE_PATH = /mnt/nfs/homes/vchan/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
-# environment
-LOGNAME = vchan
-# environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-ZSH = /mnt/nfs/homes/vchan/.oh-my-zsh
-# environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# environment
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
-# automatic
-^D = $(patsubst %/,%,$(dir $^))
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 2
 # environment
 MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
 # environment
-QT_IM_MODULE = ibus
-# makefile (from 'Makefile', line 11)
-SRCS = srcs/minishell.c srcs/echo.c srcs/search_bultins.c srcs/env.c srcs/liste.c srcs/export.c srcs/cleaning.c srcs/pathparse.c parsing/parsing.c parsing/split_space1.c srcs/utils.c srcs/unset.c srcs/cd.c srcs/pwd.c srcs/searchcmd.c srcs/env_str.c 
-# environment
-SHLVL = 1
-# makefile (from 'Makefile', line 37)
-LIBFT = libft/libft.a
-# makefile (from 'Makefile', line 30)
-CC = cc
-# environment
-IM_CONFIG_PHASE = 1
-# default
-MAKE_VERSION := 4.2.1
-# environment
-USER = vchan
-# makefile
-.DEFAULT_GOAL := all
-# environment
-XDG_CURRENT_DESKTOP = Unity
-# makefile (from 'Makefile', line 41)
-CLEAN_FT = make fclean -C libft
-# makefile (from 'Makefile', line 3)
-_BOLD = \e[1m
-# environment
-LIBVIRT_DEFAULT_URI = qemu:///system
-# environment
-LESS = -R
-# automatic
-%D = $(patsubst %/,%,$(dir $%))
-# default
-MAKE_COMMAND := make
-# environment
-OLDPWD = /mnt/nfs/homes/vchan
-# default
-.VARIABLES := 
-# automatic
-*F = $(notdir $*)
-# environment
-XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
-# environment
-VSCODE_IPC_HOOK = /run/user/40674/vscode-b669cd3a-1.69.2-main.sock
-# makefile
-MAKEFLAGS = pqrR
-# environment
-MFLAGS = -pqrR
-# automatic
-*D = $(patsubst %/,%,$(dir $*))
-# automatic
-+D = $(patsubst %/,%,$(dir $+))
-# environment
-GDK_BACKEND = x11
-# automatic
-+F = $(notdir $+)
-# environment
-QT_ACCESSIBILITY = 1
-# environment
-DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+PATH = /mnt/nfs/homes/lebackor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # default
 MAKEFILES := 
 # automatic
-<F = $(notdir $<)
+^F = $(notdir $^)
+# environment
+INVOCATION_ID = 2d47e7aafb144e0bbd983f19201b5cd9
+# makefile (from 'Makefile', line 6)
+_RED = \e[31m
+# environment
+DOCKER_HOST = unix:///run/user/101031/docker.sock
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 39)
+NAME = minishell
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# automatic
++F = $(notdir $+)
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+LESS = -R
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = lebackor
+# makefile (from 'Makefile', line 41)
+CLEAN_FT = make fclean -C libft
+# makefile (from 'Makefile', line 9)
+_BLUE = \e[34m
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/terminator.desktop
+# makefile (from 'Makefile', line 4)
+_RESET = \033[2K
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 709620
+# environment
+DISPLAY = :0
+# environment
+USER = lebackor
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+# default
+MAKE_VERSION := 4.3
+# makefile (from 'Makefile', line 3)
+_BOLD = \e[1m
+# makefile (from 'Makefile', line 7)
+_GREEN = \e[32m
+# makefile (from 'Makefile', line 34)
+LDFLAGS = -L libft -lft
+# environment
+MANAGERPID = 709036
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 713277
 # environment
 PAGER = less
 # environment
-LC_ALL = C
+_ = /usr/bin/code
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+XDG_RUNTIME_DIR = /run/user/101031
+# makefile (from 'Makefile', line 32)
+CFLAGS = -Wall -Werror -Wextra -g3 
+# environment
+GPG_AGENT_INFO = /run/user/101031/gnupg/S.gpg-agent:0:1
+# environment
+COLORTERM = truecolor
+# environment
+JOURNAL_STREAM = 8:2645057
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /mnt/nfs/homes/lebackor
+# environment
+QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 5)
+_GREY = \e[30m
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/101031/vscode-0c5ea333-1.70.2-main.sock
+# environment
+TERM = xterm-256color
+# default
+.RECIPEPREFIX := 
 # automatic
-^F = $(notdir $^)
+<F = $(notdir $<)
 # default
 SUFFIXES := 
 # environment
-CHROME_DESKTOP = code-url-handler.desktop
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+VTE_VERSION = 6800
+# makefile (from 'Makefile', line 8)
+_YELLOW = \e[33m
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/lebackor
 # default
-.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 30)
+CC = cc
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# makefile (from 'Makefile', line 39)
-NAME = minishell
-# default
-.RECIPEPREFIX := 
-# makefile (from 'Makefile', line 7)
-_GREEN = \e[32m
+XDG_MENU_PREFIX = gnome-
 # environment
-LANG = C
-# environment
-DOCKER_HOST = unix:///run/user/40674/docker.sock
-# environment
-VSCODE_PID = 162939
+GDMSESSION = ubuntu
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=16/155=10%
+# Load=126/1024=12%, Rehash=0, Collisions=12/170=7%
 
 # Pattern-specific Variable Values
 
@@ -252,11 +272,11 @@ VSCODE_PID = 162939
 
 # Directories
 
-# . (device 59, inode 21928728): 12 files, no impossibilities.
-# parsing (device 59, inode 24287627): 6 files, no impossibilities so far.
-# srcs (device 59, inode 25433914): 31 files, no impossibilities so far.
+# . (device 60, inode 40018974): 13 files, no impossibilities.
+# parsing (device 60, inode 40020031): 6 files, no impossibilities so far.
+# srcs (device 60, inode 40020058): 31 files, no impossibilities so far.
 
-# 49 files, no impossibilities in 3 directories.
+# 50 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -265,126 +285,65 @@ VSCODE_PID = 162939
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
 # 1 implicit rules, 0 (0.0%) terminal.
-
 # Files
 
 # Not a target:
-srcs/unset.c:
+srcs/liste.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.213177138
+#  Last modified 2022-09-01 17:35:46.222442763
 #  File has been updated.
 #  Successfully updated.
 
-parsing/split_space1.o: parsing/split_space1.c
+srcs/unset.o: srcs/unset.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/split_space1'
-#  Last modified 2022-08-31 17:55:00.239045271
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-all: minishell
-#  Phony target (prerequisite of .PHONY).
-#  Command line target.
-#  Implicit rule search has not been done.
-#  File does not exist.
- 
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
-
-srcs/pwd.o: srcs/pwd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/pwd'
-#  Last modified 2022-08-31 17:55:00.495046713
+#  Implicit/static pattern stem: 'srcs/unset'
+#  Last modified 2022-09-01 21:44:07.915575526
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-.PHONY: all clean fclean re
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-srcs/cd.o: srcs/cd.c
+srcs/minishell.o: srcs/minishell.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/cd'
-#  Last modified 2022-08-31 17:55:00.430046347
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-srcs/pathparse.o: srcs/pathparse.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/pathparse'
-#  Last modified 2022-08-31 17:55:00.100044487
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-srcs/echo.o: srcs/echo.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/echo'
-#  Last modified 2022-08-31 17:54:59.709042284
+#  Implicit/static pattern stem: 'srcs/minishell'
+#  Last modified 2022-09-01 21:44:07.879575328
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
 # Not a target:
-srcs/cleaning.c:
+srcs/search_bultins.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.179176947
+#  Last modified 2022-09-01 17:35:46.238442849
 #  File has been updated.
 #  Successfully updated.
-
-# Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 srcs/searchcmd.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.210177122
+#  Last modified 2022-09-01 17:35:46.241442865
 #  File has been updated.
 #  Successfully updated.
-
-srcs/export.o: srcs/export.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/export'
-#  Last modified 2022-08-31 17:54:59.97104376
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
 # Not a target:
-Makefile:
+parsing/parsing.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:54:56.445023889
+#  Last modified 2022-09-01 21:44:07.786574817
 #  File has been updated.
 #  Successfully updated.
 
-srcs/utils.o: srcs/utils.c
+# Not a target:
+srcs/env.c:
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/utils'
-#  Last modified 2022-08-31 17:55:00.307045654
+#  Last modified 2022-09-01 17:35:46.212442709
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-srcs/search_bultins.o: srcs/search_bultins.c
+srcs/echo.o: srcs/echo.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/search_bultins'
-#  Last modified 2022-08-31 17:54:59.78104269
+#  Implicit/static pattern stem: 'srcs/echo'
+#  Last modified 2022-09-01 21:44:07.836575092
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
@@ -393,27 +352,27 @@ srcs/search_bultins.o: srcs/search_bultins.c
 minishell: srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o libft/libft.a
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-09-01 21:44:07.777574768
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
 # @ := minishell
 # automatic
-# % := 
-# automatic
 # * := 
-# automatic
-# + := srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o libft/libft.a
-# automatic
-# | := 
 # automatic
 # < := srcs/minishell.o
 # automatic
+# + := srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o libft/libft.a
+# automatic
+# % := 
+# automatic
 # ^ := srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o libft/libft.a
 # automatic
-# ? := srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o libft/libft.a
+# ? := srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o
+# automatic
+# | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/17=12%
+# Load=8/32=25%, Rehash=0, Collisions=3/17=18%
 #  recipe to execute (from 'Makefile', line 45):
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS)  -o $@ -L /usr/lib/x86_64-linux-gnu -lreadline
 	@echo "Ca arrive..."
@@ -421,117 +380,33 @@ minishell: srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/li
 # Not a target:
 parsing/split_space1.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:01.410037326
+#  Last modified 2022-09-01 21:44:07.8015749
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 21:44:07.35757246
 #  File has been updated.
 #  Successfully updated.
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-31 17:55:02.737059349
+#  Last modified 2022-09-01 21:44:07.764574697
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 52):
 	@make -C libft
 
-srcs/liste.o: srcs/liste.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/liste'
-#  Last modified 2022-08-31 17:54:59.9070434
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-# Not a target:
-srcs/pwd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.202177076
-#  File has been updated.
-#  Successfully updated.
-
-fclean: clean
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 59):
-			rm -f ${NAME}
-
-# Not a target:
-srcs/cd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.17617693
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-srcs/pathparse.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.19917706
-#  File has been updated.
-#  Successfully updated.
-
-srcs/minishell.o: srcs/minishell.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/minishell'
-#  Last modified 2022-08-31 17:54:59.637041878
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
 srcs/env_str.o: srcs/env_str.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'srcs/env_str'
-#  Last modified 2022-08-31 17:55:00.616047395
+#  Last modified 2022-09-01 21:44:07.849575164
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-srcs/env.o: srcs/env.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/env'
-#  Last modified 2022-08-31 17:54:59.848043067
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-# Not a target:
-srcs/echo.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.182176964
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-.DEFAULT:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-srcs/export.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.19217702
-#  File has been updated.
-#  Successfully updated.
-
-parsing/parsing.o: parsing/parsing.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/parsing'
-#  Last modified 2022-08-31 17:55:00.17504491
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-re: fclean all
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -542,80 +417,223 @@ clean:
 		rm -f ${OBJS} ${LIBFT}
 		${CLEAN_FT}
 
+ 
+# Not a target:
+srcs/env_str.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 17:35:46.215442725
+#  File has been updated.
+#  Successfully updated.
+
 # Not a target:
 srcs/utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.21517715
-#  File has been updated.
-#  Successfully updated.
-
-srcs/unset.o: srcs/unset.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/unset'
-#  Last modified 2022-08-31 17:55:00.369046003
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
-	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-# Not a target:
-srcs/search_bultins.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.207177105
+#  Last modified 2022-09-01 17:35:46.246442892
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-srcs/liste.c:
+srcs/export.c:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-08-31 17:52:26.195177037
+#  Last modified 2022-09-01 17:35:46.219442747
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/minishell.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:53:08.077413126
+#  Last modified 2022-09-01 21:44:07.87257529
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-srcs/env_str.c:
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+srcs/search_bultins.o: srcs/search_bultins.c
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.189177003
+#  Implicit/static pattern stem: 'srcs/search_bultins'
+#  Last modified 2022-09-01 21:44:07.900575444
 #  File has been updated.
 #  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-srcs/cleaning.o: srcs/cleaning.c
+srcs/cd.o: srcs/cd.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'srcs/cleaning'
-#  Last modified 2022-08-31 17:55:00.036044127
+#  Implicit/static pattern stem: 'srcs/cd'
+#  Last modified 2022-09-01 21:44:07.815574977
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
 # Not a target:
-srcs/env.c:
+srcs/pathparse.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:26.186176986
+#  Last modified 2022-09-01 17:35:46.2294428
 #  File has been updated.
 #  Successfully updated.
 
 srcs/searchcmd.o: srcs/searchcmd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'srcs/searchcmd'
-#  Last modified 2022-08-31 17:55:00.55304704
+#  Last modified 2022-09-01 21:44:07.908575488
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
 # Not a target:
-parsing/parsing.c:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/liste.o: srcs/liste.c
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:52:01.407037309
+#  Implicit/static pattern stem: 'srcs/liste'
+#  Last modified 2022-09-01 21:44:07.863575241
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+srcs/pwd.o: srcs/pwd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/pwd'
+#  Last modified 2022-09-01 21:44:07.894575411
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 59):
+			rm -f ${NAME}
+
+# Not a target:
+srcs/echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 17:35:46.208442688
+#  File has been updated.
+#  Successfully updated.
+
+srcs/utils.o: srcs/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/utils'
+#  Last modified 2022-09-01 21:44:07.922575565
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+# Not a target:
+srcs/unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 17:35:46.244442881
+#  File has been updated.
+#  Successfully updated.
+
+srcs/export.o: srcs/export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/export'
+#  Last modified 2022-09-01 21:44:07.856575202
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+# Not a target:
+srcs/cd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 17:35:46.20144265
+#  File has been updated.
+#  Successfully updated.
+
+srcs/cleaning.o: srcs/cleaning.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/cleaning'
+#  Last modified 2022-09-01 21:44:07.829575054
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+parsing/split_space1.o: parsing/split_space1.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parsing/split_space1'
+#  Last modified 2022-09-01 21:44:07.808574938
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+parsing/parsing.o: parsing/parsing.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parsing/parsing'
+#  Last modified 2022-09-01 21:44:07.793574856
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+# Not a target:
+srcs/cleaning.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 21:44:07.822575015
+#  File has been updated.
+#  Successfully updated.
+
+srcs/pathparse.o: srcs/pathparse.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/pathparse'
+#  Last modified 2022-09-01 21:44:07.886575367
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+srcs/env.o: srcs/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'srcs/env'
+#  Last modified 2022-09-01 21:44:07.842575125
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 49):
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/pwd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-01 17:35:46.231442811
 #  File has been updated.
 #  Successfully updated.
 
@@ -630,9 +648,9 @@ parsing/parsing.c:
 # strcache buffers: 1 (0) / strings = 106 / storage = 1207 B / avg = 11 B
 # current buf: size = 8162 B / used = 1207 B / count = 106 / avg = 11 B
 
-# strcache performance: lookups = 150 / hit rate = 29%
+# strcache performance: lookups = 151 / hit rate = 29%
 # hash-table stats:
-# Load=106/8192=1%, Rehash=0, Collisions=4/150=3%
-# Finished Make data base on Wed Aug 31 17:55:11 2022
+# Load=106/8192=1%, Rehash=0, Collisions=2/151=1%
+# Finished Make data base on Thu Sep  1 21:44:23 2022
 
  

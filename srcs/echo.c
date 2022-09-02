@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:16 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/16 17:17:17 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:40:56 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,61 @@
 
 int	ft_echo(t_data *s)
 {
-	while (s->rdline[s->i] != ' ' && s->rdline[s->i])
-		s->i++;
-	while (s->rdline[s->i] == ' ' && s->rdline[s->i])
-		s->i++;
-	if (s->rdline[s->i] == '-' && s->rdline[s->i])
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (s->cmds_tab[s->i_split][i])
 	{
-		if (s->rdline[s->i + 1] == 'n' && (s->rdline[s->i + 2] == ' '
-				|| s->rdline[s->i + 2] == '\0'))
-			ft_print_echo(s, 0);
-		else
-			ft_print_echo(s, 1);
-		return (0);
+		j = 1;
+		if (s->cmds_tab[s->i_split][i][j - 1] == '-'
+		&& s->cmds_tab[s->i_split][i][j] == 'n')
+		{
+			while (s->cmds_tab[s->i_split][i][j]
+			&& s->cmds_tab[s->i_split][i][j] == 'n')
+				j++;
+			if (s->cmds_tab[s->i_split][i][j]
+			&& s->cmds_tab[s->i_split][i][j] != 'n')
+				break ;
+		}
+		i++;
 	}
-	ft_print_echo(s, 1);
+	ft_print_echo(s, i);
 	return (0);
 }
 
+/*
+int	ft_echo(t_data *s)
+{
+	int	i;
+
+	i = 1;
+	while (s->cmds_tab && ft_strcmp(s->cmds_tab[s->i_split][i], "-n") == 0)
+		i++;
+	return (0);
+}
+*/
 int	ft_print_echo(t_data *s, int a)
 {
+	int	i;
+
+	i = 0;
 	if (a == 0)
 	{
-		write(1, &s->rdline[s->i + 3], ft_strlen(&s->rdline[s->i + 3]));
+		while (s->cmds_tab[s->i_split][++i])
+			printf("%s ", s->cmds_tab[s->i_split][i]);
+		printf("\n");
 	}
-	if (a == 1)
+	else
 	{
-		if (ft_strlen(s->rdline) == 4)
-			ft_printf("\n");
-		else
-			ft_printf("%s\n", &s->rdline[s->i]);
+		while (s->cmds_tab[s->i_split][a])
+		{
+			printf("%s", s->cmds_tab[s->i_split][a]);
+			if (s->cmds_tab[s->i_split][a + 1] != NULL)
+				printf(" ");
+			a++;
+		}
 	}
 	return (0);
 }
