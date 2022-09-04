@@ -6,22 +6,22 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:16 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/02 18:40:56 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/04 07:43:41 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_echo(t_data *s)
+int	ft_echo(t_data *s, t_env *env)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	j = 0;
-	while (s->cmds_tab[s->i_split][i])
+	j = 1;
+	while (s->cmds_tab[s->i_split][i] && s->cmds_tab[s->i_split][i][j - 1] == '-'
+		&& s->cmds_tab[s->i_split][i][j] == 'n')
 	{
-		j = 1;
 		if (s->cmds_tab[s->i_split][i][j - 1] == '-'
 		&& s->cmds_tab[s->i_split][i][j] == 'n')
 		{
@@ -32,32 +32,42 @@ int	ft_echo(t_data *s)
 			&& s->cmds_tab[s->i_split][i][j] != 'n')
 				break ;
 		}
+		j = 1;
 		i++;
 	}
-	ft_print_echo(s, i);
+	if (i == 1)
+		i = 0;
+	ft_print_echo(s, env, i);
 	return (0);
 }
 
-/*
-int	ft_echo(t_data *s)
+int	ft_print_echo(t_data *s, t_env *env, int a)
 {
-	int	i;
-
-	i = 1;
-	while (s->cmds_tab && ft_strcmp(s->cmds_tab[s->i_split][i], "-n") == 0)
-		i++;
-	return (0);
-}
-*/
-int	ft_print_echo(t_data *s, int a)
-{
-	int	i;
+	int		i;
+	t_env	*tmp;
 
 	i = 0;
 	if (a == 0)
 	{
-		while (s->cmds_tab[s->i_split][++i])
-			printf("%s ", s->cmds_tab[s->i_split][i]);
+		while (s->cmds_tab[s->i_split][i])
+		{
+			if (s->cmds_tab[s->i_split][i][0] == '$')
+			{
+				tmp = env;
+				while (tmp != NULL && ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) != 0)
+					tmp = tmp->next;
+			}
+			if (tmp == NULL)
+				printf("x\n");
+			printf("%s, %s\n", &s->cmds_tab[s->i_split][i][1], tmp->content);
+			if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
+			{
+				printf("%s", tmp->content);
+				i++;
+			}
+			else
+				printf("%s ", s->cmds_tab[s->i_split][i]);
+		}
 		printf("\n");
 	}
 	else

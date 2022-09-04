@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/02 17:41:38 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/04 07:23:11 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct t_env
 
 int		ft_search_bultins(t_data *s, t_env *envp);
 int		ft_search_echo(t_data *s);
-int		ft_print_echo(t_data *s, int a);
-int		ft_echo(t_data *s);
+int		ft_print_echo(t_data *s, t_env *env, int a);
+int		ft_echo(t_data *s, t_env *env);
 t_env	*ft_addback(t_env **stack, char *content, char *value);
 t_env	*create_liste(t_env *env, char *content, char *value);
 t_env	*put_env(t_env *env, char **envp, t_data *s);
