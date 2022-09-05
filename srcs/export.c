@@ -14,18 +14,12 @@
 
 int	ft_export(t_data *s, t_env *envp)
 {
-	s->i = 0;
-	while (s->rdline[s->i] && s->rdline[s->i] != ' ')
-		s->i++;
-	while (s->rdline[s->i] && s->rdline[s->i] == ' ')
-		s->i++;
-	if (!s->rdline[s->i])
+	char **export;
+	(void) envp;
+	export = ft_split(s->cmds_tab[s->i_split][s->i_split], '=');
+	ft_print_split(export);
+	if (!s->cmds_tab[s->i_split][s->i_split + 1])
 		return (ft_printf("declare -x not coded yet\n"));
-	while (s->rdline[s->i]
-		&& ((s->rdline[s->i] >= 'a' && s->rdline[s->i] <= 'z')
-			|| (s->rdline[s->i] >= 'A' && s->rdline[s->i] <= 'Z')
-			|| (s->rdline[s->i] >= '0' && s->rdline[s->i] <= '9')))
-		s->i++;
 	if (s->rdline[s->i] && s->rdline[s->i] != '=')
 		return (ft_printf("bash: export: `%c': not a valid identifier\n",
 				s->rdline[s->i]));

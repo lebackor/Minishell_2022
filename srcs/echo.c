@@ -45,8 +45,9 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 {
 	int		i;
 	t_env	*tmp;
-
-	i = 0;
+	(void) tmp;
+	(void) env;
+	i = 1;
 	if (a == 0)
 	{
 		while (s->cmds_tab[s->i_split][i])
@@ -56,17 +57,31 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 				tmp = env;
 				while (tmp != NULL && ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) != 0)
 					tmp = tmp->next;
+				if (tmp == NULL)
+				{
+					printf("%s", s->cmds_tab[s->i_split][i]);
+					if (s->cmds_tab[s->i_split][i + 1] != NULL)
+						printf(" ");
+					i++;
+				}
+				else if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
+				{
+					printf("%s", tmp->value);
+					if (s->cmds_tab[s->i_split][i + 1] != NULL)
+						printf(" ");
+					i++;
+				}
 			}
-			if (tmp == NULL)
-				printf("x\n");
-			printf("%s, %s\n", &s->cmds_tab[s->i_split][i][1], tmp->content);
-			if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
+			//printf("%s, %s\n", &s->cmds_tab[s->i_split][i][1], tmp->content);
+		/*	if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
 			{
 				printf("%s", tmp->content);
+			}*/
+			else
+			{
+				printf("%s ", s->cmds_tab[s->i_split][i]);
 				i++;
 			}
-			else
-				printf("%s ", s->cmds_tab[s->i_split][i]);
 		}
 		printf("\n");
 	}
