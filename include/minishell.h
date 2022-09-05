@@ -92,6 +92,8 @@ char	*lookforpaths(t_env *env, t_data *s);
 char	**env_node_to_str(t_env *env);
 int		ft_strlen_of_nodes(t_env *env);
 int		ft_strlen_3table(char ***str);
+void	ft_addshlvl(t_env *env);
+
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

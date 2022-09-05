@@ -25,6 +25,7 @@ t_env	*put_env(t_env *env, char **envp, t_data *s)
 	}
 	ft_put_first_env(env, envp);
 	ft_put_second_env(env, envp);
+	ft_addshlvl(env);	
 	return (env);
 }
 
@@ -87,6 +88,23 @@ void	ft_put_first_env(t_env *env, char **envp)
 		free(str);
 		str = NULL;
 		i++;
+	}
+}
+
+void	ft_addshlvl(t_env *env)
+{
+	t_env *tmp;
+	int nb;
+
+	tmp = env;
+	while (tmp != NULL && ft_strcmp(tmp->content, "SHLVL") == 0)
+		tmp = tmp->next;
+	if (ft_strcmp(tmp->content, "SHLVL") == 0)
+	{
+		nb = ft_atoi(tmp->value);
+		nb++;
+		free(tmp->value);
+		tmp->value = ft_itoa(nb);
 	}
 }
 
