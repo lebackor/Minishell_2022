@@ -1,5 +1,36 @@
 #include "../include/minishell.h"
 
+int	check_if_quotes(char q, char dq, char *str)
+{
+	int	i;
+	int	count;
+	int	ret_value;
+
+	count = 0;
+	ret_value = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && count == 1)
+		{
+			if (str[i] == q)
+				count--;
+			i++;
+		}
+		while (str[i] && count == 0)
+		{
+			if (str[i] == dq)
+				ret_value++;
+			else if (str[i] == q)
+				count++;
+			i++;
+		}
+	}
+	if (ret_value % 2 == 1)
+		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
+	return (0);
+}
+
 int	check_syntax2(char *str)
 {
 	int	i;
@@ -13,12 +44,10 @@ int	check_syntax2(char *str)
 			return (printf("%s: Syntax Error, \"||\" found\n", MINISH), 1);
 		if (str[i] == '&' && str[i + 1] == '&')
 			return (printf("%s: Syntax Error, \"&&\" found\n", MINISH), 1);
-		else if (str[i] == '\'')
-			count++;
 		i++;
 	}
-	if (count % 2 == 1)
-		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
+	if (check_if_quotes('\'', '"', str))
+		return (1);
 	return (0);
 }
 
@@ -38,12 +67,14 @@ int	check_syntax(char *str)
 		else if (str[i] == ';')
 			return (printf("%s: Syntax error near unexpected token `;'\n",
 					MINISH), 1);
-		else if (str[i] == '"')
-			count++;
+		// else if (str[i] == '"')
+			// count++;
 		i++;
 	}
-	if (count % 2 == 1)
-		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
+	if (check_if_quotes('"', '\'', str))
+		return (1);
+	// if (count % 2 == 1)
+		// return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
 	return (0);
 }
 
