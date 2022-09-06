@@ -7,15 +7,18 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	s->rdline = readline(MINISH _GREEN"$ " _END);
 	while (s->rdline)
 	{
-		if (check_syntax(s->rdline) == 1)
-			free(s->rdline);
 		if (ft_strcmp(s->rdline, "exit") == 0)
 			return (free (s->rdline), printf("exit\n"), 1);
-		add_history(s->rdline);
-		cmd_args = check_quotes(s->rdline, cmds_list);
-		ft_search_bultins(s, env);
-		destroy_cmds_args(cmd_args);
-		free(s->rdline);
+		if (check_syntax(s->rdline) == 1)
+			free(s->rdline);
+		else
+		{
+			add_history(s->rdline);
+			cmd_args = check_quotes(s->rdline, cmds_list);
+			ft_search_bultins(s, env);
+			destroy_cmds_args(cmd_args);
+			free(s->rdline);
+		}
 		s->rdline = readline(MINISH _GREEN"$ " _END);
 	}
 	return (0);
