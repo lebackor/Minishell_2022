@@ -229,10 +229,7 @@ char	***check_quotes(char *str, t_pipe *cmds_list)
 
 	(void)cmds_list;
 	cmds_args = skip_isspace(str);
-	if (!check_heredoc(str))
-		remove_quote(cmds_args);
-	// else
-	// 	do_heredoc(str)
+	remove_quote(cmds_args);
 	return (cmds_args);
 }
 
