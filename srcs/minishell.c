@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/02 18:06:05 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:26:22 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	while (s->rdline)
 	{
 		if (check_syntax(s->rdline) == 1)
-			free(s->rdline);
+			return (free(s->rdline), 1);
 		if (ft_strcmp(s->rdline, "exit") == 0)
 			return (free (s->rdline), printf("exit\n"), 1);
 		add_history(s->rdline);
 		s->cmds_tab = check_quotes(s->rdline, cmds_list);
 		if (ft_search_bultins(s, env) != 0)
+		{
+			printf("ici ca marche\n");
 			ft_execution(env, s);
+			printf("ici ca marche plus\n");
+		}
 		destroy_cmds_args(s->cmds_tab);
 		free(s->rdline);
 		s->rdline = readline(MINISH _GREEN"$ " _END);

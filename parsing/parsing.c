@@ -42,7 +42,6 @@ int	check_syntax(char *str)
 }
 
 
-
 int	check_pipe(char *str)
 {
 	int	i;
@@ -87,6 +86,7 @@ char	***skip_isspace(char *str)
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
 		return (NULL);
+	printf("ici\n");
 	while (tmp[i])
 	{
 		args[x] = ft_split_space(tmp[i], ' ');
@@ -229,10 +229,8 @@ char	***check_quotes(char *str, t_pipe *cmds_list)
 
 	(void)cmds_list;
 	cmds_args = skip_isspace(str);
-	if (!check_heredoc(str))
-		remove_quote(cmds_args);
-	// else
-	// 	do_heredoc(str)
+	printf("ici\n");
+	remove_quote(cmds_args);
 	return (cmds_args);
 }
 
