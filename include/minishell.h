@@ -93,7 +93,8 @@ char	**env_node_to_str(t_env *env);
 int		ft_strlen_of_nodes(t_env *env);
 int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
-
+int		ft_strlen_2table(char **str);
+int		ft_redir_input(t_data *s);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

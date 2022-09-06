@@ -34,6 +34,16 @@ void	print_list(t_env	*env)
 	}
 }
 
+int	ft_strlen_2table(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 int	ft_strlen_3table(char ***str)
 {
 	int	i;

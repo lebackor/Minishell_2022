@@ -23,7 +23,7 @@ int	ft_execution(t_env *env, t_data *s)
 	i = fork();
 	if (i == 0)
 	{
-		execve(s->pathexec, s->words, env_node_to_str(env));
+		execve(s->pathexec, s->cmds_tab[s->i_split], env_node_to_str(env));
 		perror("execve");
 		return (0);
 	}
@@ -55,6 +55,7 @@ char	*lookforpaths(t_env *env, t_data *s)
 		j = access(fini, X_OK);
 		if (j == 0)
 		{
+		//	printf("%s\n", fini);
 			return (fini);
 		}
 		free(fini);

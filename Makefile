@@ -24,13 +24,14 @@ SRCS = 		srcs/minishell.c\
 			srcs/pwd.c\
 			srcs/searchcmd.c\
 			srcs/env_str.c\
+			srcs/redir_input.c\
 
 OBJS = ${SRCS:.c=.o}
 
 CC	=	cc
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
-# CFLAGS = -Wall -Werror -Wextra -g3
+ CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+#CFLAGS = -Wall -Werror -Wextra -g3
 LDFLAGS = -L libft -lft
 
 

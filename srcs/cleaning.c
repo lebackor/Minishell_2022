@@ -22,11 +22,13 @@ void	ft_clean(t_env *env, t_data *s)
 		tmp = env;
 		env = env->next;
 		if (tmp)
+		{
+			free(tmp->content);
+			free(tmp->value);
 			free(tmp);
+		}	
 	}
-	// ft_free_table(s->cmd);
-	// ft_free_table(s->words);
-	// ft_free_table(s->env);
+	free(env);
 	free(s->pathexec);
 	free(s);
 }

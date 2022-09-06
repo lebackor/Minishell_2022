@@ -20,14 +20,11 @@ int	ft_export(t_data *s, t_env *envp)
 	ft_print_split(export);
 	if (!s->cmds_tab[s->i_split][s->i_split + 1])
 		return (ft_printf("declare -x not coded yet\n"));
-	if (s->rdline[s->i] && s->rdline[s->i] != '=')
+	if (s->cmds_tab[s->i_split][s->i_split + 1] && search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]) != NULL)
 		return (ft_printf("bash: export: `%c': not a valid identifier\n",
-				s->rdline[s->i]));
+				search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]));
 	else
 	{
-		/*if (!((s->rdline[s->i + 1] >= 'a' && s->rdline[s->i + 1] <= 'z')
-				|| (s->rdline[s->i + 1] >= 'A' && s->rdline[s->i + 1] <= 'Z')
-				|| (s->rdline[s->i + 1] >= '0' && s->rdline[s->i + 1] <= '9')))*/
 		if (s->rdline[s->i] && s->rdline[s->i + 1] == ' ')
 			return (ft_printf("bash: export: `%c': not a valid identifier\n",
 					s->rdline[s->i + 1]));
@@ -35,6 +32,27 @@ int	ft_export(t_data *s, t_env *envp)
 	}
 	return (ft_printf("bash: export: `%c': not a valid identifier\n",
 			s->rdline[s->i]));
+}
+
+char search_export_equal_not(char *str)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (i = 0 && str[i] == '=')
+			return (str[i]);
+		if (str[i] && str[i] '=')
+			count++;
+		i++;
+	}
+	if (count == 0)
+		return (str[i]);
+	else
+		return (NULL);
 }
 
 char	*ft_split_env(char *str, int count)
@@ -102,7 +120,6 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 			if (ft_strcmp(tmp->value, ft_split_env(s->words[s->i_split + 1], 1))
 				!= 0)
 			{
-				printf("Meme variable paslamemevaleur\n");
 				free(tmp->value);
 				tmp->value = ft_strdup(ft_split_env(s->words[s->i_split + 1],
 							1));
