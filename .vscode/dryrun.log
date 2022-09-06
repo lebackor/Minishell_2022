@@ -1,6 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/mnt/nfs/homes/vchan/Desktop/minishell'
-cc -Wall -Werror -Wextra -g3  srcs/minishell.o srcs/echo.o srcs/search_bultins.o srcs/env.o srcs/liste.o srcs/export.o srcs/cleaning.o srcs/pathparse.o parsing/parsing.o parsing/split_space1.o srcs/utils.o srcs/unset.o srcs/cd.o srcs/pwd.o srcs/searchcmd.o srcs/env_str.o -L libft -lft  -o minishell -L /usr/lib/x86_64-linux-gnu -lreadline
-echo "Ca arrive..."
-make: Leaving directory '/mnt/nfs/homes/vchan/Desktop/minishell'
- 
