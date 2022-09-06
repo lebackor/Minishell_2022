@@ -49,7 +49,7 @@ char	*lookforpaths(t_env *env, t_data *s)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->words[s->i_split]);
+		fini = ft_strjoin(str, s->cmds_tab[s->i_split][s->i_split]);
 		//free(str);
 		str = NULL;
 		j = access(fini, X_OK);

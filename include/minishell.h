@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/31 17:54:35 by vchan            ###   ########.fr       */
+/*   Updated: 2022/09/04 07:23:11 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct t_env
 
 int		ft_search_bultins(t_data *s, t_env *envp);
 int		ft_search_echo(t_data *s);
-int		ft_print_echo(t_data *s, int a);
-int		ft_echo(t_data *s);
+int		ft_print_echo(t_data *s, t_env *env, int a);
+int		ft_echo(t_data *s, t_env *env);
 t_env	*ft_addback(t_env **stack, char *content, char *value);
 t_env	*create_liste(t_env *env, char *content, char *value);
 t_env	*put_env(t_env *env, char **envp, t_data *s);
@@ -90,7 +90,10 @@ int		ft_pwd(void);
 int		ft_execution(t_env *env, t_data *s);
 char	*lookforpaths(t_env *env, t_data *s);
 char	**env_node_to_str(t_env *env);
-int	ft_strlen_of_nodes(t_env *env);
+int		ft_strlen_of_nodes(t_env *env);
+int		ft_strlen_3table(char ***str);
+void	ft_addshlvl(t_env *env);
+
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */
