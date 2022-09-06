@@ -41,40 +41,7 @@ int	check_syntax(char *str)
 	return (0);
 }
 
-int check_heredoc(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '<' && str[i +1] == '<')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-// int	do_heredoc(char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (quote_or_not(str))
-// 		no_sub_heredoc(str);
-// 	sub_heredoc(str);
-// 	return (0);
-// }
-
-// void	no_sub_heredoc(char *str)
-// {
-// 	int		i;
-// 	char	*line;
-
-// 	line = get_next_line(0);
-
-
-// }
 
 int	check_pipe(char *str)
 {
