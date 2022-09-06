@@ -3,7 +3,9 @@
 int	check_syntax2(char *str)
 {
 	int	i;
+	int	count;
 
+	count = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -11,8 +13,12 @@ int	check_syntax2(char *str)
 			return (printf("%s: Syntax Error, \"||\" found\n", MINISH), 1);
 		if (str[i] == '&' && str[i + 1] == '&')
 			return (printf("%s: Syntax Error, \"&&\" found\n", MINISH), 1);
+		else if (str[i] == '\'')
+			count++;
 		i++;
 	}
+	if (count % 2 == 1)
+		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
 	return (0);
 }
 
@@ -191,7 +197,11 @@ void	removal(char *dest, char *src)
 			quote++;
 		}
 		while (src[i] && double_quote == 0 && quote == 0)
+		{
 			dest[j++] = src[i++];
+			if (src[i] == '"' || src[i] == '\'')
+				break;
+		}
 	}
 	dest[j] = '\0';
 	printf("dest = %s\n", dest);
@@ -213,7 +223,7 @@ void	remove_quote(char ***str)
 			{
 				if (which_quote(str[i][y]))
 					removal(str[i][y], str[i][y]);
-				if (!(which_quote(str[i][y])))
+				else if (!(which_quote(str[i][y])))
 					removal(str[i][y], str[i][y]);
 			}
 		y++;

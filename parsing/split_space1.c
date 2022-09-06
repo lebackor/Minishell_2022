@@ -28,13 +28,14 @@ static	unsigned int	countword(char const *str, char charset)
 			count++;
 		while (str[i] && !ischarset(str[i], charset) && str[i] != '"')
 			i++;
-		while (quote == 1 && str[i++])
+		while (quote == 1 && str[i])
 		{
 			if (str[i] == '"')
 			{
 				count++;
 				quote--;
 			}
+			i++;
 		}
 	}
 	return (count);
@@ -57,11 +58,12 @@ static int	lenword(char const *str, char charset)
 			quote++;
 		count++;
 		i++;
-		while (quote == 1 && str[i++] && str[i])
+		while (quote == 1 && str[i])
 		{
 			count++;
 			if (str[i] == '"')
 				quote--;
+			i++;
 		}
 	}
 	return (count);
@@ -94,6 +96,7 @@ char	**ft_split_space(char const *s, char c)
 		return (NULL);
 	i = 0;
 	x = 0;
+	printf("%d\n", countword(s, c));
 	while (result && x < countword(s, c))
 	{
 		k = 0;
