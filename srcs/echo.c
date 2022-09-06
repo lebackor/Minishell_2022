@@ -72,11 +72,6 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 					i++;
 				}
 			}
-			//printf("%s, %s\n", &s->cmds_tab[s->i_split][i][1], tmp->content);
-		/*	if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
-			{
-				printf("%s", tmp->content);
-			}*/
 			else
 			{
 				printf("%s ", s->cmds_tab[s->i_split][i]);

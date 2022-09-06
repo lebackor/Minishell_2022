@@ -23,6 +23,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			return (free (s->rdline), printf("exit\n"), 1);
 		add_history(s->rdline);
 		s->cmds_tab = check_quotes(s->rdline, cmds_list);
+		ft_redir_input(s);
 		if (ft_search_bultins(s, env) != 0)
 			ft_execution(env, s);
 		destroy_cmds_args(s->cmds_tab);

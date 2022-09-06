@@ -21,18 +21,28 @@
 
 int	ft_redir_input(t_data *s)
 {
-	int fd;
+	int i;
+	int count;
 
-	if (ft_strcmp('<', s->words[0]))
+	i = 0;
+	while (s->cmds_tab[s->i_split][i])
 	{
-		fd = open(s->word[s->i_split + 1], O_RDONLY); //
-		
-
+		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0) && (i != (ft_strlen_2table(s->cmds_tab[s->i_split]) -	 1)))
+		{
+			printf("Good redir input detected\n");
+			count++;
+		}
+		i++;
 	}
+	if (count == 0)
+		return (0);
+	else
+		return (count);
 
 }
-
+/*
 int ft_redir_first_arg(t_data *s)
 {
 
 }
+*/
