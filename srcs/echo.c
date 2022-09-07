@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:16 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/04 07:43:41 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:25:07 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_echo(t_data *s, t_env *env)
 
 	i = 1;
 	j = 1;
-	while (s->cmds_tab[s->i_split][i] && s->cmds_tab[s->i_split][i][j - 1] == '-'
-		&& s->cmds_tab[s->i_split][i][j] == 'n')
+	while (s->cmds_tab[s->i_split][i] && s->cmds_tab[s->i_split][i]
+	[j - 1] == '-' && s->cmds_tab[s->i_split][i][j] == 'n')
 	{
 		if (s->cmds_tab[s->i_split][i][j - 1] == '-'
 		&& s->cmds_tab[s->i_split][i][j] == 'n')
@@ -45,8 +45,7 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 {
 	int		i;
 	t_env	*tmp;
-	(void) tmp;
-	(void) env;
+
 	i = 1;
 	if (a == 0)
 	{
@@ -55,7 +54,8 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 			if (s->cmds_tab[s->i_split][i][0] == '$')
 			{
 				tmp = env;
-				while (tmp != NULL && ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) != 0)
+				while (tmp != NULL && ft_strcmp(&s->cmds_tab[s->i_split][i][1],
+				tmp->content) != 0)
 					tmp = tmp->next;
 				if (tmp == NULL)
 				{
@@ -64,7 +64,8 @@ int	ft_print_echo(t_data *s, t_env *env, int a)
 						printf(" ");
 					i++;
 				}
-				else if (ft_strcmp(&s->cmds_tab[s->i_split][i][1], tmp->content) == 0)
+				else if (ft_strcmp(&s->cmds_tab[s->i_split][i][1],
+				tmp->content) == 0)
 				{
 					printf("%s", tmp->value);
 					if (s->cmds_tab[s->i_split][i + 1] != NULL)

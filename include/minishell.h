@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 14:35:49 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:05:29 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
 int		ft_redir_input(t_data *s);
 char 	search_export_equal_not(char *str);
+void	ft_declare(t_env *env);
+
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */
