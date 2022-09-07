@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/30 19:44:19 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:38:46 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_redir_input(t_data *s)
 	int count;
 
 	i = 0;
+	count = 0;
 	while (s->cmds_tab[s->i_split][i])
 	{
 		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0) && (i != (ft_strlen_2table(s->cmds_tab[s->i_split]) -	 1)))

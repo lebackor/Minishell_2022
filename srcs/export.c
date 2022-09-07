@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/31 17:16:19 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:37:44 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	ft_export(t_data *s, t_env *envp)
 	ft_print_split(export);
 	if (!s->cmds_tab[s->i_split][s->i_split + 1])
 		return (ft_printf("declare -x not coded yet\n"));
-	if (s->cmds_tab[s->i_split][s->i_split + 1] && search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]) != NULL)
+	if (s->cmds_tab[s->i_split][s->i_split + 1] && search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]))
 		return (ft_printf("bash: export: `%c': not a valid identifier\n",
-				search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]));
+				search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1])));
 	else
 	{
 		if (s->rdline[s->i] && s->rdline[s->i + 1] == ' ')
@@ -43,16 +43,16 @@ char search_export_equal_not(char *str)
 	count = 0;
 	while (str[i])
 	{
-		if (i = 0 && str[i] == '=')
+		if (i == 0 && str[i] == '=')
 			return (str[i]);
-		if (str[i] && str[i] '=')
+		if (str[i] && str[i] == '=')
 			count++;
 		i++;
 	}
 	if (count == 0)
 		return (str[i]);
 	else
-		return (NULL);
+		return ('\0');
 }
 
 char	*ft_split_env(char *str, int count)
