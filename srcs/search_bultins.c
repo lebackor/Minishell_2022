@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:34:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/04 06:51:53 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:51:34 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_search_bultins(t_data *s, t_env *env)
 	if (ft_search_export(s) == 0)
 		return (ft_export(s, env));
 	if (ft_search_unset(s) == 0)
-		return (ft_unset(s, env));
+		return (ft_unset(s, &env));
 	if (ft_search_cd(s) == 0)
 		return (ft_cd(env, s));
 	if (ft_search_pwd(s) == 0)

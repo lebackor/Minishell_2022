@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 15:11:21 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:38:36 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ int	ft_redir_input(t_data *s)
 	count = 0;
 	while (s->cmds_tab[s->i_split][i])
 	{
-		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0) && (i != (ft_strlen_2table(s->cmds_tab[s->i_split]) -	 1)))
+		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0)
+		&& (i != (ft_strlen_2table(s->cmds_tab[s->i_split]) - 1)))
 		{
-			printf("Good redir input detected\n");
-			count++;
+			if ((i == 0) || (ft_strcmp(s->cmds_tab[s->i_split][i - 1], "<") != 0))
+			{
+				printf("Good redir input detected\n");
+				count++;
+			}
 		}
 		i++;
 	}

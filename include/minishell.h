@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 15:05:29 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:51:43 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_print_split(char **str);
 char	*ft_split_env(char *str, int count);
 void	ft_addback_new_env(t_env *env, char *content, char *value);
 int		ft_search_unset(t_data *s);
-int		ft_unset(t_data *s, t_env *env);
+int		ft_unset(t_data *s, t_env **env);
 void	print_list(t_env	*env);
 int		ft_search_cd(t_data *s);
 int		ft_cd(t_env *env, t_data *s);

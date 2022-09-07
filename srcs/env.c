@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 15:23:38 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:26:57 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,16 @@ int	ft_env(t_env *envp, t_data *s)
 	t_env	*tmp;
 
 	tmp = envp;
+	if (tmp == NULL && tmp->content == NULL && tmp->value)
+		tmp = tmp->next;
 	while (tmp != NULL)
 	{
-		printf("%s", tmp->content);
-		printf("=");
-		printf("%s\n", tmp->value);
+		if (tmp->content && tmp->value)
+		{
+			printf("%s", tmp->content);
+			printf("=");
+			printf("%s\n", tmp->value);
+		}
 		tmp = tmp->next;
 	}
 	return (0);
