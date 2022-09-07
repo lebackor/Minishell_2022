@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 15:24:05 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:08:46 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ int	ft_export(t_data *s, t_env *envp)
 		ft_declare(envp);
 		return (0);
 	}
-	/*if (s->cmds_tab[s->i_split][s->i_split + 1] &&
-	search_export_equal_not(s->cmds_tab[s->i_split][s->i_split + 1]) == '\0')
-	{
-
-	}*/
 	else
 		return (ft_put_in_env(s, envp));
 	return (ft_printf("bash: export: `%c': not a valid identifier\n",
@@ -105,31 +100,34 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 	t_env	*tmp;
 
 	i = 0;
-	tmp = envp;
-	while (tmp != NULL)
+	while (s->cmds_tab[s->i_split][i])
 	{
-		if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[s->i_split]
-					[s->i_split + 1], 0)) == 0)
+		tmp = envp;
+		while (tmp != NULL)
 		{
-		/* i_split fait gaffe aux futur add de env
-		*/
-			if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
-						[s->i_split + 1], 1))
-				!= 0)
+			if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[s->i_split]
+						[i], 0)) == 0)
 			{
-				free(tmp->value);
-				tmp->value = ft_strdup(ft_split_env(s->cmds_tab[s->i_split]
-						[s->i_split + 1], 1));
-				return (0);
-			}
-			if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
-						[s->i_split + 1], 1))
-				== 0)
-				return (0); //ecrire u msg deror ou de dire c la mm lesdeux
+				if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
+							[i], 1))
+					!= 0)
+				{
+					free(tmp->value);
+					tmp->value = ft_strdup(ft_split_env(s->cmds_tab[s->i_split]
+							[i], 1));
+				//	return (0);
+				}
+				/*if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
+							[i], 1))
+					== 0)
+					return (0); //ecrire u msg deror ou de dire c la mm lesdeux
+			*/}
+			tmp = tmp->next;
 		}
-		tmp = tmp->next;
+		ft_addback_new_env(envp, ft_split_env(s->cmds_tab[s->i_split]
+			[i], 0), ft_split_env(s->cmds_tab[s->i_split]
+			[i], 1));
+		i++;
 	}
-	ft_addback_new_env(envp, ft_split_env(s->cmds_tab[s->i_split][s->i_split
-			+ 1], 0), ft_split_env(s->cmds_tab[s->i_split][s->i_split + 1], 1));
 	return (0);
 }
