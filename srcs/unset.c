@@ -15,10 +15,10 @@
 int	ft_unset(t_data *s, t_env **env)
 {
 	t_env	*tmp;
-	t_env	*save;
+//	t_env	*save;
 	int		i;
 
-	save = *env;
+//	save = *env;
 	i = 1;
 //	when i delete the first elem of the env it have a heap buffer free
 	if (!s->cmds_tab[s->i_split][s->i_split + 1])

@@ -14,6 +14,7 @@
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
+
 	s->rdline = readline(MINISH _GREEN"$ " _END);
 	while (s->rdline)
 	{
@@ -23,7 +24,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			return (free (s->rdline), printf("exit\n"), 1);
 		add_history(s->rdline);
 		s->cmds_tab = check_quotes(s->rdline, cmds_list);
-		ft_redir_input(s);
+		check_legit_files(s, 0);
 		if (ft_search_bultins(s, env) != 0)
 			ft_execution(env, s);
 		destroy_cmds_args(s->cmds_tab);
@@ -40,7 +41,7 @@ int	main(int ac, char **av, char **envp)
 	t_pipe	cmds_list;
 
 	(void)av;
-	(void)envp;
+//	(void)envp;
 	if (ac == 1)
 	{
 		env = NULL;

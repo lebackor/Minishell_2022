@@ -50,13 +50,13 @@ typedef struct s_data
 	char	**env;
 	int		i;
 	int		i_split;
+	struct t_env *all;
 }	t_data;
 
 typedef struct t_env
 {
 	char			*content;
 	char			*value;
-//	struct t_data	*all;
 	struct t_env	*next;
 }	t_env;
 
@@ -97,7 +97,8 @@ int		ft_strlen_2table(char **str);
 int		ft_redir_input(t_data *s);
 char 	search_export_equal_not(char *str);
 void	ft_declare(t_env *env);
-
+char	*lookforpaths_give(t_env *env, t_data *s, int x);
+int	check_legit_files(t_data *s, int c);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

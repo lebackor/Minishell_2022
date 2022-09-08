@@ -42,7 +42,7 @@ char	*looking_access(t_env *env, t_data *s)
 	while (s->cmd[++i] && j != 0)
 	{
 		tmp = ft_strjoin(s->cmd[i], "/");
-		str = ft_strjoin(tmp, s->words[i]);
+		str = ft_strjoin(tmp, s->cmds_tab[s->i_split][i]);
 		free(tmp);
 		j = access(str, X_OK);
 		if (j == 0)
