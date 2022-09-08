@@ -25,7 +25,7 @@ int	check_legit_files(t_data *s, int c)
 	int f;
 	char *str;
 
-	i = 0;
+	i = 1;
 	f = 1;
 	if (ft_redir_input(s) < 1)
 	{
@@ -34,9 +34,10 @@ int	check_legit_files(t_data *s, int c)
 	}
 	if (c == 0)
 	{
-		while (s->cmds_tab[s->i_split][i][0] != '<' && f > 0)
+		while (s->cmds_tab[s->i_split][i] && f > 0)
 		{
-			if (!s->cmds_tab[s->i_split][i + 1] || s->cmds_tab[s->i_split][i + 1][0] == '<')
+			printf("ee\n");
+			if (open(s->cmds_tab[s->i_split][i], O_RDONLY) > 0 && s->cmds_tab[s->i_split][i + 1][0] == '<')
 			{
 				if (f > 0)
 					close(f);
@@ -44,11 +45,15 @@ int	check_legit_files(t_data *s, int c)
 				//dup2(f, STDIN_FILENO);
 				if (f < 0)
 					perror(s->cmds_tab[s->i_split][i]);
+				i++;
 			}
 			i++;
 		}
-		str = lookforpaths_give(s->all, s, i);
-		printf("%s\n", str);
+	//	looking_for_path(s->all, s);
+		printf("%s\n", s->cmd[1]);
+		str = lookforpaths_give(s->all, s, (i - 1));
+		if (str != NULL)	
+			printf("%s\n", str);
 	}
 	return (0);
 }
