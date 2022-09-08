@@ -25,6 +25,7 @@ SRCS = 		srcs/minishell.c\
 			srcs/searchcmd.c\
 			srcs/env_str.c\
 			srcs/redir_input.c\
+			srcs/declare_export.c\
 
 OBJS = ${SRCS:.c=.o}
 

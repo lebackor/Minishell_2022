@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/31 17:14:16 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:26:57 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_env	*put_env(t_env *env, char **envp, t_data *s)
 	}
 	ft_put_first_env(env, envp);
 	ft_put_second_env(env, envp);
-	ft_addshlvl(env);	
+	ft_addshlvl(env);
 	return (env);
 }
 
@@ -93,11 +93,11 @@ void	ft_put_first_env(t_env *env, char **envp)
 
 void	ft_addshlvl(t_env *env)
 {
-	t_env *tmp;
-	int nb;
+	t_env	*tmp;
+	int		nb;
 
 	tmp = env;
-	while (tmp != NULL && ft_strcmp(tmp->content, "SHLVL") == 0)
+	while (tmp != NULL && ft_strcmp(tmp->content, "SHLVL") != 0)
 		tmp = tmp->next;
 	if (ft_strcmp(tmp->content, "SHLVL") == 0)
 	{
@@ -112,12 +112,18 @@ int	ft_env(t_env *envp, t_data *s)
 {
 	(void )s;
 	t_env	*tmp;
+
 	tmp = envp;
+	if (tmp == NULL && tmp->content == NULL && tmp->value)
+		tmp = tmp->next;
 	while (tmp != NULL)
 	{
-		printf("%s", tmp->content);
-		printf("=");
-		printf("%s\n", tmp->value);
+		if (tmp->content && tmp->value)
+		{
+			printf("%s", tmp->content);
+			printf("=");
+			printf("%s\n", tmp->value);
+		}
 		tmp = tmp->next;
 	}
 	return (0);
