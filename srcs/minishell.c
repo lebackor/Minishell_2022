@@ -1,19 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/06 18:02:30 by vchan            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/minishell.h"
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
+	char	***cmd_args;
+
 	s->rdline = readline(MINISH _GREEN"$ " _END);
 	while (s->rdline)
 	{
@@ -24,11 +14,9 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		else
 		{
 			add_history(s->rdline);
-			s->cmds_tab = check_quotes(s->rdline, cmds_list);
-			ft_redir_input(s);
-			if (ft_search_bultins(s, env) != 0)
-				ft_execution(env, s);
-			destroy_cmds_args(s->cmds_tab);
+			cmd_args = check_quotes(s->rdline, cmds_list);
+			ft_search_bultins(s, env);
+			destroy_cmds_args(cmd_args);
 			free(s->rdline);
 		}
 		s->rdline = readline(MINISH _GREEN"$ " _END);
@@ -48,9 +36,9 @@ int	main(int ac, char **av, char **envp)
 	{
 		env = NULL;
 		s = malloc(sizeof(t_data));
-		*s = (t_data){0};
-		//env->all = s;
-		s->env = envp;
+			*s = (t_data){0};
+		env = malloc(sizeof(t_env));
+			*env = (t_env){0};
 		env = put_env(env, envp, s);
 		minishell_init(s, env, &cmds_list);
 		ft_clean(env, s);
