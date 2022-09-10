@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 16:51:43 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:39:27 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,11 @@ int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
 int		ft_redir_input(t_data *s);
-char 	search_export_equal_not(char *str);
+char	search_export_equal_not(char *str);
 void	ft_declare(t_env *env);
 char	*lookforpaths_give(t_env *env, t_data *s, int x);
-int	check_legit_files(t_data *s, int c);
+int		check_legit_files(t_data *s, int c);
+int		edit_pwd_env(t_data *s, t_env *env);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

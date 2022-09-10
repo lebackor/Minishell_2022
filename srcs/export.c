@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 19:08:46 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:18:36 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 	int		i;
 	t_env	*tmp;
 
-	i = 0;
+	i = 1;
 	while (s->cmds_tab[s->i_split][i])
 	{
 		tmp = envp;
@@ -113,15 +113,15 @@ int	ft_put_in_env(t_data *s, t_env *envp)
 					!= 0)
 				{
 					free(tmp->value);
-					tmp->value = ft_strdup(ft_split_env(s->cmds_tab[s->i_split]
-							[i], 1));
+					if (ft_split_env(s->cmds_tab[s->i_split][i], 1) != NULL)
+						tmp->value = ft_strdup(ft_split_env(s->cmds_tab[s->i_split][i], 1));
 				//	return (0);
 				}
-				/*if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
+				if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
 							[i], 1))
 					== 0)
 					return (0); //ecrire u msg deror ou de dire c la mm lesdeux
-			*/}
+			}
 			tmp = tmp->next;
 		}
 		ft_addback_new_env(envp, ft_split_env(s->cmds_tab[s->i_split]

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 17:38:36 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:25:27 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 int	check_legit_files(t_data *s, int c)
 {
-	int i;
-	int f;
-	char *str;
+	int		i;
+	int		f;
+	char	*str;
 
 	i = 1;
 	f = 1;
@@ -37,7 +37,7 @@ int	check_legit_files(t_data *s, int c)
 		while (s->cmds_tab[s->i_split][i] && f > 0)
 		{
 			printf("ee\n");
-			if (open(s->cmds_tab[s->i_split][i], O_RDONLY) > 0 && s->cmds_tab[s->i_split][i + 1][0] == '<')
+			if (open(s->cmds_tab[s->i_split][i], O_RDONLY) > 0 || s->cmds_tab[s->i_split][i + 1][0] == '<')
 			{
 				if (f > 0)
 					close(f);
@@ -49,10 +49,8 @@ int	check_legit_files(t_data *s, int c)
 			}
 			i++;
 		}
-	//	looking_for_path(s->all, s);
-		printf("%s\n", s->cmd[1]);
-		str = lookforpaths_give(s->all, s, (i - 1));
-		if (str != NULL)	
+		str = lookforpaths_give(s->all, s, (i));
+		if (str != NULL)
 			printf("%s\n", str);
 	}
 	return (0);
@@ -65,6 +63,8 @@ int	ft_redir_input(t_data *s)
 
 	i = 0;
 	count = 0;
+	if (s->cmds_tab[s->i_split][0][0] == '\n')
+		return (-1);
 	while (s->cmds_tab[s->i_split][i])
 	{
 		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0)
