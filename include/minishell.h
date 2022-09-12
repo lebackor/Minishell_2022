@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:33:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/08 15:54:45 by vchan            ###   ########.fr       */
+/*   Updated: 2022/09/09 15:14:39 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ typedef struct s_data
 	char	**env;
 	int		i;
 	int		i_split;
+	struct t_env *all;
 }	t_data;
 
 typedef struct t_env
 {
 	char			*content;
 	char			*value;
-//	struct t_data	*all;
 	struct t_env	*next;
 }	t_env;
 
@@ -81,7 +81,7 @@ void	ft_print_split(char **str);
 char	*ft_split_env(char *str, int count);
 void	ft_addback_new_env(t_env *env, char *content, char *value);
 int		ft_search_unset(t_data *s);
-int		ft_unset(t_data *s, t_env *env);
+// int		ft_unset(t_data *s, t_env *env);
 void	print_list(t_env	*env);
 int		ft_search_cd(t_data *s);
 int		ft_cd(t_env *env, t_data *s);
@@ -95,6 +95,10 @@ int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
 int		ft_redir_input(t_data *s);
+char 	search_export_equal_not(char *str);
+void	ft_declare(t_env *env);
+char	*lookforpaths_give(t_env *env, t_data *s, int x);
+int	check_legit_files(t_data *s, int c);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */

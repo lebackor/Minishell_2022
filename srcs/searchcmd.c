@@ -64,3 +64,34 @@ char	*lookforpaths(t_env *env, t_data *s)
 	return (NULL);
 }
 
+char	*lookforpaths_give(t_env *env, t_data *s, int x)
+{
+	int		i;
+	int		j;
+	char	*str;
+	char	*fini;
+
+	i = -1;
+	j = 1;
+	if (looking_for_path(env, s) == 1)
+	{
+		printf("Error not found PATH\n");
+		return (NULL);
+	}
+	while (s->cmd[++i] && j != 0)
+	{
+		str = ft_strjoin(s->cmd[i], "/");
+		fini = ft_strjoin(str, s->cmds_tab[s->i_split][x]);
+		//free(str);
+		str = NULL;
+		j = access(fini, X_OK);
+		if (j == 0)
+		{
+		//	printf("%s\n", fini);
+			return (fini);
+		}
+		free(fini);
+		fini = NULL;
+	}
+	return (NULL);
+}
