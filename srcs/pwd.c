@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:50:24 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/30 18:10:39 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:45:30 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,25 @@ int	ft_pwd(void)
 	printf("%s\n", str);
 	return (0);
 }
-/*
-int	ft_pwd_maj(t_env *env, t_data *s)
+
+int	edit_pwd_env(t_data *s, t_env *env)
 {
-	(void) s;
 	t_env *tmp;
-	char *str;
-
-	tmp = env;
-	while (ft_strcmp(tmp->content, "PWD") != 0)
-		tmp = tmp->next;
-	str = ft_strdup("/");
-	str = ft_strjoin(str, s->words[s->i_split + 1]);
-	tmp->value = ft_strjoin(tmp->value, str);
-	printf("%s\n", tmp->value);
-	return (0);
-}*/
-
-/*
-int	ft_pwd_back(t_env *env, t_data *s)
-{
-	t_env	*tmp;
-	char	*str;
-
+	t_env *tmp2;
+	char *str = NULL;
 	(void) s;
-
 	tmp = env;
-	while (ft_strcmp(tmp->content, "PWD") != 0)
+	tmp2 = env;
+	while (tmp != NULL && ft_strcmp(tmp->content, "PWD") != 0)
 		tmp = tmp->next;
-	str = ft_strdup("/");
-	str = ft_strjoin(str, s->words[s->i_split + 1]);
-	tmp->value = ft_strjoin(tmp->value, str);
-	printf("%s\n", tmp->value);
+	while (tmp2 != NULL && ft_strcmp(tmp2->content, "OLDPWD") != 0)
+		tmp2 = tmp2->next;
+	if (ft_strcmp(tmp->content, "PWD") == 0 && ft_strcmp(tmp2->content, "OLDPWD") == 0)
+	{
+		free(tmp2->value);
+		tmp2->value = ft_strdup(tmp->value);
+		free(tmp->value);
+		tmp->value = ft_strdup(getcwd(str, 2048));
+	}
 	return (0);
 }
-
-*/

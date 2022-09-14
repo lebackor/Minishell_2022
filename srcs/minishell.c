@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/02 18:06:05 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:05:05 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
-
 	s->rdline = readline(MINISH _GREEN"$ " _END);
+	while (ft_strlen(s->rdline) < 1)
+	{
+		free(s->rdline);
+		s->rdline = readline(MINISH _GREEN"$ " _END);
+	}
 	while (s->rdline)
 	{
 		if (check_syntax(s->rdline) == 1)
@@ -31,6 +35,11 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		destroy_cmds_args(s->cmds_tab);
 		free(s->rdline);
 		s->rdline = readline(MINISH _GREEN"$ " _END);
+		while (ft_strlen(s->rdline) < 1)
+		{
+			free(s->rdline);
+			s->rdline = readline(MINISH _GREEN"$ " _END);
+		}
 	}
 	return (0);
 }
