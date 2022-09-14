@@ -49,9 +49,9 @@ int	check_legit_files(t_data *s, int c)
 			}
 			i++;
 		}
+		printf("%s\n", s->cmds_tab[s->i_split][i]);
 	//	looking_for_path(s->all, s);
-		printf("%s\n", s->cmd[1]);
-		str = lookforpaths_give(s->all, s, (i - 1));
+		str = lookforpaths_give(s->all, s, i);
 		if (str != NULL)	
 			printf("%s\n", str);
 	}

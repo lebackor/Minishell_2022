@@ -24,6 +24,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			return (free (s->rdline), printf("exit\n"), 1);
 		add_history(s->rdline);
 		s->cmds_tab = check_quotes(s->rdline, cmds_list);
+		looking_for_path(env, s);
 		check_legit_files(s, 0);
 		if (ft_search_bultins(s, env) != 0)
 			ft_execution(env, s);
