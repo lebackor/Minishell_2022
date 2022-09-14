@@ -1,9 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 17:30:41 by lebackor          #+#    #+#             */
+/*   Updated: 2022/09/10 15:05:05 by lebackor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
-
 	s->rdline = readline(MINISH _GREEN"$ " _END);
+	while (ft_strlen(s->rdline) < 1)
+	{
+		free(s->rdline);
+		s->rdline = readline(MINISH _GREEN"$ " _END);
+	}
 	while (s->rdline)
 	{
 		if (ft_strcmp(s->rdline, "exit") == 0)
@@ -21,6 +37,11 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			free(s->rdline);
 		}
 		s->rdline = readline(MINISH _GREEN"$ " _END);
+		while (ft_strlen(s->rdline) < 1)
+		{
+			free(s->rdline);
+			s->rdline = readline(MINISH _GREEN"$ " _END);
+		}
 	}
 	return (0);
 }
