@@ -81,7 +81,7 @@ void	ft_print_split(char **str);
 char	*ft_split_env(char *str, int count);
 void	ft_addback_new_env(t_env *env, char *content, char *value);
 int		ft_search_unset(t_data *s);
-// int		ft_unset(t_data *s, t_env *env);
+int		ft_unset(t_data *s, t_env **env);
 void	print_list(t_env	*env);
 int		ft_search_cd(t_data *s);
 int		ft_cd(t_env *env, t_data *s);

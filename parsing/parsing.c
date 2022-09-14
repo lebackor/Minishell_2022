@@ -34,9 +34,9 @@ int	check_if_quotes(char q, char dq, char *str)
 int	check_syntax2(char *str)
 {
 	int	i;
-	int	count;
+	//int	count;
 
-	count = 0;
+	//count = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -54,10 +54,10 @@ int	check_syntax2(char *str)
 int	check_syntax(char *str)
 {
 	int	i;
-	int	count;
+	//int	count;
 
 	i = 0;
-	count = 0;
+	//count = 0;
 	if (check_syntax2(str))
 		return (1);
 	while (str[i])
