@@ -34,9 +34,9 @@ int	check_if_quotes(char q, char dq, char *str)
 int	check_syntax2(char *str)
 {
 	int	i;
-	//int	count;
+	int	count;
 
-	//count = 0;
+	count = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -54,10 +54,10 @@ int	check_syntax2(char *str)
 int	check_syntax(char *str)
 {
 	int	i;
-	//int	count;
+	int	count;
 
 	i = 0;
-	//count = 0;
+	count = 0;
 	if (check_syntax2(str))
 		return (1);
 	while (str[i])
@@ -77,6 +77,7 @@ int	check_syntax(char *str)
 		// return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
 	return (0);
 }
+
 
 
 int	check_pipe(char *str)
@@ -123,7 +124,6 @@ char	***skip_isspace(char *str)
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
 		return (NULL);
-	printf("ici\n");
 	while (tmp[i])
 	{
 		args[x] = ft_split_space(tmp[i], ' ');
@@ -221,12 +221,6 @@ void	removal(char *dest, char *src)
 		{
 			i++;
 			double_quote++;
-		cmd_args[i] = NULL;
-		i++;
-	}
-	free(cmd_args);
-	cmd_args = NULL;
-}
 		}
 		else if (src[i] == '\'' && quote == 0)
 		{
@@ -302,4 +296,3 @@ void	destroy_cmds_args(char ***cmd_args)
 	free(cmd_args);
 	cmd_args = NULL;
 }
-
