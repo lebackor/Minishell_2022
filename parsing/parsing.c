@@ -221,6 +221,12 @@ void	removal(char *dest, char *src)
 		{
 			i++;
 			double_quote++;
+		cmd_args[i] = NULL;
+		i++;
+	}
+	free(cmd_args);
+	cmd_args = NULL;
+}
 		}
 		else if (src[i] == '\'' && quote == 0)
 		{

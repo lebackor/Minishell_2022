@@ -2,8 +2,12 @@
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
-
 	s->rdline = readline(MINISH _GREEN"$ " _END);
+	while (ft_strlen(s->rdline) < 1)
+	{
+		free(s->rdline);
+		s->rdline = readline(MINISH _GREEN"$ " _END);
+	}
 	while (s->rdline)
 	{
 		if (ft_strcmp(s->rdline, "exit") == 0)
@@ -21,6 +25,11 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			free(s->rdline);
 		}
 		s->rdline = readline(MINISH _GREEN"$ " _END);
+		while (ft_strlen(s->rdline) < 1)
+		{
+			free(s->rdline);
+			s->rdline = readline(MINISH _GREEN"$ " _END);
+		}
 	}
 	return (0);
 }
