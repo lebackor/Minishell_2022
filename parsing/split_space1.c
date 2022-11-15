@@ -96,7 +96,7 @@ char	**ft_split_space(char const *s, char c)
 		return (NULL);
 	i = 0;
 	x = 0;
-	printf("%d\n", countword(s, c));
+	// printf("%d\n", countword(s, c));
 	while (result && x < countword(s, c))
 	{
 		k = 0;

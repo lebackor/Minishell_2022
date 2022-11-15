@@ -30,15 +30,15 @@
 
 typedef struct s_data
 {
-	char	*rdline;
-	char	***cmds_tab;
-	char	**cmd; //
-	char	**words;
-	char	*pathexec;
-	char	**env;
-	int		i;
-	int		i_split;
-	struct t_env *all;
+	char			*rdline;
+	char			***cmds_tab;
+	char			**cmd; //
+	char			**words;
+	char			*pathexec;
+	char			**env;
+	int				i;
+	int				i_split;
+	struct t_env	*all;
 }	t_data;
 
 typedef struct t_env
@@ -91,8 +91,20 @@ int		edit_pwd_env(t_data *s, t_env *env);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */
-int		check_syntax(char *str);
+
+int	check_if_quotes(char q, char dq, char *str);
+int	quote_or_not(char *str);
+int	which_quote(char *str);
+void	removal(char *dest, char *src);
+void	remove_quote(char ***str);
 char	***check_quotes(char *str, t_pipe *cmds_list);
-char	**ft_split_space(char const *s, char c);
+
 void	destroy_cmds_args(char ***cmd_args);
+char	***skip_isspace(char *str);
+void	free_double_tab(char **str);
+int	check_pipe(char *str);
+int	check_syntax(char *str);
+int	check_syntax2(char *str);
+char	**ft_split_space(char const *s, char c);
+
 #endif

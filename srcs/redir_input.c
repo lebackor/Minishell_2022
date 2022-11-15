@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/10 15:25:27 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:10:43 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_legit_files(t_data *s, int c)
 	f = 1;
 	if (ft_redir_input(s) < 1)
 	{
-		printf("not good\n");
+		// printf("not good\n");
 		return (0);
 	}
 	if (c == 0)

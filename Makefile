@@ -1,12 +1,25 @@
+################################################################################
+#                                     CONFIG                                   #
+################################################################################
+MAKEFLAGS += 	--silent
+NAME		=	pipex
+NAME_BONUS	=	bonus
+RM			=	rm -f
+CC			=	clang
+CFLAGS		=	-Wall -Wextra -Werror
+# DIR_OBJS	=	./objs/
+# DIR_SRCS	=	./srcs/
+MKDIR		=	mkdir
+
 # COLORS/FORMAT #
-_END		=	\e[0m
-_BOLD		=	\e[1m
-_RESET		=	\033[2K
-_GREY		=	\e[30m
-_RED		=	\e[31m
-_GREEN		=	\e[32m
-_YELLOW		=	\e[33m
-_BLUE		=	\e[34m
+# _END		=	\e[0m
+# _BOLD		=	\e[1m
+# _RESET		=	\033[2K
+# _GREY		=	\e[30m
+# _RED		=	\e[31m
+# _GREEN		=	\e[32m
+# _YELLOW		=	\e[33m
+# _BLUE		=	\e[34m
 
 SRCS = 		srcs/minishell.c\
 			srcs/echo.c\
@@ -17,7 +30,10 @@ SRCS = 		srcs/minishell.c\
 			srcs/cleaning.c\
 			srcs/pathparse.c\
 			parsing/parsing.c\
+			parsing/parsing2.c\
+			parsing/destroy.c\
 			parsing/split_space1.c\
+			parsing/quote.c\
 			srcs/utils.c\
 			srcs/unset.c\
 			srcs/cd.c\
@@ -26,8 +42,9 @@ SRCS = 		srcs/minishell.c\
 			srcs/env_str.c\
 			srcs/redir_input.c\
 			srcs/declare_export.c\
+			parsing/quote2.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS		= 	$(SRCS:%.c=$(DIR_OBJS)%.o)
 
 CC	=	cc
 
