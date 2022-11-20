@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:21:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/16 16:23:57 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:59:49 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/wait.h>
 # include <errno.h>
 # include <stdio.h>
+# include "../libft/libft.h"
+# include "../include/minishell.h"
+# include "../include/token.h"
 
 typedef struct p_data{
 	int				number;
@@ -56,26 +59,11 @@ typedef struct s_data{
 	pid_t			parent;
 }	t_data;
 
-int			ft_printf(const char *str, ...);
-long long	ft_count_nb(long long nb);
-int			ft_putnbr_u(unsigned int nb);
-int			ft_check_pourcent(char c, va_list args);
-int			ft_put_hexa_min(unsigned int nb);
-int			ft_put_hexa_maj(unsigned int nb);
-int			ft_print_hexa(unsigned long long nb, int a, int *count);
-int			ft_pointer(unsigned long long nb, int *count);
-int			ft_putstr(char *str);
-int			ft_putnbr(int nb);
-int			ft_putchar(char c);
-size_t		ft_strlen(const char *str);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-int			ft_strcmp(char *s1, char *s2);
 char		*parsing(t_data *p);
 int			ft_strcmp(char *s1, char *s2);
 char		**ft_split(char const *s, char c);
 char		**ft_free_table(char **str);
 char		*parse_split(t_data *p, t_nb *nb);
-char		*ft_strjoin(char const *s1, char const *s2);
 char		*parse_child(t_data *p);
 void		ft_exit_fail(t_data *p);
 void		ft_putstr_fd(char *s, int fd);
@@ -85,7 +73,6 @@ void		multipipe(t_data *p, t_nb *nb);
 void		child_process(t_data *p, t_nb *nb);
 void		mchild_process(t_data *p, t_nb *nb);
 t_nb		*create_liste(t_nb *p);
-t_nb		*ft_addback(t_nb *p, int i);
 void		multidup(t_data *p, t_nb *nb);
 void		closepipe(t_data *p, t_nb *nb);
 void		closepipe2(t_data *p, t_nb *nb, int i);
