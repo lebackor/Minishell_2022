@@ -42,13 +42,22 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		}
 		else
 		{
-			add_history(s->rdline);
-			s->cmds_tab = check_quotes(s->rdline, cmds_list);
-			check_legit_files(s, 0);
-			if (ft_search_bultins(s, env) != 0)
-				ft_execution(env, s);
-			destroy_cmds_args(s->cmds_tab);
-			free(s->rdline);
+			if (ft_strlen_3table(s->cmds_tab) == 1)
+			{
+				add_history(s->rdline);
+				s->cmds_tab = check_quotes(s->rdline, cmds_list);
+				check_legit_files(s, 0);
+				if (ft_search_bultins(s, env) != 0)
+					ft_execution(env, s);
+				destroy_cmds_args(s->cmds_tab);
+				free(s->rdline);
+			}
+			else
+			{
+				s->stock = malloc(sizeof(int) * ft_strlen_3table(s->cmds_tab));
+				printf("Welcome to multipipe . . .\n");
+				multipipe(s, env);
+			}
 		}
 		signal(SIGINT, handler);
 		s->rdline = readline(MINISH _GREEN"$ " _END);
@@ -71,7 +80,7 @@ int	main(int ac, char **av, char **envp)
 	t_pipe	cmds_list;
 
 	(void)av;
-//	(void)envp;
+	s->ac = ac;
 	if (ac == 1)
 	{
 		env = NULL;

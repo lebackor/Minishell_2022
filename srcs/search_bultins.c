@@ -8,8 +8,8 @@ int	ft_search_bultins(t_data *s, t_env *env)
 		return (ft_env(env, s));
 	if (ft_search_export(s) == 0)
 		return (ft_export(s, env));
-	 if (ft_search_unset(s) == 0)
-	 	return (ft_unset(s, &env));
+	if (ft_search_unset(s) == 0)
+		return (ft_unset(s, &env));
 	if (ft_search_cd(s) == 0)
 		return (ft_cd(env, s));
 	if (ft_search_pwd(s) == 0)

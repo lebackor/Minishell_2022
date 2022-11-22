@@ -6,7 +6,7 @@
 #    By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/17 15:32:59 by lebackor          #+#    #+#              #
-#    Updated: 2022/11/20 17:55:22 by lebackor         ###   ########.fr        #
+#    Updated: 2022/11/22 14:47:27 by lebackor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ SRCS	=	pipex.c\
 			parsing.c\
 			cleaning.c\
 			multipipex.c\
-			multichilds.c \
+			multichilds.c\
 			liste.c \
 
 OBJS = ${SRCS:.c=.o}
 
-CC	=	gcc
+CC	=	cc
 
 CFLAGS = -Wall -Werror -Wextra -g3
 

@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:26:51 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/15 20:03:57 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:44:30 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*parsing(t_data *p)
+char	*parsing(t_datapipe *p)
 {
 	char	*str;
 
@@ -40,7 +40,7 @@ char	*parsing(t_data *p)
 	return (str);
 }
 
-char	*parse_split(t_data *p, t_nb *nb)
+char	*parse_split(t_datapipe *p, t_nb *nb)
 {
 	char	*str;
 	int		i;
@@ -67,7 +67,7 @@ char	*parse_split(t_data *p, t_nb *nb)
 	return (NULL);
 }
 
-char	*parse_child(t_data *p)
+char	*parse_child(t_datapipe *p)
 {
 	char	*str;
 	int		i;
@@ -89,7 +89,7 @@ char	*parse_child(t_data *p)
 	return (NULL);
 }
 
-char	*parsep1(t_data *p)
+char	*parsep1(t_datapipe *p)
 {
 	char	*raciste;
 	int		i;
@@ -109,7 +109,7 @@ char	*parsep1(t_data *p)
 	return (NULL);
 }
 
-char	*parsep2(t_data *p)
+char	*parsep2(t_datapipe *p)
 {
 	char	*raciste;
 	int		i;

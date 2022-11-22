@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/15 19:22:57 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:24:23 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_process(t_data *p, t_nb *nb)
+void	child_process(t_datapipe *p, t_nb *nb)
 {
 
 	p->str = parse_split(p, nb);
@@ -37,7 +37,7 @@ void	child_process(t_data *p, t_nb *nb)
 	exit(1);
 }
 
-void	second_child(t_data *p)
+void	second_child(t_datapipe *p)
 {
 	p->strchild = parse_child(p);
 	if (!p->strchild)
@@ -61,7 +61,7 @@ void	second_child(t_data *p)
 	exit(1);
 }
 
-void	pipex(t_data *p, t_nb *nb)
+void	pipex(t_datapipe *p, t_nb *nb)
 {
 	int	i;
 
@@ -87,10 +87,10 @@ void	pipex(t_data *p, t_nb *nb)
 	close(p->end[1]);
 	exit(0);
 }
-
+/*
 int	main(int ac, char **av, char **envp)
 {
-	t_data	*p;
+	t_datapipe	*p;
 	t_nb	*number;
 	int i;
 
@@ -98,8 +98,8 @@ int	main(int ac, char **av, char **envp)
 	if (ac < 5)
 		return (ft_printf("less than 4 arguments\n"));
 	number = NULL;
-	p = malloc(sizeof(t_data));
-	//*number = (t_nb){0};
+	p = malloc(sizeof(t_datapipe));
+	*number = (t_nb){0};
 	p->av = av;
 	p->ac = ac;
 	p->env = envp;
@@ -108,7 +108,7 @@ int	main(int ac, char **av, char **envp)
 	p->stock = malloc(sizeof(int) * ((p->ac - 3) * 2));
 	number = malloc(sizeof(t_nb));
 	if (ac > 5)
-		create_liste(number);
+		create_listepipe(number);
 	if (ac == 5)
 	{
 		p->f1 = open(av[1], O_RDONLY);
@@ -151,7 +151,9 @@ int	main(int ac, char **av, char **envp)
 			ft_exit_fail(p);
 		}
 		while (++i < p->ac + 1)
-			ft_addback(number, i);
+			ft_addbackpipe(number, i);
 		multipipe(p, number);
 	}
 }
+
+*/

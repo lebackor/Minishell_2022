@@ -21,7 +21,13 @@ MKDIR		=	mkdir
 # _YELLOW		=	\e[33m
 # _BLUE		=	\e[34m
 
-SRCS = 		srcs/minishell.c\
+SRCS =		pipex/cleaning.c \
+			pipex/liste.c \
+			pipex/multichilds.c \
+			pipex/parsing.c \
+			pipex/pipex.c \
+			pipex/multipipex.c \
+			srcs/minishell.c\
 			srcs/echo.c\
 			srcs/search_bultins.c\
 			srcs/env.c\
@@ -51,21 +57,21 @@ CC	=	cc
  CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 #CFLAGS = -Wall -Werror -Wextra -g3
 LDFLAGS = -L libft -lft
-PPFLAGS = -L pipex -lft
+#PPFLAGS = -L pipex -lft
 
 
 LIBFT = libft/libft.a
-PIPEX = pipex/pipex
+#PIPEX = pipex/pipex
 
 NAME = minishell
 
 CLEAN_FT	=	make fclean -C libft
-CLEAN_PP	=	make fclean -C pipex
+#CLEAN_PP	=	make fclean -C pipex
 
 all : ${NAME}
 
-${NAME} :	${OBJS} $(LIBFT) $(PIPEX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(PPFLAGS)  -o $@ -L /usr/lib/x86_64-linux-gnu -lreadline
+${NAME} :	${OBJS} $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS)  -o $@ -L /usr/lib/x86_64-linux-gnu -lreadline
 	@echo "Ca arrive..."
 
 %.o: %.c
@@ -74,13 +80,13 @@ ${NAME} :	${OBJS} $(LIBFT) $(PIPEX)
 $(LIBFT)	:
 	@make -C libft
 
-$(PIPEX)	:
-	@make -C pipex
+#$(PIPEX)	:
+#	@make -C pipex
 
 clean :
-		rm -f ${OBJS} ${LIBFT} ${PIPEX}
+		rm -f ${OBJS} ${LIBFT}
 		${CLEAN_FT}
-		${CLEAN_PP}
+#		${CLEAN_PP}
 
 fclean :	clean
 			rm -f ${NAME}

@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-t_nb	*create_liste(t_nb *p)
+t_nb	*create_listepipe(t_nb *p)
 {
 	p = malloc(sizeof(t_nb));
 	if (!p)
@@ -9,7 +9,7 @@ t_nb	*create_liste(t_nb *p)
 	return (p);
 }
 
-t_nb	*ft_addback(t_nb *p, int i)
+t_nb	*ft_addbackpipe(t_nb *p, int i)
 {
 	t_nb	*t_pile;
 
@@ -24,7 +24,7 @@ t_nb	*ft_addback(t_nb *p, int i)
 		while (t_pile->next != NULL)
 			t_pile = t_pile->next;
 		t_pile->next = NULL;
-		t_pile->next = create_liste(p);
+		t_pile->next = create_listepipe(p);
 		if (!t_pile->next)
 			return (0);
 		t_pile->next->number = t_pile->number + 1;

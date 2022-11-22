@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:26:04 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/16 16:25:47 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:41:24 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_exit_fail(t_data *p)
+void	ft_exit_fail(t_datapipe *p)
 {
 	if (p->str)
 		free(p->str);
@@ -31,7 +31,7 @@ void	ft_exit_fail(t_data *p)
 	exit(0);
 }
 
-void	ft_exit(t_data *p, t_nb *nb)
+void	ft_exit(t_datapipe *p, t_nb *nb)
 {
 	close(p->f1);
 	close(p->f2);
@@ -40,7 +40,7 @@ void	ft_exit(t_data *p, t_nb *nb)
 	ft_free_liste(nb, p);
 }
 
-void	ft_free_liste(t_nb *nb, t_data *p)
+void	ft_free_liste(t_nb *nb, t_datapipe *p)
 {
 	t_nb	*tmp;
 	int		i;
@@ -55,4 +55,19 @@ void	ft_free_liste(t_nb *nb, t_data *p)
 		i++;
 	}
 	free(p);
+}
+
+char	**ft_free_table(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	str = NULL;
+	return (NULL);
 }

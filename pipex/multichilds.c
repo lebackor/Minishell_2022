@@ -6,15 +6,14 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/16 15:30:03 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:23:06 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	mchild_process(t_data *p, t_nb *nb)
+void	mchild_process(t_datapipe *p, t_env *env)
 {
-	(void) nb;
 	p->str = parse_split(p, nb);
 	if (!p->str)
 	{
@@ -41,7 +40,38 @@ void	mchild_process(t_data *p, t_nb *nb)
 	exit(1);
 }
 
-void	multidup(t_data *p, t_nb *nb)
+
+/*
+void	mchild_process(t_data *p, t_env *env)
+{
+	p->str = parse_split(p, nb);
+	if (!p->str)
+	{
+		ft_free_table(p->paths);
+		free(p->cmdargs);
+		ft_putstr_fd(p->av[2], STDOUT_FILENO);
+		ft_putstr_fd(": command not found\n", STDOUT_FILENO);
+		exit(EXIT_FAILURE);
+	}
+	if (nb->number == 1)
+	{
+		dup2(p->f1, STDIN_FILENO);
+		dup2(p->end[1], STDOUT_FILENO);
+	}
+	else if (nb->number != (p->ac - 3))
+		multidup(p, nb);
+	else if (nb->number == (p->ac - 3))
+		multidup(p, nb);
+	closepipe(p, nb);
+	ft_free_table(p->paths);
+	execve(p->str, p->avsplit, p->env);
+	free(p->cmdargs);
+	perror("");
+	exit(1);
+}
+*/
+
+void	multidup(t_datapipe *p, t_nb *nb)
 {
 	if (nb->number != p->ac - 3)
 	{
@@ -71,7 +101,7 @@ void	multidup(t_data *p, t_nb *nb)
 	}
 }
 
-void	closepipe(t_data *p, t_nb *nb)
+void	closepipe(t_datapipe *p, t_nb *nb)
 {
 	if (nb->number % 2 == 0)
 	{

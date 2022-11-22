@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:21:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/20 17:59:49 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:41:08 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct p_data{
 	struct p_data		*next;
 }	t_nb;
 
-typedef struct s_data{
+typedef struct s_datapipe{
 	char			**av;
 	char			**env;
 	char			*str;
@@ -57,25 +57,26 @@ typedef struct s_data{
 	int				k;
 	int				ifork;
 	pid_t			parent;
-}	t_data;
+}	t_datapipe;
 
-char		*parsing(t_data *p);
+char		*parsing(t_datapipe *p);
 int			ft_strcmp(char *s1, char *s2);
 char		**ft_split(char const *s, char c);
 char		**ft_free_table(char **str);
-char		*parse_split(t_data *p, t_nb *nb);
-char		*parse_child(t_data *p);
-void		ft_exit_fail(t_data *p);
+char		*parse_split(t_datapipe *p, t_nb *nb);
+char		*parse_child(t_datapipe *p);
+void		ft_exit_fail(t_datapipe *p);
 void		ft_putstr_fd(char *s, int fd);
-char		*parsep1(t_data *p);
-char		*parsep2(t_data *p);
-void		multipipe(t_data *p, t_nb *nb);
-void		child_process(t_data *p, t_nb *nb);
-void		mchild_process(t_data *p, t_nb *nb);
-t_nb		*create_liste(t_nb *p);
-void		multidup(t_data *p, t_nb *nb);
-void		closepipe(t_data *p, t_nb *nb);
-void		closepipe2(t_data *p, t_nb *nb, int i);
-void		ft_exit(t_data *p, t_nb *nb);
-void		ft_free_liste(t_nb *nb, t_data *p);
+char		*parsep1(t_datapipe *p);
+char		*parsep2(t_datapipe *p);
+void		multipipe(t_datapipe *p, t_nb *nb);
+void		child_process(t_datapipe *p, t_nb *nb);
+void		mchild_process(t_datapipe *p, t_nb *nb);
+t_nb		*create_listepipe(t_nb *p);
+t_nb		*ft_addbackpipe(t_nb *p, int i);
+void		multidup(t_datapipe *p, t_nb *nb);
+void		closepipe(t_datapipe *p, t_nb *nb);
+void		closepipe2(t_datapipe *p, t_nb *nb, int i);
+void		ft_exit(t_datapipe *p, t_nb *nb);
+void		ft_free_liste(t_nb *nb, t_datapipe *p);
 #endif
