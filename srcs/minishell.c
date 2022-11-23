@@ -4,6 +4,7 @@
 // > infile toujours apres le chevron
 // SIGQUIT ET SIG_IGN a gerer avec le WAIT_PID de l'enfant
 // parent en ignore, et child en default, valeur de retour dans le WAIT PID
+
 void	handler(int signal)
 {
 	(void)signal;
@@ -42,10 +43,11 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		}
 		else
 		{
+			s->cmds_tab = check_quotes(s->rdline, cmds_list);
+			add_history(s->rdline);
 			if (ft_strlen_3table(s->cmds_tab) == 1)
 			{
-				add_history(s->rdline);
-				s->cmds_tab = check_quotes(s->rdline, cmds_list);
+				printf("There is no pipe\n");
 				check_legit_files(s, 0);
 				if (ft_search_bultins(s, env) != 0)
 					ft_execution(env, s);
@@ -80,7 +82,6 @@ int	main(int ac, char **av, char **envp)
 	t_pipe	cmds_list;
 
 	(void)av;
-	s->ac = ac;
 	if (ac == 1)
 	{
 		env = NULL;

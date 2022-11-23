@@ -53,7 +53,14 @@ typedef struct t_env
 	char			*value;
 	struct t_env	*next;
 }	t_env;
-
+/**************************************************************************** */
+/*								MULTIPIPE										  */
+/**************************************************************************** */
+void	multipipe(t_data *p, t_env *env);
+//void	mchild_process(t_data *p, t_env *env);
+/**************************************************************************** */
+/*								EXEC										  */
+/**************************************************************************** */
 int		ft_search_bultins(t_data *s, t_env *envp);
 int		ft_search_echo(t_data *s);
 int		ft_print_echo(t_data *s, t_env *env, int a);
@@ -89,35 +96,7 @@ int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
 int		ft_redir_input(t_data *s);
-char	search_export_equalvoid	multipipe(t_datapipe *p, t_nb *nb)
-{
-	int		i;
-	t_nb	*tmp;
-
-	i = -1;
-	tmp = nb;
-	while (++i < (p->ac - 3))
-	{
-		if (nb->number % 2 == 0)
-			pipe(p->end2);
-		else
-			pipe(p->end);
-		p->parent = fork();
-		if (p->parent < 0)
-			return ;
-		p->stock[i] = p->parent;
-		if (p->parent == 0)
-			mchild_process(p, nb);
-		closepipe2(p, nb, i);
-		tmp = tmp->next;
-	}
-	i = -1;
-	while (++i < (p->ac - 3))
-		waitpid(p->stock[i], &p->status, 0);
-	ft_exit(p, nb);
-	exit(0);
-}
-_not(char *str);
+char	search_export_equal_not(char *str);
 void	ft_declare(t_env *env);
 char	*lookforpaths_give(t_env *env, t_data *s, int x);
 int		check_legit_files(t_data *s, int c);

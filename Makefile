@@ -21,11 +21,7 @@ MKDIR		=	mkdir
 # _YELLOW		=	\e[33m
 # _BLUE		=	\e[34m
 
-SRCS =		pipex/cleaning.c \
-			pipex/liste.c \
-			pipex/multichilds.c \
-			pipex/parsing.c \
-			pipex/pipex.c \
+SRCS =		pipex/multichilds.c \
 			pipex/multipipex.c \
 			srcs/minishell.c\
 			srcs/echo.c\

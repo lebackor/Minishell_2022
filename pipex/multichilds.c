@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/22 17:23:06 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:31:14 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-void	mchild_process(t_datapipe *p, t_env *env)
+#include "../include/minishell.h"
+//#include "pipex.h"
+/*void	mchild_process(t_data *p, t_env *env)
 {
 	p->str = parse_split(p, nb);
 	if (!p->str)
@@ -41,7 +41,6 @@ void	mchild_process(t_datapipe *p, t_env *env)
 }
 
 
-/*
 void	mchild_process(t_data *p, t_env *env)
 {
 	p->str = parse_split(p, nb);
@@ -69,7 +68,7 @@ void	mchild_process(t_data *p, t_env *env)
 	perror("");
 	exit(1);
 }
-*/
+
 
 void	multidup(t_datapipe *p, t_nb *nb)
 {
@@ -121,3 +120,4 @@ void	closepipe(t_datapipe *p, t_nb *nb)
 		close(p->end[1]);
 	}
 }
+*/
