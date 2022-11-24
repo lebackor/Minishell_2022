@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:14:59 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/29 15:14:04 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:45:30 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	looking_for_path(t_env *env, t_data *s)
 		return (printf("Not found PATH in the environment\n"));
 	return (0);
 }
-
+/*
 char	*looking_access(t_env *env, t_data *s)
 {
 	int		i;
@@ -42,7 +42,7 @@ char	*looking_access(t_env *env, t_data *s)
 	while (s->cmd[++i] && j != 0)
 	{
 		tmp = ft_strjoin(s->cmd[i], "/");
-		str = ft_strjoin(tmp, s->cmds_tab[s->i_split][i]);
+		str = ft_strjoin(tmp, s->cmds_tab[s->i_split][0]);
 		free(tmp);
 		j = access(str, X_OK);
 		if (j == 0)
@@ -55,7 +55,7 @@ char	*looking_access(t_env *env, t_data *s)
 	}
 	return (NULL);
 }
-
+*/
 /*
 char	*parsep1(t_data *p)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   searchcmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/06 15:20:10 by vchan            ###   ########.fr       */
+/*   Updated: 2022/11/24 19:53:16 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,17 @@ char	*lookforpaths(t_env *env, t_data *s)
 	j = 1;
 	if (looking_for_path(env, s) == 1)
 	{
-		printf("Error not found PATH\n");
+		printf("No PATH in env\n");
 		return (NULL);
 	}
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->cmds_tab[s->i_split][s->i_split]);
-		//free(str);
+		fini = ft_strjoin(str, s->cmds_tab[s->i_split][0]); // 0 = car la commande se trouve au [0]
 		str = NULL;
 		j = access(fini, X_OK);
 		if (j == 0)
 		{
-		//	printf("%s\n", fini);
 			return (fini);
 		}
 		free(fini);
@@ -64,7 +62,7 @@ char	*lookforpaths(t_env *env, t_data *s)
 	return (NULL);
 }
 
-char	*lookforpaths_give(t_env *env, t_data *s, int x)
+char	*lookforpaths_give(t_env *env, t_data *s, int x)//redir input < >
 {
 	int		i;
 	int		j;

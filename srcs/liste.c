@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/25 18:55:23 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:34:24 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,37 @@ void	ft_addback_new_env(t_env *env, char *content, char *value)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp = ft_addback(&tmp, content, value);
+}
+
+t_number	*create_listenb(t_number *nb)
+{
+	nb = malloc(sizeof(t_number));
+	if (!nb)
+		return (0);
+	nb->next = NULL;
+	return (nb);
+}
+
+t_number	*ft_addback_number(t_number *p, int i)
+{
+	t_number	*t_pile;
+
+	if (i == 1)
+	{
+		p->number = 1;
+		p->next = NULL;
+	}
+	else
+	{
+		t_pile = p;
+		while (t_pile->next != NULL)
+			t_pile = t_pile->next;
+		t_pile->next = NULL;
+		t_pile->next = create_listenb(p);
+		if (!t_pile->next)
+			return (0);
+		t_pile->next->number = t_pile->number + 1;
+		return (t_pile);
+	}
+	return (p);
 }

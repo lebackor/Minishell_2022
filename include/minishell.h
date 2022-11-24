@@ -32,7 +32,7 @@ typedef struct s_data
 {
 	char			*rdline;
 	char			***cmds_tab;
-	char			**cmd; //
+	char			**cmd; // les chemins de PATH
 	char			**words;
 	char			*pathexec;
 	char			**env;
@@ -47,6 +47,12 @@ typedef struct s_data
 	struct t_env	*all;
 }	t_data;
 
+typedef struct s_number
+{
+	int				number;
+	struct s_number	*next;
+}	t_number;
+
 typedef struct t_env
 {
 	char			*content;
@@ -56,8 +62,12 @@ typedef struct t_env
 /**************************************************************************** */
 /*								MULTIPIPE										  */
 /**************************************************************************** */
-void	multipipe(t_data *p, t_env *env);
-//void	mchild_process(t_data *p, t_env *env);
+void		multipipe(t_data *p, t_env *env);
+void		mchild_process(t_data *p, t_env *env, int i);
+void		multidup(t_data *p, t_env *env, int i);
+void		closepipe(t_data *p, t_env *env, int i);
+t_number	*create_listenb(t_number *nb);
+t_number	*ft_addback_number(t_number *p, int i);
 /**************************************************************************** */
 /*								EXEC										  */
 /**************************************************************************** */
@@ -77,7 +87,7 @@ void	ft_put_first_env(t_env *env, char **envp);
 void	ft_put_second_env(t_env *env, char **envp);
 void	ft_clean(t_env *env, t_data *s);
 int		looking_for_path(t_env *env, t_data *s);
-char	*looking_access(t_env *env, t_data *s);
+//char	*looking_access(t_env *env, t_data *s);
 void	ft_print_split(char **str);
 char	*ft_split_env(char *str, int count);
 void	ft_addback_new_env(t_env *env, char *content, char *value);
