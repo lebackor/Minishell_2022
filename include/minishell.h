@@ -106,5 +106,6 @@ int	check_pipe(char *str);
 int	check_syntax(char *str);
 int	check_syntax2(char *str);
 char	**ft_split_space(char const *s, char c);
+int	pipe_syntax(char *str);
 
 #endif

@@ -53,6 +53,8 @@ int	check_syntax(char *str)
 			return (printf("%s: Syntax Error, \"&&\" found\n", MINISH), 1);
 		i++;
 	}
+	if (pipe_syntax(str) == 1)
+		return (printf("%s: Syntax Error, | incpmplete\n", MINISH), 1);
 	if (check_first_quote(str, 39, '"') % 2 == 1
 		|| check_first_quote(str, '"', 39) % 2 == 1)
 		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
