@@ -35,7 +35,12 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	while (s->rdline)
 	{
 		if (ft_strcmp(s->rdline, "exit") == 0)
-			return (free (s->rdline), printf("exit\n"), 1);
+		{
+			ft_clean(env, s);
+			printf("exit\n");
+			exit(1);
+			//return (free (s->rdline), printf("exit\n"), 1);
+		}
 		if (check_syntax(s->rdline) == 1)
 		{
 			add_history(s->rdline);
@@ -47,7 +52,6 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			add_history(s->rdline);
 			if (ft_strlen_3table(s->cmds_tab) == 1)
 			{
-				printf("There is no pipe\n");
 				check_legit_files(s, 0);
 				if (ft_search_bultins(s, env) != 0)
 					ft_execution(env, s);
@@ -57,7 +61,6 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			else
 			{
 				s->stock = malloc(sizeof(int) * ft_strlen_3table(s->cmds_tab));
-				printf("Welcome to multipipe . . .\n");
 				multipipe(s, env);
 			}
 		}

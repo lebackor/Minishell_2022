@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/24 19:53:16 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:43:07 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	ft_execution(t_env *env, t_data *s)
 {
 	pid_t	i;
-	(void) s;
-
-	s->pathexec = lookforpaths(env, s);
+	s->pathexec = lookforpathsone(env, s);
 	if (s->pathexec == NULL)
 		return (1);
 	i = fork();
@@ -32,7 +30,7 @@ int	ft_execution(t_env *env, t_data *s)
 	return (1);
 }
 
-char	*lookforpaths(t_env *env, t_data *s)
+char	*lookforpathsone(t_env *env, t_data *s)
 {
 	int		i;
 	int		j;
@@ -50,6 +48,36 @@ char	*lookforpaths(t_env *env, t_data *s)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
 		fini = ft_strjoin(str, s->cmds_tab[s->i_split][0]); // 0 = car la commande se trouve au [0]
+		str = NULL;
+		j = access(fini, X_OK);
+		if (j == 0)
+		{
+			return (fini);
+		}
+		free(fini);
+		fini = NULL;
+	}
+	return (NULL);
+}
+
+char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
+{
+	int		i;
+	int		j;
+	char	*str;
+	char	*fini;
+
+	i = -1;
+	j = 1;
+	if (looking_for_path(env, s) == 1)
+	{
+		printf("No PATH in env\n");
+		return (NULL);
+	}
+	while (s->cmd[++i] && j != 0)
+	{
+		str = ft_strjoin(s->cmd[i], "/");
+		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][0]); // 0 = car la commande se trouve au [0]
 		str = NULL;
 		j = access(fini, X_OK);
 		if (j == 0)

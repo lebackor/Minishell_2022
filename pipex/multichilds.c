@@ -6,32 +6,35 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/24 20:18:42 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:20:06 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-//#include "pipex.h"
-void	mchild_process(t_data *p, t_env *env, int i)
+
+void	mchild_process(t_data *p, t_env *env, t_number *nb)
 {
-	if (i == 0)
+	char	*str;
+
+	str = lookforpaths(env, p, nb);
+	if (nb->number == 1)
 	{
-	//	dup2(p->f1, STDIN_FILENO);
 		dup2(p->end[1], STDOUT_FILENO);
 	}
 	else
-		multidup(p, env, i);
-	//closepipe(p, nb, i);
-	//execve(p->cmd_args[p->i_split][0], p->cmd_args[i], p->env); // me faut le /bin etc
+		multidup(p, env, nb);
+	closepipe(p, env, nb);
+	execve(str, p->cmds_tab[nb->number - 1], p->env);
+	ft_putstr_fd(":command not found\n", STDOUT_FILENO);
 	exit(1);
 }
 
-void	multidup(t_data *p, t_env *env, int i)
+void	multidup(t_data *p, t_env *env, t_number *nb)
 {
 	(void) env;
-	if (i < ft_strlen_3table(p->cmds_tab))
+	if (nb->number != ft_strlen_3table(p->cmds_tab))
 	{
-		if (i % 2 != 0)// == ou != car commence a 0 la et non 1 comme pipex
+		if (nb->number % 2 == 0)
 		{
 			dup2(p->end[0], STDIN_FILENO);
 			dup2(p->end2[1], STDOUT_FILENO);
@@ -44,71 +47,35 @@ void	multidup(t_data *p, t_env *env, int i)
 	}
 	else
 	{
-		if (i % 2 != 0) //
+		if (nb->number % 2 == 0)
 		{
 			dup2(p->end[0], STDIN_FILENO);
-		//	dup2(p->f2, STDOUT_FILENO);
 		}
 		else
 		{
 			dup2(p->end2[0], STDIN_FILENO);
-		//	dup2(p->f2, STDOUT_FILENO);
 		}
 	}
 }
-void	closepipe(t_data *p, t_env *env, int i)
+
+void	closepipe(t_data *p, t_env *env, t_number *nb)
 {
-		(void) p;
-	(void) i;
 	(void) env;
-	// if (i % 2 == 0)
-	// {
-	// 	close(p->end[0]);
-	// 	close(p->end2[1]);
-	// 	close(p->end2[0]);
-	// 	close(p->end[1]);
-	// }
-	// else
-	// {
-	// 	if (i > 1)
-	// 	{
-	// 		close(p->end2[1]);
-	// 		close(p->end2[0]);
-	// 	}
-	// 	close(p->end[0]);
-	// 	close(p->end[1]);
-	// }
-}
-
-/*
-void	mchild_process(t_data *p, t_env *env)
-{
-	p->str = parse_split(p, nb);
-	if (!p->str)
+	if (nb->number % 2 == 0)
 	{
-		ft_free_table(p->paths);
-		free(p->cmdargs);
-		ft_putstr_fd(p->av[2], STDOUT_FILENO);
-		ft_putstr_fd(": command not found\n", STDOUT_FILENO);
-		exit(EXIT_FAILURE);
+		close(p->end[0]);
+		close(p->end2[1]);
+		close(p->end2[0]);
+		close(p->end[1]);
 	}
-	if (nb->number == 1)
+	else
 	{
-		dup2(p->f1, STDIN_FILENO);
-		dup2(p->end[1], STDOUT_FILENO);
+		if (nb->number > 1)
+		{
+			close(p->end2[1]);
+			close(p->end2[0]);
+		}
+		close(p->end[0]);
+		close(p->end[1]);
 	}
-	else if (nb->number != (p->ac - 3))
-		multidup(p, nb);
-	else if (nb->number == (p->ac - 3))
-		multidup(p, nb);
-	closepipe(p, nb);
-	ft_free_table(p->paths);
-	execve(p->str, p->avsplit, p->env);
-	free(p->cmdargs);
-	perror("");
-	exit(1);
 }
-
-
-
-*/

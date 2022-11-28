@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/24 20:34:24 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/27 19:31:23 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_number	*ft_addback_number(t_number *p, int i)
 {
 	t_number	*t_pile;
 
-	if (i == 1)
+	if (i == 0)
 	{
 		p->number = 1;
 		p->next = NULL;

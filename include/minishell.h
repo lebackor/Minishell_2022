@@ -60,12 +60,18 @@ typedef struct t_env
 	struct t_env	*next;
 }	t_env;
 /**************************************************************************** */
-/*								MULTIPIPE										  */
+/*								CLEANING									  */
+/**************************************************************************** */
+char		**ft_free_table(char **str);
+void		ft_clean(t_env *env, t_data *s);
+/**************************************************************************** */
+/*								MULTIPIPE									  */
 /**************************************************************************** */
 void		multipipe(t_data *p, t_env *env);
-void		mchild_process(t_data *p, t_env *env, int i);
-void		multidup(t_data *p, t_env *env, int i);
-void		closepipe(t_data *p, t_env *env, int i);
+void		mchild_process(t_data *p, t_env *env, t_number *nb);
+void		multidup(t_data *p, t_env *env, t_number *nb);
+void		closepipe(t_data *p, t_env *env, t_number *nb);
+void		closepipe2(t_data *p, t_number *nb, int i);
 t_number	*create_listenb(t_number *nb);
 t_number	*ft_addback_number(t_number *p, int i);
 /**************************************************************************** */
@@ -85,7 +91,6 @@ int		ft_export(t_data *s, t_env *envp);
 int		ft_put_in_env(t_data *s, t_env *envp);
 void	ft_put_first_env(t_env *env, char **envp);
 void	ft_put_second_env(t_env *env, char **envp);
-void	ft_clean(t_env *env, t_data *s);
 int		looking_for_path(t_env *env, t_data *s);
 //char	*looking_access(t_env *env, t_data *s);
 void	ft_print_split(char **str);
@@ -99,7 +104,7 @@ int		ft_cd(t_env *env, t_data *s);
 int		ft_search_pwd(t_data *s);
 int		ft_pwd(void);
 int		ft_execution(t_env *env, t_data *s);
-char	*lookforpaths(t_env *env, t_data *s);
+char	*lookforpaths(t_env *env, t_data *s, t_number *nb);
 char	**env_node_to_str(t_env *env);
 int		ft_strlen_of_nodes(t_env *env);
 int		ft_strlen_3table(char ***str);
@@ -111,13 +116,14 @@ void	ft_declare(t_env *env);
 char	*lookforpaths_give(t_env *env, t_data *s, int x);
 int		check_legit_files(t_data *s, int c);
 int		edit_pwd_env(t_data *s, t_env *env);
+char	*lookforpathsone(t_env *env, t_data *s);
 /**************************************************************************** */
 /*								PARSING										  */
 /**************************************************************************** */
 
-int	check_if_quotes(char q, char dq, char *str);
-int	quote_or_not(char *str);
-int	which_quote(char *str);
+int		check_if_quotes(char q, char dq, char *str);
+int		quote_or_not(char *str);
+int		which_quote(char *str);
 void	removal(char *dest, char *src);
 void	remove_quote(char ***str);
 char	***check_quotes(char *str, t_pipe *cmds_list);
@@ -125,9 +131,9 @@ char	***check_quotes(char *str, t_pipe *cmds_list);
 void	destroy_cmds_args(char ***cmd_args);
 char	***skip_isspace(char *str);
 void	free_double_tab(char **str);
-int	check_pipe(char *str);
-int	check_syntax(char *str);
-int	check_syntax2(char *str);
+int		check_pipe(char *str);
+int		check_syntax(char *str);
+int		check_syntax2(char *str);
 char	**ft_split_space(char const *s, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:14:59 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/24 19:45:30 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:39:31 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,52 +27,3 @@ int	looking_for_path(t_env *env, t_data *s)
 		return (printf("Not found PATH in the environment\n"));
 	return (0);
 }
-/*
-char	*looking_access(t_env *env, t_data *s)
-{
-	int		i;
-	int		j;
-	char	*tmp;
-	char	*str;
-
-	(void) env;
-	(void) s;
-	i = -1;
-	j = 1;
-	while (s->cmd[++i] && j != 0)
-	{
-		tmp = ft_strjoin(s->cmd[i], "/");
-		str = ft_strjoin(tmp, s->cmds_tab[s->i_split][0]);
-		free(tmp);
-		j = access(str, X_OK);
-		if (j == 0)
-		{
-			printf("%s\n", str);
-			return (str);
-		}
-		free(str);
-		str = NULL;
-	}
-	return (NULL);
-}
-*/
-/*
-char	*parsep1(t_data *p)
-{
-	char	*raciste;
-	int		i;
-
-	i = -1;
-	while (p->paths[++i] && p->j != 0)
-	{
-		raciste = ft_strjoin(p->paths[i], "/");
-		p->cmdargs = ft_strjoin(raciste, p->avsplit[0]);
-		free(raciste);
-		p->j = access(p->cmdargs, X_OK);
-		if (p->j == 0)
-			return (p->cmdargs);
-		free(p->cmdargs);
-		p->cmdargs = NULL;
-	}
-	return (NULL);
-}*/
