@@ -22,6 +22,10 @@ void	handler(int signal)
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
+	t_number	*nbr;
+	int			i;
+
+	nbr = NULL;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	s->rdline = readline(MINISH _GREEN"$ " _END);
@@ -50,10 +54,14 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		{
 			s->cmds_tab = check_quotes(s->rdline, cmds_list);
 			add_history(s->rdline);
+			nbr = create_listenb(nbr);
+			i = -1;
+			while (++i < ft_strlen_3table(s->cmds_tab))
+				ft_addback_number(nbr, i);
 			if (ft_strlen_3table(s->cmds_tab) == 1)
 			{
-				check_legit_files(s, 0);
-				if (ft_search_bultins(s, env) != 0)
+		//		check_legit_files(s, 0); Where i do redirections, doesnt work
+				if (ft_search_bultins(s, env, nbr) != 0)
 					ft_execution(env, s);
 				destroy_cmds_args(s->cmds_tab);
 				free(s->rdline);
@@ -61,7 +69,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			else
 			{
 				s->stock = malloc(sizeof(int) * ft_strlen_3table(s->cmds_tab));
-				multipipe(s, env);
+				multipipe(s, env, nbr);
 			}
 		}
 		signal(SIGINT, handler);

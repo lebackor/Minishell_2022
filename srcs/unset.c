@@ -6,13 +6,13 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:25:54 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/07 18:59:28 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:19:58 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_unset(t_data *s, t_env **env)
+int	ft_unset(t_data *s, t_env **env, t_number *nbr)
 {
 	t_env	*tmp;
 //	t_env	*save;
@@ -21,12 +21,12 @@ int	ft_unset(t_data *s, t_env **env)
 //	save = *env;
 	i = 1;
 //	when i delete the first elem of the env it have a heap buffer free
-	if (!s->cmds_tab[s->i_split][s->i_split + 1])
+	if (!s->cmds_tab[nbr->number - 1][1])
 	{
 		printf("Nothing to unset\n");
 		return (0);
 	}
-	/*if (ft_strcmp((*env)->content, ft_split_env(s->cmds_tab[s->i_split]
+	/*if (ft_strcmp((*env)->content, ft_split_env(s->cmds_tab[nbr->number - 1]
 				[s->i_split + 1], 0)) == 0)
 	{
 		if (save->next)
@@ -45,15 +45,15 @@ int	ft_unset(t_data *s, t_env **env)
 		printf("LE INFINITO\n");
 		return (0);
 	}*/
-	while (i < ft_strlen_2table(s->cmds_tab[s->i_split]))
+	while (i < ft_strlen_2table(s->cmds_tab[nbr->number - 1]))
 	{
 		tmp = *env;
 		while (tmp->next != NULL)
 		{
 			if (ft_strcmp(tmp->next->content, ft_split_env(s->cmds_tab
-						[s->i_split][i], 0)) == 0)
+						[nbr->number - 1][i], 0)) == 0)
 			{
-				printf("xxfOUNDED\n");
+				printf("Founded\n");
 				free(tmp->next->content);
 				free(tmp->next->value);
 				if (tmp->next->next != NULL)
@@ -68,12 +68,12 @@ int	ft_unset(t_data *s, t_env **env)
 		}
 		i++;
 	}
-	if (!s->cmds_tab[s->i_split][i])
+	if (!s->cmds_tab[nbr->number - 1][i])
 		return (0);
 	if (tmp->next == NULL)
 	{
-		if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[s->i_split]
-					[s->i_split + 1], 0)) == 0)
+		if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[nbr->number - 1]
+					[1], 0)) == 0)
 		{
 			printf("ici\n");
 		}

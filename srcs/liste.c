@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/27 19:31:23 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:39:44 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,15 @@ void	ft_addback_new_env(t_env *env, char *content, char *value)
 
 	tmp = env;
 	while (tmp->next != NULL)
+	{
+		if (ft_strcmp(tmp->content, content) == 0
+			&& ft_strcmp(tmp->value, value) == 0)
+			return ;
 		tmp = tmp->next;
+	}
+	if (ft_strcmp(tmp->content, content) == 0
+		&& ft_strcmp(tmp->value, value) == 0)
+		return ;
 	tmp = ft_addback(&tmp, content, value);
 }
 

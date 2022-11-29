@@ -6,23 +6,18 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:10 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/28 20:20:52 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:35:40 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	multipipe(t_data *p, t_env *env)
+void	multipipe(t_data *p, t_env *env, t_number *nbr)
 {
-	t_number	*nbr;
+
 	t_number	*tmp;
 	int			i;
 
-	i = -1;
-	nbr = NULL;
-	nbr = create_listenb(nbr);
-	while (++i < ft_strlen_3table(p->cmds_tab))
-		ft_addback_number(nbr, i);
 	tmp = nbr;
 	i = 0;
 	while (tmp != NULL)

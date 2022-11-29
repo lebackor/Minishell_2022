@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/28 20:20:06 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:28:56 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ void	mchild_process(t_data *p, t_env *env, t_number *nb)
 	else
 		multidup(p, env, nb);
 	closepipe(p, env, nb);
-	execve(str, p->cmds_tab[nb->number - 1], p->env);
-	ft_putstr_fd(":command not found\n", STDOUT_FILENO);
+	if (ft_search_bultins(p, env, nb) == 1)
+	{
+		printf("Not bultin\n");
+		execve(str, p->cmds_tab[nb->number - 1], p->env);
+		ft_putstr_fd(":command not found\n", STDOUT_FILENO);
+	}
 	exit(1);
 }
 
