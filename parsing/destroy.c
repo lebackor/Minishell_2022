@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:12:26 by vchan             #+#    #+#             */
-/*   Updated: 2022/11/09 15:13:05 by vchan            ###   ########.fr       */
+/*   Updated: 2022/11/30 18:15:25 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
+//test lenny commit
 void	free_double_tab(char **str)
 {
 	int	i;
