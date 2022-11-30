@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:11:50 by vchan             #+#    #+#             */
-/*   Updated: 2022/11/30 16:10:39 by vchan            ###   ########.fr       */
+/*   Updated: 2022/11/30 18:43:29 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ int	check_pipe(char *str)
 	return (count);
 }
 
+int	next_characters(int i, char *str)
+{
+	i++;
 // int	pipe_syntax(char *str)
 // {
 // 	int	i;
@@ -69,8 +72,11 @@ int	check_pipe(char *str)
 // 				if (str[i] != ' ' || str[i] != '\t'
 // 					|| str[i] != '|' || str[i] != '<' || str[i] != '>'
 // 					|| str[i] == '\0')
+// 				{
+// 					printf("str[i] = %c\n", str[i]);
+// 					printf("ici\n");
 // 					return (1);
-
+// 				}
 // 				i++;
 // 			}
 // 		}
@@ -78,3 +84,48 @@ int	check_pipe(char *str)
 // 	}
 // 	return (0);
 // }
+
+	{
+		if (str[i] > 32 && str[i] < 127)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+// int	previous_characters(int i, char *str)
+// {
+// 	i--;
+// 	while (str[i] && i >= 0)
+// 	{
+// 		if (str[i] > 32 && str[i] < 127)
+// 			return (1);
+// 		i--;
+// 	}
+// 	return (0);
+// }
+
+int	pipe_syntax(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+		{
+			if (str[i + 1])
+				i++;
+		}
+		else if (str[i] == '|')
+		{
+			if (next_characters(i, str) == 0)
+				return (1);
+			if (str[i + 1])
+				i++;
+		}
+		else
+			i++;
+	}
+	return (0);
+}
