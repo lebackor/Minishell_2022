@@ -21,7 +21,9 @@ MKDIR		=	mkdir
 # _YELLOW		=	\e[33m
 # _BLUE		=	\e[34m
 
-SRCS = 		srcs/minishell.c\
+SRCS =		pipex/multichilds.c \
+			pipex/multipipex.c \
+			srcs/minishell.c\
 			srcs/echo.c\
 			srcs/search_bultins.c\
 			srcs/env.c\

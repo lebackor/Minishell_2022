@@ -3,31 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lebackor <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/17 15:32:59 by lebackor          #+#    #+#              #
-#    Updated: 2022/05/17 15:33:06 by lebackor         ###   ########.fr        #
+#    Updated: 2022/11/22 14:47:27 by lebackor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	srcs/ft_split.c\
-			srcs/ft_strcmp.c\
-			srcs/ft_strjoin.c\
-			srcs/ft_strlen.c\
-			srcs/ft_substr.c\
-			srcs/ft_printf.c\
-			srcs/ft_printf_utils.c\
-			srcs/ft_putchar.c\
-			srcs/ft_putnbr.c\
-			srcs/ft_putstr.c\
-			srcs/ft_putstr_fd.c\
-			pipex.c\
+SRCS	=	pipex.c\
 			parsing.c\
 			cleaning.c\
+			multipipex.c\
+			multichilds.c\
+			liste.c \
 
 OBJS = ${SRCS:.c=.o}
 
-CC	=	gcc
+CC	=	cc
 
 CFLAGS = -Wall -Werror -Wextra -g3
 

@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:50:24 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/10 15:45:30 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:25:46 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	ft_pwd(void)
 
 int	edit_pwd_env(t_data *s, t_env *env)
 {
-	t_env *tmp;
-	t_env *tmp2;
-	char *str = NULL;
-	(void) s;
+	t_env	*tmp;
+	t_env	*tmp2;
 	tmp = env;
 	tmp2 = env;
+	char	*str = NULL;
+	(void) s;
+
 	while (tmp != NULL && ft_strcmp(tmp->content, "PWD") != 0)
 		tmp = tmp->next;
 	while (tmp2 != NULL && ft_strcmp(tmp2->content, "OLDPWD") != 0)

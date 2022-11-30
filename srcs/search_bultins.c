@@ -1,138 +1,66 @@
 #include "../include/minishell.h"
 
-int	ft_search_bultins(t_data *s, t_env *env)
+int	ft_search_bultins(t_data *s, t_env *env, t_number *nbr)
 {
-	if (ft_search_echo(s) == 0)
-		return (ft_echo(s, env));
-	if (ft_search_env(s) == 0)
+	if (ft_search_echo(s, nbr) == 0)
+		return (ft_echo(s, env, nbr));
+	if (ft_search_env(s, nbr) == 0)
 		return (ft_env(env, s));
-	if (ft_search_export(s) == 0)
-		return (ft_export(s, env));
-	 if (ft_search_unset(s) == 0)
-	 	return (ft_unset(s, &env));
-	if (ft_search_cd(s) == 0)
-		return (ft_cd(env, s));
-	if (ft_search_pwd(s) == 0)
+	if (ft_search_export(s, nbr) == 0)
+		return (ft_export(s, env, nbr));
+	if (ft_search_unset(s, nbr) == 0)
+		return (ft_unset(s, &env, nbr));
+	if (ft_search_cd(s, nbr) == 0)
+		return (ft_cd(env, s, nbr));
+	if (ft_search_pwd(s, nbr) == 0)
 		return (ft_pwd());
 	return (1);
 }
 
-int	ft_search_echo(t_data *s)
+int	ft_search_echo(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "echo") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab) > 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "echo") == 0)
+		return (0);
 	else
 		return (1);
 }
 
-int	ft_search_env(t_data *s)
+int	ft_search_env(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "env") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab)> 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "env") == 0)
+		return (0);
 	else
 		return (1);
 }
 
-int	ft_search_export(t_data *s)
+int	ft_search_export(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "export") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab) > 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "export") == 0)
+		return (0);
 	else
 		return (1);
 }
 
-int	ft_search_unset(t_data *s)
+int	ft_search_unset(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "unset") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab) > 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "unset") == 0)
+		return (0);
 	else
 		return (1);
 }
 
-int	ft_search_cd(t_data *s)
+int	ft_search_cd(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "cd") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab) > 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "cd") == 0)
+		return (0);
 	else
 		return (1);
 }
 
-int	ft_search_pwd(t_data *s)
+int	ft_search_pwd(t_data *s, t_number *nbr)
 {
-	if (ft_strlen_3table(s->cmds_tab) == 1)
-	{
-		if (ft_strcmp(s->cmds_tab[s->i_split][s->i_split], "pwd") == 0)
-		{
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else if (ft_strlen_3table(s->cmds_tab) > 1)
-	{
-		printf("Wait pipex\n");
-		return (1);
-	}
+	if (ft_strcmp(s->cmds_tab[nbr->number - 1][0], "pwd") == 0)
+		return (0);
 	else
 		return (1);
 }

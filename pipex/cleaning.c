@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:26:04 by lebackor          #+#    #+#             */
-/*   Updated: 2022/05/17 15:26:43 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:41:24 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_exit_fail(t_data *p)
+void	ft_exit_fail(t_datapipe *p)
 {
 	if (p->str)
 		free(p->str);
@@ -29,4 +29,45 @@ void	ft_exit_fail(t_data *p)
 	if (p->paths)
 		ft_free_table(p->paths);
 	exit(0);
+}
+
+void	ft_exit(t_datapipe *p, t_nb *nb)
+{
+	close(p->f1);
+	close(p->f2);
+	if (p->stock)
+		free(p->stock);
+	ft_free_liste(nb, p);
+}
+
+void	ft_free_liste(t_nb *nb, t_datapipe *p)
+{
+	t_nb	*tmp;
+	int		i;
+
+	i = 0;
+	while (i < (p->ac - 3))
+	{
+		tmp = nb;
+		nb = nb->next;
+		if (tmp)
+			free(tmp);
+		i++;
+	}
+	free(p);
+}
+
+char	**ft_free_table(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	str = NULL;
+	return (NULL);
 }
