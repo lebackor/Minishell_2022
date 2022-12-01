@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multichilds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/30 16:04:22 by vchan            ###   ########.fr       */
-=======
-/*   Updated: 2022/11/30 18:15:18 by lebackor         ###   ########.fr       */
->>>>>>> 7d19203 (test commit check if git pull.ff worked)
+/*   Updated: 2022/11/30 18:55:52 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

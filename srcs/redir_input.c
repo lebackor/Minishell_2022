@@ -3,79 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   redir_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/07 16:10:43 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/01 16:03:07 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-/*
-	dup2(p.f1, STDIN_FILENO);
-	dup2(p.end[1], STDOUT_FILENO);
 
-	dup2(p.end[0], STDIN_FILENO);
-	dup2(p.f2, STDOUT_FILENO);
-*/
-
-int	check_legit_files(t_data *s, int c)
+int	check_legit_files(t_data *s, t_number *nbr)
 {
 	int		i;
 	int		f;
-	char	*str;
+//	char	*str;
 
-	i = 1;
+	i = 0;
 	f = 1;
-	if (ft_redir_input(s) < 1)
+	if (ft_redir_input(s, nbr) < 1)
 	{
-		// printf("not good\n");
+		printf("No redirections\n");
 		return (0);
 	}
-	if (c == 0)
+	while (s->cmds_tab[s->i_split][i])
 	{
-		while (s->cmds_tab[s->i_split][i] && f > 0)
+		if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<") == 0)
 		{
-			printf("ee\n");
-			if (open(s->cmds_tab[s->i_split][i], O_RDONLY) > 0 || s->cmds_tab[s->i_split][i + 1][0] == '<')
+			if (open(s->cmds_tab[s->i_split][i + 1], O_RDONLY) > 0)
 			{
 				if (f > 0)
 					close(f);
-				f = open(s->cmds_tab[s->i_split][i], O_RDONLY);
-				//dup2(f, STDIN_FILENO);
-				if (f < 0)
-					perror(s->cmds_tab[s->i_split][i]);
-				i++;
+				printf("Infile exist\n");
 			}
+				if (f < 0)
+					perror(s->cmds_tab[s->i_split][i + 1]);
 			i++;
+			break;
 		}
-		str = lookforpaths_give(s->all, s, (i));
-		if (str != NULL)
-			printf("%s\n", str);
+		else if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], ">") == 0)
+		{
+			if (open(s->cmds_tab[s->i_split][i + 1], O_CREAT | O_RDWR | O_TRUNC, 0644) > 0)
+			{
+				if (f > 0)
+					close(f);
+				printf("Outfile detected\n");
+			}
+				if (f < 0)
+					perror(s->cmds_tab[s->i_split][i + 1]);
+			i++;
+			break;
+		}
+		i++;
 	}
+//	str = lookforpaths_give(s->all, s, (i));
+//	if (str != NULL)
+//		printf("%s\n", str);
 	return (0);
 }
 
-int	ft_redir_input(t_data *s)
+int	ft_redir_input(t_data *s, t_number *nbr)
 {
 	int	i;
 	int	count;
 
 	i = 0;
 	count = 0;
-	if (s->cmds_tab[s->i_split][0][0] == '\n')
+	if (s->cmds_tab[nbr->number - 1][0][0] == '\n')
 		return (-1);
-	while (s->cmds_tab[s->i_split][i])
+	while (s->cmds_tab[nbr->number - 1][i])
 	{
-		if ((ft_strcmp(s->cmds_tab[s->i_split][i], "<") == 0)
-		&& (i != (ft_strlen_2table(s->cmds_tab[s->i_split]) - 1)))
-		{
-			if ((i == 0) || (ft_strcmp(s->cmds_tab[s->i_split][i - 1], "<") != 0))
-			{
-				printf("Good redir input detected\n");
-				count++;
-			}
-		}
+		if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<") == 0 ||
+		ft_strcmp(s->cmds_tab[nbr->number - 1][i], ">") == 0)
+			count++;
 		i++;
 	}
 	if (count == 0)

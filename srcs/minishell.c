@@ -60,7 +60,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 				ft_addback_number(nbr, i);
 			if (ft_strlen_3table(s->cmds_tab) == 1)
 			{
-		//		check_legit_files(s, 0); Where i do redirections, doesnt work
+				check_legit_files(s, nbr); //Where i do redirections, doesnt work
 				if (ft_search_bultins(s, env, nbr) != 0)
 					ft_execution(env, s);
 				destroy_cmds_args(s->cmds_tab);

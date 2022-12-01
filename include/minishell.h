@@ -110,11 +110,11 @@ int		ft_strlen_of_nodes(t_env *env);
 int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
-int		ft_redir_input(t_data *s);
+int		ft_redir_input(t_data *s, t_number *nbr);
 char	search_export_equal_not(char *str);
 void	ft_declare(t_env *env);
 char	*lookforpaths_give(t_env *env, t_data *s, int x);
-int		check_legit_files(t_data *s, int c);
+int		check_legit_files(t_data *s, t_number *nbr);
 int		edit_pwd_env(t_data *s, t_env *env);
 char	*lookforpathsone(t_env *env, t_data *s);
 /**************************************************************************** */
