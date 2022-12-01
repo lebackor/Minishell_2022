@@ -37,6 +37,7 @@ typedef struct s_data
 	char			*pathexec;
 	char			**env;
 	int				i;
+	int				f;
 	int				ac;
 	int				i_split;
 	int				end[2];
@@ -74,6 +75,11 @@ void		closepipe(t_data *p, t_env *env, t_number *nb);
 void		closepipe2(t_data *p, t_number *nb, int i);
 t_number	*create_listenb(t_number *nb);
 t_number	*ft_addback_number(t_number *p, int i);
+/**************************************************************************** */
+/*								REDIRECTIONS								  */
+/**************************************************************************** */
+int ft_execution_redir(t_number *nbr, t_data *s, int x, int a);
+char **split_str_for_redir(char **str, t_number *nbr);
 /**************************************************************************** */
 /*								EXEC										  */
 /**************************************************************************** */
