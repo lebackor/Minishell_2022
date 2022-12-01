@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/01 18:36:18 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:39:54 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 	{
 		if (x == 0)
 			execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
-		else
+		else 
 			execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
 		perror("execve");
 		return (0);
@@ -91,16 +91,30 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 
 char **split_str_for_redir(char **str, t_number *nbr)
 {
-	// char **str_return;
 	int i;
-
+	(void) nbr;
+	// int j;
+	//char **str1;
+	//str1 = malloc(sizeof(str) * ft_strlen_2table(str));
 	i = 0;
-	while (str[nbr->number - 1][i] && str[nbr->number - 1][i] != '<')
+	while (str[i])
 	{
+		if (ft_strcmp(str[i], "<") == 0)
+		{
+			//free (str[i]);
+			str[i] = "\0";
+			while (str[i])
+			{
+			//	free(str[i]);
+				str[i] = "\0";
+				i++;
+			}
+			ft_print_split (str);
+			return (str);
+		}
 		i++;
 	}
-	str[nbr->number][i] = '\0';
-	ft_print_split(str);
+	//str[nbr->number][i] = '\0';
 	return (str);
 }
 
