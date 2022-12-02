@@ -1,40 +1,5 @@
 #include "../include/minishell.h"
 
-int	check_first_quote(char *str, char c, char db_quote)
-{
-	int	i;
-	int	count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		while ((str[i] != c && str[i] != db_quote) && str[i])
-			i++;
-		if (str[i] == c)
-		{
-			count++;
-			i++;
-			while (str[i] != c && str[i])
-				i++;
-			if (str[i] == c)
-			{
-				count++;
-				i++;
-			}
-		}
-		else if (str[i] == db_quote)
-		{
-			i++;
-			while (str[i] != db_quote && str[i])
-				i++;
-			if (str[i] == db_quote)
-				i++;
-		}
-	}
-	return (count);
-}
-
 int	check_syntax(char *str)
 {
 	int	i;

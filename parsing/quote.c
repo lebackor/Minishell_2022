@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:33:06 by vchan             #+#    #+#             */
-/*   Updated: 2022/11/14 14:49:43 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/02 18:43:06 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,6 @@ void	removal(char *dest, char *src)
 				quote--;
 			}
 		}
-		// A enlever !
-		// if ((src[i] == '"' && double_quote == 0) || (src[i] == '\'' && quote  == 0))
-		// {
-		// 	if (if_double_quote(src[i], double_quote))
-		// 		double_quote++;
-		// 	else if (if_quote(src[i], quote))
-		// 		quote++;
-		// 	i++;
-		// }
 		if (src[i] == '"' && double_quote == 0)
 		{
 			i++;
@@ -139,4 +130,39 @@ char	***check_quotes(char *str, t_pipe *cmds_list)
 	cmds_args = skip_isspace(str);
 	remove_quote(cmds_args);
 	return (cmds_args);
+}
+
+int	check_first_quote(char *str, char c, char db_quote)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while ((str[i] != c && str[i] != db_quote) && str[i])
+			i++;
+		if (str[i] == c)
+		{
+			count++;
+			i++;
+			while (str[i] != c && str[i])
+				i++;
+			if (str[i] == c)
+			{
+				count++;
+				i++;
+			}
+		}
+		else if (str[i] == db_quote)
+		{
+			i++;
+			while (str[i] != db_quote && str[i])
+				i++;
+			if (str[i] == db_quote)
+				i++;
+		}
+	}
+	return (count);
 }
