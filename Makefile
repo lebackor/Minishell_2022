@@ -53,17 +53,13 @@ CC	=	cc
  CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 #CFLAGS = -Wall -Werror -Wextra -g3
 LDFLAGS = -L libft -lft
-#PPFLAGS = -L pipex -lft
 
 
 LIBFT = libft/libft.a
-#PIPEX = pipex/pipex
 
 NAME = minishell
 
 CLEAN_FT	=	make fclean -C libft
-#CLEAN_PP	=	make fclean -C pipex
-
 all : ${NAME}
 
 ${NAME} :	${OBJS} $(LIBFT)
@@ -76,13 +72,9 @@ ${NAME} :	${OBJS} $(LIBFT)
 $(LIBFT)	:
 	@make -C libft
 
-#$(PIPEX)	:
-#	@make -C pipex
-
 clean :
 		rm -f ${OBJS} ${LIBFT}
 		${CLEAN_FT}
-#		${CLEAN_PP}
 
 fclean :	clean
 			rm -f ${NAME}

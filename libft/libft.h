@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:34:08 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/22 16:41:33 by lebackor         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:40:03 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ int			ft_putstr(char *str);
 int			ft_putnbr(int nb);
 int			*ft_sort_int_tab(int *tab, int size);
 int			ft_strcmp(char *s1, char *s2);
+char		**ft_free_table(char **str);
 #endif

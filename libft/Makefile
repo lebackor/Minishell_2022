@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+         #
+#    By: lebackor <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 12:08:21 by lebackor          #+#    #+#              #
-#    Updated: 2022/11/20 17:58:29 by lebackor         ###   ########.fr        #
+#    Updated: 2021/12/03 17:35:53 by lebackor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS	=	ft_bzero.c \
 			ft_lstsize.c \
 			ft_lstadd_front.c \
 			ft_lstlast.c \
+			ft_lstadd_back.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
@@ -61,7 +62,7 @@ SRCS	=	ft_bzero.c \
 			ft_printf_utils.c\
 			ft_putstr.c\
 			ft_strcmp.c\
-
+			
 OBJS	=	${SRCS:.c=.o}
 
 CC	=	gcc
