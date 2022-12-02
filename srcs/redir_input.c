@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/01 19:39:54 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:50:21 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 	{
 		if (x == 0)
 			execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
-		else 
+		else
 			execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
 		perror("execve");
 		return (0);
@@ -102,14 +102,15 @@ char **split_str_for_redir(char **str, t_number *nbr)
 		if (ft_strcmp(str[i], "<") == 0)
 		{
 			//free (str[i]);
-			str[i] = "\0";
+			// str[i] = "\0";
 			while (str[i])
 			{
 			//	free(str[i]);
 				str[i] = "\0";
 				i++;
 			}
-			ft_print_split (str);
+			// ft_print_split (str);
+			str[i] = '\0';
 			return (str);
 		}
 		i++;
@@ -117,6 +118,9 @@ char **split_str_for_redir(char **str, t_number *nbr)
 	//str[nbr->number][i] = '\0';
 	return (str);
 }
+
+
+
 
 int	ft_redir_input(t_data *s, t_number *nbr)
 {
