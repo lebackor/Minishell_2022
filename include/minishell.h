@@ -37,6 +37,8 @@ typedef struct s_data
 	char			*pathexec;
 	char			**env;
 	int				i;
+	int				f;
+	int				ac;
 	int				i_split;
 	struct t_env	*all;
 }	t_data;
@@ -47,11 +49,33 @@ typedef struct t_env
 	char			*value;
 	struct t_env	*next;
 }	t_env;
-
-int		ft_search_bultins(t_data *s, t_env *envp);
-int		ft_search_echo(t_data *s);
-int		ft_print_echo(t_data *s, t_env *env, int a);
-int		ft_echo(t_data *s, t_env *env);
+/**************************************************************************** */
+/*								CLEANING									  */
+/**************************************************************************** */
+char		**ft_free_table(char **str);
+void		ft_clean(t_env *env, t_data *s);
+/**************************************************************************** */
+/*								MULTIPIPE									  */
+/**************************************************************************** */
+void		multipipe(t_data *p, t_env *env, t_number *nbr);
+void		mchild_process(t_data *p, t_env *env, t_number *nb);
+void		multidup(t_data *p, t_env *env, t_number *nb);
+void		closepipe(t_data *p, t_env *env, t_number *nb);
+void		closepipe2(t_data *p, t_number *nb, int i);
+t_number	*create_listenb(t_number *nb);
+t_number	*ft_addback_number(t_number *p, int i);
+/**************************************************************************** */
+/*								REDIRECTIONS								  */
+/**************************************************************************** */
+int ft_execution_redir(t_number *nbr, t_data *s, int x, int a);
+char **split_str_for_redir(char **str, t_number *nbr);
+/**************************************************************************** */
+/*								EXEC										  */
+/**************************************************************************** */
+int		ft_search_bultins(t_data *s, t_env *envp, t_number *nbr);
+int		ft_search_echo(t_data *s, t_number *nbr);
+int		ft_print_echo(t_data *s, t_env *env, int a, t_number *nbr);
+int		ft_echo(t_data *s, t_env *env, t_number *nbr);
 t_env	*ft_addback(t_env **stack, char *content, char *value);
 t_env	*create_liste(t_env *env, char *content, char *value);
 t_env	*put_env(t_env *env, char **envp, t_data *s);
@@ -82,11 +106,11 @@ int		ft_strlen_of_nodes(t_env *env);
 int		ft_strlen_3table(char ***str);
 void	ft_addshlvl(t_env *env);
 int		ft_strlen_2table(char **str);
-int		ft_redir_input(t_data *s);
+int		ft_redir_input(t_data *s, t_number *nbr);
 char	search_export_equal_not(char *str);
 void	ft_declare(t_env *env);
 char	*lookforpaths_give(t_env *env, t_data *s, int x);
-int		check_legit_files(t_data *s, int c);
+int		check_legit_files(t_data *s, t_number *nbr);
 int		edit_pwd_env(t_data *s, t_env *env);
 /**************************************************************************** */
 /*								PARSING										  */

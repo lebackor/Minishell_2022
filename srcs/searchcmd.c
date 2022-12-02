@@ -6,7 +6,11 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/06 15:20:10 by vchan            ###   ########.fr       */
+=======
+/*   Updated: 2022/12/01 17:21:39 by lebackor         ###   ########.fr       */
+>>>>>>> 491cca0e8053373a1da545693b172d6f62ed24f1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +85,10 @@ char	*lookforpaths_give(t_env *env, t_data *s, int x)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->cmds_tab[s->i_split][x]);
+		if (x == 0)
+			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x + 2]);
+		else
+			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x - 1]);
 		//free(str);
 		str = NULL;
 		j = access(fini, X_OK);
