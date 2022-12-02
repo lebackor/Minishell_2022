@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/02 16:50:21 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:56:10 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char **split_str_for_redir(char **str, t_number *nbr)
 				i++;
 			}
 			// ft_print_split (str);
-			str[i] = '\0';
+			//str[i] = '\0';
 			return (str);
 		}
 		i++;
