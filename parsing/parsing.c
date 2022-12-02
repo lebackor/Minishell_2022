@@ -84,17 +84,17 @@ char	***skip_isspace(char *str)
 	}
 	free_double_tab(tmp);
 	args[x] = NULL;
-	// j = 0;
-	// x = 0;
-	// while (args[x])
-	// {
-	// 	j = 0;
-	// 	while (args[x][j])
-	// 	{
-	// 		printf("args[%d] = %s\n", x, args[x][j]);
-	// 		j++;
-	// 	}
-	// 	x++;
-	// }
+	j = 0;
+	x = 0;
+	while (args[x])
+	{
+		j = 0;
+		while (args[x][j])
+		{
+			printf("args[%d] = %s\n", x, args[x][j]);
+			j++;
+		}
+		x++;
+	}
 	return (args);
 }
