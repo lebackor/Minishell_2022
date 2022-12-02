@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:25:35 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/10 15:18:36 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:21:36 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_export(t_data *s, t_env *envp)
+int	ft_export(t_data *s, t_env *envp, t_number *nbr)
 {
 	char	**export;
 
 	(void) envp;
-	export = ft_split(s->cmds_tab[s->i_split][s->i_split], '=');
+	export = ft_split(s->cmds_tab[nbr->number - 1][0], '=');
 	ft_print_split(export);
-	if (!s->cmds_tab[s->i_split][s->i_split + 1])
+	if (!s->cmds_tab[nbr->number - 1][0])
 	{
 		ft_declare(envp);
 		return (0);
 	}
 	else
-		return (ft_put_in_env(s, envp));
+		return (ft_put_in_env(s, envp, nbr));
 	return (ft_printf("bash: export: `%c': not a valid identifier\n",
 			s->rdline[s->i]));
 }
@@ -94,38 +94,38 @@ char	*ft_split_env(char *str, int count)
 	}
 }
 
-int	ft_put_in_env(t_data *s, t_env *envp)
+int	ft_put_in_env(t_data *s, t_env *envp, t_number *nbr)
 {
 	int		i;
 	t_env	*tmp;
 
 	i = 1;
-	while (s->cmds_tab[s->i_split][i])
+	while (s->cmds_tab[nbr->number - 1][i])
 	{
 		tmp = envp;
 		while (tmp != NULL)
 		{
-			if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[s->i_split]
+			if (ft_strcmp(tmp->content, ft_split_env(s->cmds_tab[nbr->number - 1]
 						[i], 0)) == 0)
 			{
-				if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
+				if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[nbr->number - 1]
 							[i], 1))
 					!= 0)
 				{
 					free(tmp->value);
-					if (ft_split_env(s->cmds_tab[s->i_split][i], 1) != NULL)
-						tmp->value = ft_strdup(ft_split_env(s->cmds_tab[s->i_split][i], 1));
+					if (ft_split_env(s->cmds_tab[nbr->number - 1][i], 1) != NULL)
+						tmp->value = ft_strdup(ft_split_env(s->cmds_tab[nbr->number - 1][i], 1));
 				//	return (0);
 				}
-				if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[s->i_split]
-							[i], 1))
-					== 0)
-					return (0); //ecrire u msg deror ou de dire c la mm lesdeux
+				// else if (ft_strcmp(tmp->value, ft_split_env(s->cmds_tab[nbr->number - 1]
+				// 			[i], 1))
+				// 	== 0)
+				// 	break; //ecrire u msg deror ou de dire c la mm lesdeux
 			}
 			tmp = tmp->next;
 		}
-		ft_addback_new_env(envp, ft_split_env(s->cmds_tab[s->i_split]
-			[i], 0), ft_split_env(s->cmds_tab[s->i_split]
+		ft_addback_new_env(envp, ft_split_env(s->cmds_tab[nbr->number - 1]
+			[i], 0), ft_split_env(s->cmds_tab[nbr->number - 1]
 			[i], 1));
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:16:57 by lebackor          #+#    #+#             */
-/*   Updated: 2022/08/25 18:55:23 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:29:42 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,47 @@ void	ft_addback_new_env(t_env *env, char *content, char *value)
 
 	tmp = env;
 	while (tmp->next != NULL)
+	{
+		if (ft_strcmp(tmp->content, content) == 0
+			&& ft_strcmp(tmp->value, value) == 0)
+			return ;
 		tmp = tmp->next;
+	}
+	if (ft_strcmp(tmp->content, content) == 0
+		&& ft_strcmp(tmp->value, value) == 0)
+		return ;
 	tmp = ft_addback(&tmp, content, value);
+}
+
+t_number	*create_listenb(t_number *nb)
+{
+	nb = malloc(sizeof(t_number));
+	if (!nb)
+		return (0);
+	nb->next = NULL;
+	return (nb);
+}
+
+t_number	*ft_addback_number(t_number *p, int i)
+{
+	t_number	*t_pile;
+
+	if (i == 0)
+	{
+		p->number = 1;
+		p->next = NULL;
+	}
+	else
+	{
+		t_pile = p;
+		while (t_pile->next != NULL)
+			t_pile = t_pile->next;
+		t_pile->next = NULL;
+		t_pile->next = create_listenb(p);
+		if (!t_pile->next)
+			return (0);
+		t_pile->next->number = t_pile->number + 1;
+		return (t_pile);
+	}
+	return (p);
 }

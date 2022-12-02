@@ -21,6 +21,10 @@ void	handler(int signal)
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
+	t_number	*nbr;
+	int			i;
+
+	nbr = NULL;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	s->rdline = readline(MINISH _GREEN"$ " _END);
@@ -34,7 +38,12 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	while (s->rdline)
 	{
 		if (ft_strcmp(s->rdline, "exit") == 0)
-			return (free (s->rdline), printf("exit\n"), 1);
+		{
+			ft_clean(env, s);
+			printf("exit\n");
+			exit(1);
+			//return (free (s->rdline), printf("exit\n"), 1);
+		}
 		if (check_syntax(s->rdline) == 1)
 		{
 			add_history(s->rdline);
@@ -42,15 +51,8 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		}
 		else
 		{
-			add_history(s->rdline);
-<<<<<<< HEAD
 			s->cmds_tab = check_quotes(s->rdline, cmds_list);
-			check_legit_files(s, 0);
-			if (ft_search_bultins(s, env) != 0)
-				ft_execution(env, s);
-			destroy_cmds_args(s->cmds_tab);
-			free(s->rdline);
-=======
+			add_history(s->rdline);
 			nbr = create_listenb(nbr);
 			i = -1;
 			while (++i < ft_strlen_3table(s->cmds_tab))
@@ -68,7 +70,6 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 				s->stock = malloc(sizeof(int) * ft_strlen_3table(s->cmds_tab));
 				multipipe(s, env, nbr);
 			}
->>>>>>> 491cca0e8053373a1da545693b172d6f62ed24f1
 		}
 		signal(SIGINT, handler);
 		s->rdline = readline(MINISH _GREEN"$ " _END);
@@ -82,6 +83,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	}
 	return (0);
 }
+
 
 
 int	main(int ac, char **av, char **envp)

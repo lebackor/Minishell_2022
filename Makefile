@@ -21,7 +21,9 @@ MKDIR		=	mkdir
 # _YELLOW		=	\e[33m
 # _BLUE		=	\e[34m
 
-SRCS = 		srcs/minishell.c\
+SRCS =		pipex/multichilds.c \
+			pipex/multipipex.c \
+			srcs/minishell.c\
 			srcs/echo.c\
 			srcs/search_bultins.c\
 			srcs/env.c\
@@ -43,6 +45,7 @@ SRCS = 		srcs/minishell.c\
 			srcs/redir_input.c\
 			srcs/declare_export.c\
 			parsing/quote2.c
+
 
 OBJS		= 	$(SRCS:%.c=$(DIR_OBJS)%.o)
 

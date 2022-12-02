@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:44:44 by lebackor          #+#    #+#             */
-/*   Updated: 2022/09/10 15:29:32 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:25:59 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_cd(t_env *env, t_data *s)
+int	ft_cd(t_env *env, t_data *s, t_number *nbr)
 {
 	(void) env;
-	if (chdir(s->cmds_tab[s->i_split][s->i_split + 1]) == -1)
+	if (chdir(s->cmds_tab[nbr->number - 1][1]) == -1)
 	{
 		printf("Error, not found directory\n");
 	}

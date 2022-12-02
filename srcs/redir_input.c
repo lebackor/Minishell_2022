@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/02 16:56:10 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:31:34 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,5 @@ int	ft_redir_input(t_data *s, t_number *nbr)
 /*
 int ft_redir_first_arg(t_data *s)
 {
-
 }
 */
