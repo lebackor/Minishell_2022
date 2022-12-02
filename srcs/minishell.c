@@ -60,8 +60,8 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 				ft_addback_number(nbr, i);
 			if (ft_strlen_3table(s->cmds_tab) == 1)
 			{
-		//		check_legit_files(s, 0); Where i do redirections, doesnt work
-				if (ft_search_bultins(s, env, nbr) != 0)
+				if (ft_search_bultins(s, env, nbr) != 0
+					&& check_legit_files(s, nbr) == 0)
 					ft_execution(env, s);
 				destroy_cmds_args(s->cmds_tab);
 				free(s->rdline);
@@ -86,6 +86,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 }
 
 
+
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*s;
@@ -101,6 +102,7 @@ int	main(int ac, char **av, char **envp)
 		env = malloc(sizeof(t_env));
 			*env = (t_env){0};
 		env = put_env(env, envp, s);
+		s->all = env;
 		if (minishell_init(s, env, &cmds_list))
 			return (EXIT_SUCCESS);
 		ft_clean(env, s);

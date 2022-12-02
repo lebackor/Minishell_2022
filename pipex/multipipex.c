@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:10 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/29 16:35:40 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:39:31 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ void	closepipe2(t_data *p, t_number *nb, int i)
 		close(p->end[1]);
 	}
 }
-

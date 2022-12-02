@@ -46,6 +46,7 @@ SRCS =		pipex/multichilds.c \
 			srcs/declare_export.c\
 			parsing/quote2.c
 
+
 OBJS		= 	$(SRCS:%.c=$(DIR_OBJS)%.o)
 
 CC	=	cc

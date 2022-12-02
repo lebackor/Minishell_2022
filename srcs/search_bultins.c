@@ -64,4 +64,3 @@ int	ft_search_pwd(t_data *s, t_number *nbr)
 	else
 		return (1);
 }
-
