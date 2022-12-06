@@ -1,5 +1,6 @@
 #include "../include/minishell.h"
 
+//check "" | ""
 int	check_syntax(char *str)
 {
 	int	i;
@@ -13,16 +14,15 @@ int	check_syntax(char *str)
 			return (printf("%s: Syntax error near unexpected token `;'\n",
 					CALLER), 1);
 	}
-	//a fix mon parsing
-	// if (characters_in_quote(str, '|'))
-	// 	return (printf("%s: Syntax Error, \"||\" found\n", CALLER), 1);
-	// if (characters_in_quote(str, '&'))
-	// 		return (printf("%s: Syntax Error, \"&&\" found\n", CALLER), 1);
 	if (pipe_syntax(str) == 1)
 		return (printf("%s: syntax error near unexpected token `|'\n", CALLER), 1);
 	if (check_first_quote(str, 39, '"') % 2 == 1
 		|| check_first_quote(str, '"', 39) % 2 == 1)
 		return (printf("%s: Syntax Error, missing quotes\n", CALLER), 1);
+	if (characters_in_quote(str, '|'))
+		return (printf("%s: Syntax Error, \"||\" found\n", CALLER), 1);
+	if (characters_in_quote(str, '&'))
+		return (printf("%s: Syntax Error, \"&&\" found\n", CALLER), 1);
 	return (0);
 }
 
