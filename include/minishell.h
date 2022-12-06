@@ -10,6 +10,7 @@
 # define SYSCALLFAIL -1
 
 # define MINISH _GREEN "(╯°□°）╯ ︵ ┻━┻ minishell" _END
+# define CALLER _GREEN "minishell" _END
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
