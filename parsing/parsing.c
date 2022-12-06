@@ -19,8 +19,8 @@ int	check_syntax(char *str)
 		i++;
 	}
 	//a fix
-	// if (pipe_syntax(str) == 1)
-	// 	return (printf("%s: Syntax Error, | incpmplete\n", MINISH), 1);
+	if (pipe_syntax(str) == 1)
+		return (printf("%s: syntax error near unexpected token `|'\n", MINISH), 1);
 	if (check_first_quote(str, 39, '"') % 2 == 1
 		|| check_first_quote(str, '"', 39) % 2 == 1)
 		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
