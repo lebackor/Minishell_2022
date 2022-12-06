@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/28 20:43:07 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:21:39 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ char	*lookforpaths_give(t_env *env, t_data *s, int x)//redir input < >
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->cmds_tab[s->i_split][x]);
+		if (x == 0)
+			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x + 2]);
+		else
+			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x - 1]);
 		//free(str);
 		str = NULL;
 		j = access(fini, X_OK);
