@@ -145,5 +145,6 @@ char	**ft_split_space(char const *s, char c);
 int	pipe_syntax(char *str);
 char	**ft_split_space(char const *s, char c);
 int	check_first_quote(char *str, char c, char db_quote);
+int characters_in_quote(char *str, char c);
 
 #endif
