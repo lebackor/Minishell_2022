@@ -35,18 +35,19 @@ char	***skip_isspace(char *str)
 	int		x;
 
 	i = 0;
-	tmp = ft_split(str, '|');
-	// tmp = ft_split_space(str, '|');
-	// j = 0;
-	// while (tmp[j])
-	// {
-	// 	printf("tmp = %s\n", tmp[j]);
-	// 	j++;
-	// }
+	// tmp = ft_split(str, '|');
+	tmp = ft_split_space(str, '|');
+	while (tmp[i])
+	{
+		printf("%s\n", tmp[i]);
+		i++;
+	}
+	i = 0;
 	x = 0;
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
 		return (NULL);
+	printf("check_pipe (str) = %d\n", check_pipe(str) + 1);
 	while (tmp[i])
 	{
 		args[x] = ft_split_space(tmp[i], ' ');

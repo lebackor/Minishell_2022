@@ -95,7 +95,7 @@ char	**ft_split_space(char const *s, char c)
 	if (!s)
 		return (NULL);
 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
-	// printf("countword = %d\n", countword(s,c));
+	printf("countword = %d\n", countword(s,c));
 	if (!result)
 		return (NULL);
 	i = 0;
