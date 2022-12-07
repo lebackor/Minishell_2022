@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:12:26 by vchan             #+#    #+#             */
-/*   Updated: 2022/11/30 18:55:39 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:31:35 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ void	destroy_cmds_args(char ***cmd_args)
 	free(cmd_args);
 	cmd_args = NULL;
 }
-
