@@ -36,7 +36,13 @@ char	***skip_isspace(char *str)
 
 	i = 0;
 	tmp = ft_split(str, '|');
-	j = 0;
+	// tmp = ft_split_space(str, '|');
+	// j = 0;
+	// while (tmp[j])
+	// {
+	// 	printf("tmp = %s\n", tmp[j]);
+	// 	j++;
+	// }
 	x = 0;
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
