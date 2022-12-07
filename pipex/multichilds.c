@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:30:02 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/30 18:55:52 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:40:59 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	mchild_process(t_data *p, t_env *env, t_number *nb)
 	else
 		multidup(p, env, nb);
 	closepipe(p, env, nb);
-	if (ft_search_bultins(p, env, nb) == 1)
+	if (ft_search_bultins(p, env, nb) == 1 && check_legit_files(p, nb) == 0)
 	{
 		// printf("Not bultin\n");
 		execve(str, p->cmds_tab[nb->number - 1], p->env);
