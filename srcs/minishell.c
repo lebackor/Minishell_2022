@@ -53,6 +53,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		else
 		{
 			s->cmds_tab = check_quotes(s->rdline, cmds_list);
+			printf("%s\n", s->cmds_tab[0][0]);
 			add_history(s->rdline);
 			nbr = create_listenb(nbr);
 			i = -1;

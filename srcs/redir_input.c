@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/07 18:46:12 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:45:26 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,15 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 			else
 				dup2(s->f, STDOUT_FILENO);
 			if (x == 0)
+			{
+				close(s->f);
 				execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
+			}
 			else
+			{
+				close(s->f);
 				execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
+			}
 			perror("execve");
 			return (0);
 		}
@@ -93,39 +99,61 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 		else
 			dup2(s->f, STDOUT_FILENO);
 		if (x == 0)
+		{
+			close(s->f);
 			execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
+		}
 		else
+		{
+			close(s->f);
 			execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
+		}
 		perror("execve");
 		return (0);
 	}
 	return (1);
 }
 
+static int count_word(char **str)
+{
+	int i = 0;
+	int count = 0;
+
+	while (str[i])
+	{
+		if (!(ft_strcmp(str[i], "<") == 0
+			|| ft_strcmp(str[i], ">") == 0) && !(i > 0 && (ft_strcmp(str[i - 1], "<") == 0
+			|| ft_strcmp(str[i - 1], ">") == 0)))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 char **split_str_for_redir(char **str, t_number *nbr)
 {
 	int i;
-	(void) nbr;
 	int j;
+	(void) nbr;
 	char **str1;
-	str1 = malloc(sizeof(str1) * ft_strlen_2table(str));
+	str1 = NULL;
+	// str1 = malloc(sizeof(char *) * (ft_strlen_2table(str) + 1));
+	printf("%d\n", count_word(str));
+	str1 = ft_calloc(count_word(str) + 1, sizeof(char *));
 	i = 0;
 	j = 0;
-	str1[0] = ft_strdup(str[0]);
-	str1[1] = ft_calloc(1, sizeof(str1));
-	// while (i < ft_strlen_2table(str))
-	// {
-	// 	if (ft_strcmp(str[i], "<") == 0
-	// 		|| ft_strcmp(str[i], ">") == 0)
-	// 		i++;
-	// 	else
-	// 	{
-	// 	//	printf("%s\n", str1[j]);
-	// 		i++;
-	// 		j++;
-	// 	}
-	// }
-	ft_print_split(str);
+	while (i < ft_strlen_2table(str))
+	{
+		if (ft_strcmp(str[i], "<") == 0
+			|| ft_strcmp(str[i], ">") == 0)
+			break;
+		str1[j] = ft_strdup(str[i]);
+//		printf("ocho %s\n", str1[i]);
+		i++;
+		j++;
+	}
+	str1[j] = NULL;
+	ft_print_split(str1);
 	return (str1);
 }
 

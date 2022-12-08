@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:34:34 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/23 16:55:38 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:36:30 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_print_split(char **str)
 	int	i;
 
 	i = -1;
+	// printf("%s\n", str[++i]);
 	while (str[++i])
 		printf("[%s] ", str[i]);
 	printf("\n");

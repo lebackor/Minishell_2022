@@ -1,3 +1,4 @@
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,6 +11,7 @@
 # define SYSCALLFAIL -1
 
 # define MINISH _GREEN "(╯°□°）╯ ︵ ┻━┻ minishell" _END
+# define CALLER _GREEN "minishell" _END
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,7 +29,6 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 # include "../include/token.h"
-
 typedef struct s_data
 {
 	char			*rdline;
@@ -141,5 +142,9 @@ int		check_pipe(char *str);
 int		check_syntax(char *str);
 int		check_syntax2(char *str);
 char	**ft_split_space(char const *s, char c);
+int	pipe_syntax(char *str);
+char	**ft_split_space(char const *s, char c);
+int	check_first_quote(char *str, char c, char db_quote);
+int characters_in_quote(char *str, char c);
 
 #endif

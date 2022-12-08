@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/07 18:01:00 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:49:11 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_execution(t_env *env, t_data *s)
 	i = fork();
 	if (i == 0)
 	{
-		execve(s->pathexec, s->cmds_tab[s->i_split], env_node_to_str(env));
+	//	printf("%s\n", s->pathexec);
+		execve(s->pathexec, s->cmds_tab[0], env_node_to_str(env));
 		perror("execve");
 		return (0);
 	}
