@@ -17,7 +17,57 @@ void	handler(int signal)
 // void	handler_slash(int signal)
 // {
 // 	(void)signal;
+// }
 
+// int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
+// {
+// 	t_number	*nbr;
+// 	int			i;
+
+// 	nbr = NULL;
+// 	signal(SIGINT, handler);
+// 	signal(SIGQUIT, SIG_IGN);
+// 	s->rdline = readline(MINISH _GREEN"$ " _END);
+// 	if (!s->rdline)
+// 		return (1);
+// 	while (ft_strlen(s->rdline) < 1)
+// 	{
+// 		free(s->rdline);
+// 		s->rdline = readline(MINISH _GREEN"$ " _END);
+// 	}
+// 	while (s->rdline)
+// 	{
+// 		if (ft_strcmp(s->rdline, "exit") == 0)
+// 		{
+// 			ft_clean(env, s);
+// 			printf("exit\n");
+// 			exit(1);
+// 		}
+// 		if (check_syntax(s->rdline) == 1)
+// 		{
+// 			add_history(s->rdline);
+// 			free(s->rdline);
+// 		}
+// 		else
+// 		{
+// 			s->cmds_tab = check_quotes(s->rdline, cmds_list);
+// 			add_history(s->rdline);
+// 			nbr = create_listenb(nbr);
+// 			i = -1;
+// 			while (++i < ft_strlen_3table(s->cmds_tab))
+// 				ft_addback_number(nbr, i);
+// 		}
+// 		signal(SIGINT, handler);
+// 		s->rdline = readline(MINISH _GREEN"$ " _END);
+// 		if (!s->rdline)
+// 			return (1);
+// 		while (ft_strlen(s->rdline) < 1)
+// 		{
+// 			free(s->rdline);
+// 			s->rdline = readline(MINISH _GREEN"$ " _END);
+// 		}
+// 	}
+// 	return (0);
 // }
 
 int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)

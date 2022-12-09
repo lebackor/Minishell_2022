@@ -1,6 +1,7 @@
 #include "../include/minishell.h"
 
 //check "" | ""
+//check remove SPACE PIPE SPACE ET PAS QUE PIPE
 int	check_syntax(char *str)
 {
 	int	i;
@@ -36,10 +37,11 @@ char	***skip_isspace(char *str)
 
 	i = 0;
 	// tmp = ft_split(str, '|');
-	tmp = ft_split_space(str, '|');
+	// tmp = ft_split_space(str, '|');
+	tmp = ft_split_pipe(str, '|');
 	while (tmp[i])
 	{
-		printf("%s\n", tmp[i]);
+		printf("%s7\n", tmp[i]);
 		i++;
 	}
 	i = 0;
