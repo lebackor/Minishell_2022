@@ -81,6 +81,7 @@ t_number	*ft_addback_number(t_number *p, int i);
 /**************************************************************************** */
 int ft_execution_redir(t_number *nbr, t_data *s, int x, int a);
 char **split_str_for_redir(char **str, t_number *nbr);
+void	ft_heredoc(t_data *s, t_env *env, t_number *nb, int a);
 /**************************************************************************** */
 /*								EXEC										  */
 /**************************************************************************** */

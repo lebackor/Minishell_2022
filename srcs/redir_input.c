@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/08 18:45:26 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:59:46 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,15 @@ int	check_legit_files(t_data *s, t_number *nbr)
 		//	i++;
 			return (1);
 		}
+		else if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<<") == 0 && s->cmds_tab[nbr->number - 1][i + 1])
+		{
+			printf("heredoc detected\n");
+			if (i == 0)
+				ft_heredoc(s, s->all, nbr, i);
+			return (1);
+		}
 		i++;
 	}
-
 	return (0);
 }
 int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
@@ -169,7 +175,8 @@ int	ft_redir_input(t_data *s, t_number *nbr)
 	while (s->cmds_tab[nbr->number - 1][i])
 	{
 		if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<") == 0 ||
-		ft_strcmp(s->cmds_tab[nbr->number - 1][i], ">") == 0)
+		ft_strcmp(s->cmds_tab[nbr->number - 1][i], ">") == 0 ||
+		ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<<") == 0)
 			count++;
 		i++;
 	}

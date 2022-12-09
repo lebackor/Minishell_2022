@@ -31,6 +31,7 @@ SRCS =		pipex/multichilds.c \
 			srcs/export.c\
 			srcs/cleaning.c\
 			srcs/pathparse.c\
+			srcs/heredoc.c\
 			parsing/parsing.c\
 			parsing/parsing2.c\
 			parsing/destroy.c\
