@@ -14,10 +14,10 @@ void	handler(int signal)
 	rl_redisplay();
 }
 
-// void	handler_slash(int signal)
-// {
-// 	(void)signal;
-// }
+void	handler_slash(int signal)
+{
+	(void)signal;
+}
 
 // int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 // {

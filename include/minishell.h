@@ -142,11 +142,10 @@ void	free_double_tab(char **str);
 int		check_pipe(char *str);
 int		check_syntax(char *str);
 int		check_syntax2(char *str);
-char	**ft_split_space(char const *s, char c);
 int	pipe_syntax(char *str);
 char	**ft_split_space(char const *s, char c);
 int	check_first_quote(char *str, char c, char db_quote);
 int characters_in_quote(char *str, char c);
-char	**ft_split_pipe(char const *s, char c);
-
+char	**ft_split_pipe(char const *s, char *c);
+// char	**ft_split_pipe(char const *s, char c);
 #endif

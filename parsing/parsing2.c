@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:11:50 by vchan             #+#    #+#             */
-/*   Updated: 2022/12/06 15:06:07 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/10 15:00:29 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ int	next_characters(int i, char *str)
 	return (0);
 }
 
+int	previous_characters(int i, char *str)
+{
+	if (str[i] == '|' && i != 0)
+		i--;
+	while (str[i] && i > 0)
+	{
+		if (str[i] > 32 && str[i] < 127)
+			return (1);
+		i--;
+	}
+	return (0);
+}
+
 int	pipe_syntax(char *str)
 {
 	int	i;
@@ -81,6 +94,8 @@ int	pipe_syntax(char *str)
 		else if (str[i] == '|')
 		{
 			if (next_characters(i, str) == 0)
+				return (1);
+			if (previous_characters(i, str) == 0)
 				return (1);
 			if (str[i + 1])
 				i++;
