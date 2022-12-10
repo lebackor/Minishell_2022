@@ -44,7 +44,7 @@ int	check_legit_files(t_data *s, t_number *nbr)
 		}
 		else if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], ">") == 0)
 		{
-			if ((s->f = open(s->cmds_tab[s->i_split][i + 1], O_CREAT | O_RDWR | O_TRUNC, 0644)) > 0)
+			if ((s->f = open(s->cmds_tab[nbr->number - 1][i + 1], O_CREAT | O_RDWR | O_TRUNC, 0644)) > 0)
 			{
 				printf("Outfile detected\n");
 				ft_execution_redir(nbr, s, i, 1);

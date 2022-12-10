@@ -4,9 +4,11 @@ void	ft_heredoc(t_data *s, t_env *env, t_number *nb, int a)
 {
 	(void) env;
 	int i;
-	char *str;
+	char 	*str;
+	int		fd;
 	//ouvrir un fd et dup un infile en stdin
-	i = 0;
+	fd = open("tmp.txt", O_CREAT | O_RDWR | O_TRUNC, 0644);	
+	i = fork();
 	if (a == 0)
 	{
 		str = readline("> ");
