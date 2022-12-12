@@ -23,7 +23,10 @@ static	unsigned int	countword(char const *str, char charset)
 	while (str[i])
 	{
 		if (str[i] == '"')
+		{
+			i++;
 			quote++;
+		}
 		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
 			i++;
 		if (str[i] && !ischarset(str[i], charset) && str[i] != '"')
@@ -33,10 +36,7 @@ static	unsigned int	countword(char const *str, char charset)
 		while (quote == 1 && str[i])
 		{
 			if (str[i] == '"')
-			{
-				count++;
 				quote--;
-			}
 			i++;
 		}
 	}
