@@ -147,5 +147,5 @@ char	**ft_split_space(char const *s, char c);
 int	check_first_quote(char *str, char c, char db_quote);
 int characters_in_quote(char *str, char c);
 char	**ft_split_pipe(char const *s, char *c);
-// char	**ft_split_pipe(char const *s, char c);
+int	countword_quote(char const *str);
 #endif

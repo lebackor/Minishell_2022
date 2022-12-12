@@ -36,6 +36,9 @@ static	unsigned int	countword(char const *str, char *charset)
 		while (str[i] && !ischarset(str, charset, i) && str[i] != '"')
 			i++;
 	}
+	printf("before count = %d\n", count);
+	// count = countword_quote(str) + count;/
+	// printf("count + count = %d\n", count);
 	return (count);
 }
 

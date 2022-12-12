@@ -45,7 +45,8 @@ SRCS =		pipex/multichilds.c \
 			srcs/redir_input.c\
 			srcs/declare_export.c\
 			parsing/quote2.c\
-			parsing/split_pipe.c
+			parsing/split_pipe.c\
+			parsing/expand.c
 
 OBJS		= 	$(SRCS:%.c=$(DIR_OBJS)%.o)
 
