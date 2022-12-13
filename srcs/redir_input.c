@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:58:58 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/09 17:59:46 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:29:15 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int	check_legit_files(t_data *s, t_number *nbr)
 		else if (ft_strcmp(s->cmds_tab[nbr->number - 1][i], "<<") == 0 && s->cmds_tab[nbr->number - 1][i + 1])
 		{
 			printf("heredoc detected\n");
-			if (i == 0)
-				ft_heredoc(s, s->all, nbr, i);
+			ft_heredoc(s, s->all, nbr, i);
 			return (1);
 		}
 		i++;
@@ -85,12 +84,15 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 			if (x == 0)
 			{
 				close(s->f);
-				execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
+				s->exec += 2;
+				if (ft_search_bultins(s, s->all, nbr) == 1)
+					execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
 			}
 			else
 			{
 				close(s->f);
-				execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
+				if (ft_search_bultins(s, s->all, nbr) == 1)
+					execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
 			}
 			perror("execve");
 			return (0);
@@ -107,12 +109,15 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 		if (x == 0)
 		{
 			close(s->f);
-			execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
+			s->exec += 2;
+			if (ft_search_bultins(s, s->all, nbr) == 1)
+				execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
 		}
 		else
 		{
 			close(s->f);
-			execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
+			if (ft_search_bultins(s, s->all, nbr) == 1)
+				execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
 		}
 		perror("execve");
 		return (0);
@@ -151,7 +156,8 @@ char **split_str_for_redir(char **str, t_number *nbr)
 	while (i < ft_strlen_2table(str))
 	{
 		if (ft_strcmp(str[i], "<") == 0
-			|| ft_strcmp(str[i], ">") == 0)
+			|| ft_strcmp(str[i], ">") == 0
+			|| ft_strcmp(str[i], "<<") == 0)
 			break;
 		str1[j] = ft_strdup(str[i]);
 //		printf("ocho %s\n", str1[i]);

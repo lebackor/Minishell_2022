@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/08 18:49:11 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:14:14 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_execution(t_env *env, t_data *s)
 	if (i == 0)
 	{
 	//	printf("%s\n", s->pathexec);
-		execve(s->pathexec, s->cmds_tab[0], env_node_to_str(env));
+		execve(s->pathexec, s->cmds_tab[s->exec], env_node_to_str(env));
 		perror("execve");
 		return (0);
 	}
@@ -78,7 +78,7 @@ char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][0]); // 0 = car la commande se trouve au [0]
+		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][s->exec]); // 0 = car la commande se trouve au [0]
 		str = NULL;
 		j = access(fini, X_OK);
 		if (j == 0)

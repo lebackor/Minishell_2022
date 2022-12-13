@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 19:30:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/11 21:06:34 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:08:33 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-//	if (!s)
-//		return ;
+	if (!s)
+		return ;
 	write(fd, s, ft_strlen(s));
-	write(fd, '\n', 2);
 }

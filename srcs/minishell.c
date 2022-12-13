@@ -38,6 +38,7 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 	}
 	while (s->rdline)
 	{
+		s->exec = 0;
 		if (ft_strcmp(s->rdline, "exit") == 0)
 		{
 			ft_clean(env, s);
@@ -53,7 +54,6 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 		else
 		{
 			s->cmds_tab = check_quotes(s->rdline, cmds_list);
-			printf("%s\n", s->cmds_tab[0][0]);
 			add_history(s->rdline);
 			nbr = create_listenb(nbr);
 			i = -1;
@@ -70,6 +70,8 @@ int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 			else
 			{
 				s->stock = malloc(sizeof(int) * ft_strlen_3table(s->cmds_tab));
+				if (!s->stock)
+					printf("Malloc failed\n");
 				multipipe(s, env, nbr);
 			}
 		}
