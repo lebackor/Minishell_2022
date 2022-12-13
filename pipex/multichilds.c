@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   multichilds.c                                      :+:      :+:    :+:   */
@@ -24,11 +24,14 @@ void	mchild_process(t_data *p, t_env *env, t_number *nb)
 	else
 		multidup(p, env, nb);
 	closepipe(p, env, nb);
-	if (ft_search_bultins(p, env, nb) == 1 && check_legit_files(p, nb) == 0)
+	if (check_legit_files(p, nb) == 0)
 	{
 		// printf("Not bultin\n");
-		execve(str, p->cmds_tab[nb->number - 1], p->env);
-		ft_putstr_fd(":command not found\n", STDOUT_FILENO);
+		if (ft_search_bultins(p, env, nb) == 1)
+		{
+			execve(str, p->cmds_tab[nb->number - 1], p->env);
+			ft_putstr_fd(":command not found\n", STDOUT_FILENO);
+		}	
 	}
 	exit(1);
 }

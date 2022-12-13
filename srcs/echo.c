@@ -19,8 +19,9 @@ int	ft_echo(t_data *s, t_env *env, t_number *nbr)
 
 	i = 1;
 	j = 1;
-	while (s->cmds_tab[nbr->number - 1][i] && s->cmds_tab[nbr->number - 1][i]
-	[j - 1] == '-' && s->cmds_tab[nbr->number - 1][i][j] == 'n')
+	while (((s->cmds_tab[nbr->number - 1][i] && ft_strcmp("<", s->cmds_tab[nbr->number - 1][i]) != 0)
+			|| (s->cmds_tab[nbr->number - 1][i] && ft_strcmp(">", s->cmds_tab[nbr->number - 1][i]) != 0))
+			&& (s->cmds_tab[nbr->number - 1][i][j - 1] == '-' && s->cmds_tab[nbr->number - 1][i][j] == 'n'))
 	{
 		if (s->cmds_tab[nbr->number - 1][i][j - 1] == '-'
 		&& s->cmds_tab[nbr->number - 1][i][j] == 'n')

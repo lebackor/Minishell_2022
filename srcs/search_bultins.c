@@ -2,9 +2,9 @@
 
 int	ft_search_bultins(t_data *s, t_env *env, t_number *nbr)
 {
-	if (ft_redir_input(s, nbr) > 0)
-		return (1);
-	else if (ft_search_echo(s, nbr) == 0)
+	//if (ft_redir_input(s, nbr) > 0)
+	//	return (1);
+	if (ft_search_echo(s, nbr) == 0)
 		return (ft_echo(s, env, nbr));
 	else if (ft_search_env(s, nbr) == 0)
 		return (ft_env(env, s));
