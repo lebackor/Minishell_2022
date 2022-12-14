@@ -87,7 +87,6 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 				close(s->f);
 				if (ft_search_bultins(s, s->all, nbr) == 1)
 				{
-					printf("bultin ?not suposed\n");
 					execve(s->pathexec, &s->cmds_tab[nbr->number - 1][x + 2], env_node_to_str(s->all));
 					perror("execve");
 				}
@@ -98,7 +97,6 @@ int ft_execution_redir(t_number *nbr, t_data *s, int x, int a)
 				close(s->f);
 				if (ft_search_bultins(s, s->all, nbr) == 1)
 				{
-					printf("bultin ?not suposed\n");
 					execve(s->pathexec, split_str_for_redir(s->cmds_tab[nbr->number - 1], nbr), env_node_to_str(s->all));
 					perror("execve");
 				}

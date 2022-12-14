@@ -78,11 +78,12 @@ char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
-		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][s->exec]); // 0 = car la commande se trouve au [0]
+		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][0]); // 0 = car la commande se trouve au [0]
 		str = NULL;
 		j = access(fini, X_OK);
 		if (j == 0)
 		{
+			printf("ya pas de soucis %s\n", fini);
 			return (fini);
 		}
 		free(fini);

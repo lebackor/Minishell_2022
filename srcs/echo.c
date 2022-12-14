@@ -19,9 +19,8 @@ int	ft_echo(t_data *s, t_env *env, t_number *nbr)
 
 	i = 1;
 	j = 1;
-	while (((s->cmds_tab[nbr->number - 1][i] && ft_strcmp("<", s->cmds_tab[nbr->number - 1][i]) != 0)
-			|| (s->cmds_tab[nbr->number - 1][i] && ft_strcmp(">", s->cmds_tab[nbr->number - 1][i]) != 0))
-			&& (s->cmds_tab[nbr->number - 1][i][j - 1] == '-' && s->cmds_tab[nbr->number - 1][i][j] == 'n'))
+	while (s->cmds_tab[nbr->number - 1][i] && s->cmds_tab[nbr->number - 1][i]
+		[j - 1] == '-' && s->cmds_tab[nbr->number - 1][i][j] == 'n')
 	{
 		if (s->cmds_tab[nbr->number - 1][i][j - 1] == '-'
 		&& s->cmds_tab[nbr->number - 1][i][j] == 'n')
@@ -52,19 +51,14 @@ int	ft_print_echo(t_data *s, t_env *env, int a, t_number *nbr)
 	{
 		while (s->cmds_tab[nbr->number - 1][i])
 		{
+			tmp = env;
 			if (s->cmds_tab[nbr->number - 1][i][0] == '$')
 			{
-				tmp = env;
 				while (tmp != NULL && ft_strcmp(&s->cmds_tab[nbr->number - 1][i][1],
 				tmp->content) != 0)
 					tmp = tmp->next;
 				if (tmp == NULL)
-				{
-					printf("%s", s->cmds_tab[nbr->number - 1][i]);
-					if (s->cmds_tab[nbr->number - 1][i + 1] != NULL)
-						printf(" ");
 					i++;
-				}
 				else if (ft_strcmp(&s->cmds_tab[nbr->number - 1][i][1],
 				tmp->content) == 0)
 				{
@@ -86,10 +80,28 @@ int	ft_print_echo(t_data *s, t_env *env, int a, t_number *nbr)
 	{
 		while (s->cmds_tab[nbr->number - 1][a])
 		{
-			printf("%s", s->cmds_tab[nbr->number - 1][a]);
-			if (s->cmds_tab[nbr->number - 1][a + 1] != NULL)
-				printf(" ");
-			a++;
+			tmp = env;
+			if (s->cmds_tab[nbr->number - 1][a][0] == '$')
+			{
+				while (tmp != NULL && ft_strcmp(&s->cmds_tab[nbr->number - 1][a][1],
+				tmp->content) != 0)
+					tmp = tmp->next;
+				if (tmp == NULL)
+					a++;
+				else if (ft_strcmp(&s->cmds_tab[nbr->number - 1][a][1],
+				tmp->content) == 0)
+				{
+					printf("%s", tmp->value);
+					if (s->cmds_tab[nbr->number - 1][a + 1] != NULL)
+						printf(" ");
+					a++;
+				}
+			}
+			else
+			{
+				printf("%s ", s->cmds_tab[nbr->number - 1][a]);
+				a++;
+			}
 		}
 	}
 	return (0);

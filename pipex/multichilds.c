@@ -17,6 +17,11 @@ void	mchild_process(t_data *p, t_env *env, t_number *nb)
 	char	*str;
 
 	str = lookforpaths(env, p, nb);
+	if (!str)
+	{
+		printf("Malloc issue = lookforpaths\n");
+		exit(1);
+	}
 	if (nb->number == 1)
 	{
 		dup2(p->end[1], STDOUT_FILENO);
