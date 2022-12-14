@@ -78,9 +78,21 @@ char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
+		if (!str)
+		{
+			printf("Malloc issue, exit\n");
+			exit(1);
+		}
 		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][0]); // 0 = car la commande se trouve au [0]
+		if (!fini)
+		{
+			printf("fini is not malloc\n");
+			exit(1);
+		}
+
 		str = NULL;
 		j = access(fini, X_OK);
+			printf("ya soucis %s\n", fini);
 		if (j == 0)
 		{
 			printf("ya pas de soucis %s\n", fini);
