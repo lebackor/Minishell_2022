@@ -55,3 +55,31 @@
 // }
 
 // "ls" | "cat"
+
+int	countword_quote(char const *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] && str[i] != '|')
+	{
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+		if (str[i] != '"')
+		{
+			while (str[i] && str[i] != '|')
+				i++;
+		}
+		else if (str[i] == '"')
+		{
+			count++;
+			while (str[i] && str[i] != '|')
+				i++;
+		}
+		if (str[i] == '|')
+			i++;
+	}
+	return (count);
+}

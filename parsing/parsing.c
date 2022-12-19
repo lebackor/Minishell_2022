@@ -39,6 +39,7 @@ char	***skip_isspace(char *str)
 	}
 	x = 0;
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
+	printf("check_pipe = %d\n", check_pipe(str));
 	if (!args)
 		return (NULL);
 	i = 0;
