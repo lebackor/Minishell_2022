@@ -67,12 +67,12 @@ int	countword_quote(char const *str)
 	{
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
-		if (str[i] != '"')
+		if (str[i] != '"' && str[i] != '\'')
 		{
 			while (str[i] && str[i] != '|')
 				i++;
 		}
-		else if (str[i] == '"')
+		else if (str[i] == '"' || str[i] == '\'')
 		{
 			count++;
 			while (str[i] && str[i] != '|')

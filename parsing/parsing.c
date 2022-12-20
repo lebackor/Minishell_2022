@@ -90,32 +90,3 @@ int	characters_in_quote(char *str, char c)
 	}
 	return (0);
 }
-
-// int	characters_in_quote(char *str, char c)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == c && str[i + 1] == c)
-// 			return (1);
-// 		else if (str[i] == '"')
-// 		{
-// 			i++;
-// 			while (str[i] != '"' && str[i])
-// 				i++;
-// 		}
-// 		else if (str[i] == '\'')
-// 		{
-// 			i++;
-// 			while (str[i] != '\"' && str[i])
-// 				i++;
-// 		}
-// 		if (str[i + 1])
-// 			i++;
-// 		else
-// 			return (0);
-// 	}
-// 	return (0);
-// }
