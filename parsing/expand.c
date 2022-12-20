@@ -21,6 +21,7 @@ int	is_expand(char **cmds_list)
 	return (0);
 }
 
+
 char	*changing_str(char *str, t_env *env)
 {
 	char	*tmp = NULL;
@@ -47,11 +48,11 @@ char	*changing_str(char *str, t_env *env)
 	printf("-------------------------------------------\n");
 	while (env)
 	{
-		if (strcmp(env->content, tmp) == 0)
+		if (ft_strcmp(env->content, tmp) == 0)
 			return (printf("value = %s\n", env->value), env->value);
-		printf("env value = %s\n", env->value);
-		if (env->next)
-			env = env->next;
+		env = env->next;
+		if (!env)
+			return (NULL);
 	}
 	return ("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:33:06 by vchan             #+#    #+#             */
-/*   Updated: 2022/12/20 20:12:19 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/20 21:12:11 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	***check_quotes(char *str, t_env *env)
 	cmds_args = skip_isspace(str);
 	expand_fct(cmds_args, env);
 	//expand check sans double quote et avec double quote
-	// remove_quote(cmds_args);
+	remove_quote(cmds_args);
 	return (cmds_args);
 }
 
