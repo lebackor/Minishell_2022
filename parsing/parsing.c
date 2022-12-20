@@ -49,6 +49,7 @@ char	***skip_isspace(char *str)
 		i++;
 		x++;
 	}
+	printf("Done\n");
 	free_double_tab(tmp);
 	args[x] = NULL;
 	j = 0;
@@ -80,12 +81,6 @@ int	characters_in_quote(char *str, char c)
 		{
 			i++;
 			while (str[i] != '"' && str[i])
-				i++;
-		}
-		else if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] != '\"' && str[i])
 				i++;
 		}
 		if (str[i + 1])

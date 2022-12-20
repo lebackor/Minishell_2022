@@ -36,9 +36,9 @@ static	unsigned int	countword(char const *str, char *charset)
 		while (str[i] && !ischarset(str, charset, i) && str[i] != '"')
 			i++;
 	}
-	printf("before count = %d\n", count);
+	// printf("before count = %d\n", count);
 	count = countword_quote(str) + count;
-	printf("count + count = %d\n", count);
+	// printf("count + count = %d\n", count);
 	return (count);
 }
 
@@ -71,9 +71,9 @@ static	unsigned int	countword(char const *str, char *charset)
 // 		while (str[i] && !ischarset(str, charset, i) && str[i] != '\'')
 // 			i++;
 // 	}
-// 	printf("before count = %d\n", count);
-// 	count = countword_quote(str) + count;
-// 	printf("count + count = %d\n", count);
+	// printf("before count = %d\n", count);
+	// count = countword_quote(str) + count;
+	// printf("count + count = %d\n", count);
 // 	return (count);
 // }
 
@@ -105,33 +105,33 @@ static int	lenword(char const *str, char *charset)
 	return (count);
 }
 
-// static int	lenword2(char const *str, char *charset)
-// {
-// 	unsigned int	i;
-// 	unsigned int	count;
-// 	int				quote;
+static int	lenword2(char const *str, char *charset)
+{
+	unsigned int	i;
+	unsigned int	count;
+	int				quote;
 
-// 	quote = 0;
-// 	count = 0;
-// 	i = 0;
-// 	while (str[i] != '\'' && ischarset(str, charset, i) && str[i])
-// 		i++;
-// 	while (str[i] && !ischarset(str, charset, i))
-// 	{
-// 		if (str[i] == '\'')
-// 			quote++;
-// 		count++;
-// 		i++;
-// 		while (quote == 1 && str[i])
-// 		{
-// 			count++;
-// 			if (str[i] == '\'')
-// 				quote--;
-// 			i++;
-// 		}
-// 	}
-// 	return (count);
-// }
+	quote = 0;
+	count = 0;
+	i = 0;
+	while (str[i] != '\'' && ischarset(str, charset, i) && str[i])
+		i++;
+	while (str[i] && !ischarset(str, charset, i))
+	{
+		if (str[i] == '\'')
+			quote++;
+		count++;
+		i++;
+		while (quote == 1 && str[i])
+		{
+			count++;
+			if (str[i] == '\'')
+				quote--;
+			i++;
+		}
+	}
+	return (count);
+}
 
 
 static char	**ft_free(char **str, int i)
@@ -152,11 +152,14 @@ char	**ft_split_pipe(char const *s, char *c)
 	unsigned int	x;
 	char			**result;
 	int				quote;
+	int				sq;
 
+	sq = 0;
 	quote = 0;
 	if (!s)
 		return (NULL);
 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
+	printf("countword = %d\n", countword(s, c));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -166,7 +169,7 @@ char	**ft_split_pipe(char const *s, char *c)
 		while (ischarset(s, c, i) == 1)
 			i = i + 3;
 		k = 0;
-		result[x] = ft_calloc(lenword(&s[i], c) + 1, sizeof(char));
+		result[x] = ft_calloc(lenword(&s[i], c) + 1 + lenword2(&s[i], c), sizeof(char));
 		if (!result[x])
 			result = ft_free(result, x);
 		while (s[i] && !ischarset(s, c, i))
@@ -181,6 +184,16 @@ char	**ft_split_pipe(char const *s, char *c)
 						quote--;
 				}
 			}
+			else if (s[i] == '\'')
+			{
+				sq++;
+				while (sq == 1 && s[i])
+				{
+					result[x][k++] = s[i++];
+					if (s[i] == '\'')
+						sq--;
+				}
+			}
 			result[x][k++] = s[i++];
 		}
 		result[x][k] = '\0';
@@ -188,4 +201,49 @@ char	**ft_split_pipe(char const *s, char *c)
 	}
 	return (result);
 }
+
+
+// char	**ft_split_pipe(char const *s, char *c)
+// {
+// 	unsigned int	i;
+// 	unsigned int	k;
+// 	unsigned int	x;
+// 	char			**result;
+// 	int				quote;
+
+// 	quote = 0;
+// 	if (!s)
+// 		return (NULL);
+// 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
+// 	if (!result)
+// 		return (NULL);
+// 	i = 0;
+// 	x = 0;
+// 	while (result && x < countword(s, c))
+// 	{
+// 		while (ischarset(s, c, i) == 1)
+// 			i = i + 3;
+// 		k = 0;
+// 		result[x] = ft_calloc(lenword(&s[i], c) + 1, sizeof(char));
+// 		if (!result[x])
+// 			result = ft_free(result, x);
+// 		while (s[i] && !ischarset(s, c, i))
+// 		{
+// 			if (s[i] == '"')
+// 			{
+// 				quote++;
+// 				while (quote == 1 && s[i])
+// 				{
+// 					result[x][k++] = s[i++];
+// 					if (s[i] == '"')
+// 						quote--;
+// 				}
+// 			}
+// 			result[x][k++] = s[i++];
+// 		}
+// 		result[x][k] = '\0';
+// 		x++;
+// 	}
+// 	return (result);
+// }
 
