@@ -7,6 +7,34 @@ static	int	ischarset(char const *c, char *charset, int i)
 	return (0);
 }
 
+int	countword_quote(char const *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] && str[i] != '|')
+	{
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+		if (str[i] != '"' && str[i] != '\'')
+		{
+			while (str[i] && str[i] != '|')
+				i++;
+		}
+		else if (str[i] == '"' || str[i] == '\'')
+		{
+			count++;
+			while (str[i] && str[i] != '|')
+				i++;
+		}
+		if (str[i] == '|')
+			i++;
+	}
+	return (count);
+}
+
 static	unsigned int	countword(char const *str, char *charset)
 {
 	unsigned int	i;
@@ -49,47 +77,10 @@ static	unsigned int	countword(char const *str, char *charset)
 		while (str[i] && !ischarset(str, charset, i) && str[i] != '"' && str[i] != '\'')
 			i++;
 	}
-	// printf("before count = %d\n", count);
 	count = countword_quote(str) + count;
-	// printf("count + count = %d\n", count);
-	printf("-----------------------------------\n");
 	return (count);
 }
 
-// static	unsigned int	countword2(char const *str, char *charset)
-// {
-// 	unsigned int	i;
-// 	unsigned int	count;
-// 	int				quote;
-
-// 	quote = 0;
-// 	count = 0;
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '\'')
-// 		{
-// 			quote++;
-// 			i++;
-// 		}
-// 		while (quote == 1 && str[i])
-// 		{
-// 			if (str[i] == '\'')
-// 				quote--;
-// 			i++;
-// 		}
-// 		while (str[i] && ischarset(str, charset, i) && str[i] != '\'')
-// 			i = i + 3;
-// 		if (str[i] && !ischarset(str, charset, i) && str[i] != '\'')
-// 			count++;
-// 		while (str[i] && !ischarset(str, charset, i) && str[i] != '\'')
-// 			i++;
-// 	}
-	// printf("before count = %d\n", count);
-	// count = countword_quote(str) + count;
-	// printf("count + count = %d\n", count);
-// 	return (count);
-// }
 
 static int	lenword(char const *str, char *charset)
 {
@@ -173,7 +164,6 @@ char	**ft_split_pipe(char const *s, char *c)
 	if (!s)
 		return (NULL);
 	result = ft_calloc(countword(s, c) + 1, sizeof(char *));
-	printf("countword = %d\n", countword(s, c));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -193,7 +183,6 @@ char	**ft_split_pipe(char const *s, char *c)
 				quote++;
 				while (quote == 1 && s[i])
 				{
-					printf("Double quote = s[i] = %c\n", s[i]);
 					result[x][k++] = s[i++];
 					if (s[i] == '"')
 						quote--;
@@ -204,18 +193,13 @@ char	**ft_split_pipe(char const *s, char *c)
 				sq++;
 				while (sq == 1 && s[i])
 				{
-					printf("single quote = s[i] = %c\n", s[i]);
 					result[x][k++] = s[i++];
 					if (s[i] == '\'')
 						sq--;
 				}
 			}
-			printf("copy before s[i] = %c\n", s[i]);
 			result[x][k++] = s[i++];
-			printf("copy after s[i] = %c\n", s[i]);
 		}
-		printf("SORTIR DE LA BOUCLE\n");
-		printf("x = %d\n", x);
 		result[x][k] = '\0';
 		x++;
 	}
