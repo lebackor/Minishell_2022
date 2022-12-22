@@ -27,7 +27,9 @@ char	*changing_str(char *str, t_env *env)
 	char	*tmp = NULL;
 	int		i;
 	int		j;
+	t_env	*tmp2;
 
+	tmp2 = env;
 	i = 0;
 	printf("%s\n", str);
 	while (str[i] != '$')
@@ -46,12 +48,13 @@ char	*changing_str(char *str, t_env *env)
 	tmp[j] = '\0';
 	printf("tmp = %s\n", tmp);
 	printf("-------------------------------------------\n");
-	while (env)
+	while (tmp2)
 	{
-		if (ft_strcmp(env->content, tmp) == 0)
-			return (printf("value = %s\n", env->value), env->value);
-		env = env->next;
-		if (!env)
+		if (ft_strcmp(tmp2->content, tmp) == 0)
+			return (printf("value = %s\n", tmp2->value), tmp2->value);
+		// printf("%s=%s\n", tmp2->content, tmp2->value);
+		tmp2 = tmp2->next;
+		if (!tmp2)
 			return (NULL);
 	}
 	return ("\n");

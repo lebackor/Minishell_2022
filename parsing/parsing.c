@@ -32,11 +32,13 @@ char	***skip_isspace(char *str)
 	// tmp = ft_split(str, '|');
 	tmp = ft_split_pipe(str, " | ");
 	i = 0;
+	printf("FIRST SPLIT \n");
 	while (tmp[i])
 	{
-		printf("%s\n", tmp[i]);
+		printf("tmp = %s\n", tmp[i]);
 		i++;
 	}
+	printf("\n");
 	x = 0;
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
@@ -52,6 +54,7 @@ char	***skip_isspace(char *str)
 	args[x] = NULL;
 	j = 0;
 	x = 0;
+	printf("SECOND SPLIT\n");
 	while (args[x])
 	{
 		j = 0;
@@ -62,6 +65,7 @@ char	***skip_isspace(char *str)
 		}
 		x++;
 	}
+	printf("\n");
 	printf("---------------- RESULT ---------------\n\n");
 	return (args);
 }

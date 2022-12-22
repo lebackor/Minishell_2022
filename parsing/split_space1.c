@@ -16,29 +16,44 @@ static	unsigned int	countword(char const *str, char charset)
 	unsigned int	i;
 	unsigned int	count;
 	int				quote;
+	int				sq;
 
+	sq = 0;
 	quote = 0;
 	count = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '"')
+		if (str[i] == '"' && quote != 1)
 		{
 			i++;
 			quote++;
-		}
-		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
-			i++;
-		if (str[i] && !ischarset(str[i], charset) && str[i] != '"')
 			count++;
-		while (str[i] && !ischarset(str[i], charset) && str[i] != '"')
-			i++;
+		}
 		while (quote == 1 && str[i])
 		{
 			if (str[i] == '"')
 				quote--;
 			i++;
 		}
+		if (str[i] == '\'' && quote != 1)
+		{
+			i++;
+			sq++;
+			count++;
+		}
+		while (sq == 1 && str[i])
+		{
+			if (str[i] == '\'')
+				sq--;
+			i++;
+		}
+		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
+			i++;
+		if (str[i] && !ischarset(str[i], charset) && str[i] != '"' && quote != 1 && sq != 1)
+			count++;
+		while (str[i] && !ischarset(str[i], charset) && str[i] != '"' && quote != 1 && sq != 1)
+			i++;
 	}
 	return (count);
 }
@@ -123,5 +138,6 @@ char	**ft_split_space(char const *s, char c)
 		result[x][k] = '\0';
 		x++;
 	}
+	result[x] = NULL;
 	return (result);
 }

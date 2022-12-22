@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:33:06 by vchan             #+#    #+#             */
-/*   Updated: 2022/12/20 21:12:11 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/22 16:11:13 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	removal(char *dest, char *src)
 	printf("src = %s\n", src);
 	while (src[i])
 	{
-		while (src[i] && double_quote == 1 && quote == 0)
+		while (src[i] && src[i] != '"' && double_quote == 1 && quote == 0)
 		{
 			dest[j++] = src[i++];
 			if (src[i] == '"')
@@ -79,6 +79,8 @@ void	removal(char *dest, char *src)
 		{
 			i++;
 			double_quote++;
+			if (src[i] == '"')
+				break;
 		}
 		else if (src[i] == '\'' && quote == 0)
 		{
@@ -97,6 +99,7 @@ void	removal(char *dest, char *src)
 	return ;
 }
 
+//"" chaine vide = '\0' , taille 1 charactere
 void	remove_quote(char ***str)
 {
 	int	i;
@@ -122,7 +125,6 @@ void	remove_quote(char ***str)
 	return ;
 }
 
-
 char	***check_quotes(char *str, t_env *env)
 {
 	char	***cmds_args;
@@ -132,6 +134,17 @@ char	***check_quotes(char *str, t_env *env)
 	expand_fct(cmds_args, env);
 	//expand check sans double quote et avec double quote
 	remove_quote(cmds_args);
+	// int	j = 0;
+	// int x = 0;
+	// while (cmds_args[x])
+	// {
+	// 	while (cmds_args[x][j])
+	// 	{
+	// 		printf("cmds_args[%d][%d] = %s\n", x, j, cmds_args[x][j]);
+	// 		j++;
+	// 	}
+	// 	x++;
+	// }
 	return (cmds_args);
 }
 
