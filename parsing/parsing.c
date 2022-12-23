@@ -1,45 +1,23 @@
 #include "../include/minishell.h"
 
-int	check_syntax2(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '|' && str[i + 1] == '|')
-			return (printf("%s: Syntax Error, \"||\" found\n", MINISH), 1);
-		if (str[i] == '&' && str[i + 1] == '&')
-			return (printf("%s: Syntax Error, \"&&\" found\n", MINISH), 1);
-		i++;
-	}
-	return (0);
-}
-
+//check "" | ""
+//check remove SPACE PIPE SPACE ET PAS QUE PIPE
+// MA FONCTION COUNTWORD A MODIFIER , j'ai +1
+// characters in quote a modifier
 int	check_syntax(char *str)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	if (check_syntax2(str))
-		return (1);
-	while (str[i])
-	{
-		if (str[i] == '\\')
-			return (printf("%s: Syntax Error, '\\' found\n", MINISH), 1);
-		else if (str[i] == ';')
-			return (printf("%s: Syntax error near unexpected token `;'\n",
-					MINISH), 1);
-		else if (str[i] == '"')
-			count++;
-		i++;
-	}
-	// if (check_if_quotes('\'','"', str))
-	// 	return (1);
-	if (count % 2 == 1)
-		return (printf("%s: Syntax Error, missing quotes\n", MINISH), 1);
+	if (pipe_syntax(str) == 1)
+		return (printf("%s: syntax error near unexpected token `|'\n",
+				CALLER), 1);
+	if (check_first_quote(str, 39, '"') % 2 == 1
+		|| check_first_quote(str, '"', 39) % 2 == 1)
+		return (printf("%s: Syntax Error, missing quotes\n", CALLER), 1);
+	if (characters_in_quote(str, '&'))
+		return (printf("%s: Syntax Error, \"&\" found\n", CALLER), 1);
+	if (characters_in_quote(str, '\\'))
+		return (printf("%s: Syntax Error, \"\\\" found\n", CALLER), 1);
+	if (characters_in_quote(str, ';'))
+		return (printf("%s: Syntax Error, \";\" found\n", CALLER), 1);
 	return (0);
 }
 
@@ -51,13 +29,21 @@ char	***skip_isspace(char *str)
 	int		j;
 	int		x;
 
+	// tmp = ft_split(str, '|');
+	tmp = ft_split_pipe(str, " | ");
 	i = 0;
-	tmp = ft_split(str, '|');
-	j = 0;
+	printf("FIRST SPLIT \n");
+	while (tmp[i])
+	{
+		printf("tmp = %s\n", tmp[i]);
+		i++;
+	}
+	printf("\n");
 	x = 0;
 	args = ft_calloc(check_pipe(str) + 1, sizeof(char **));
 	if (!args)
 		return (NULL);
+	i = 0;
 	while (tmp[i])
 	{
 		args[x] = ft_split_space(tmp[i], ' ');
@@ -68,6 +54,7 @@ char	***skip_isspace(char *str)
 	args[x] = NULL;
 	j = 0;
 	x = 0;
+	printf("SECOND SPLIT\n");
 	while (args[x])
 	{
 		j = 0;
@@ -78,5 +65,30 @@ char	***skip_isspace(char *str)
 		}
 		x++;
 	}
+	printf("\n");
+	printf("---------------- RESULT ---------------\n\n");
 	return (args);
+}
+
+int	characters_in_quote(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		else if (str[i] == '"')
+		{
+			i++;
+			while (str[i] != '"' && str[i])
+				i++;
+		}
+		if (str[i + 1])
+			i++;
+		else
+			return (0);
+	}
+	return (0);
 }

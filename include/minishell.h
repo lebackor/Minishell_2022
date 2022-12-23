@@ -136,7 +136,8 @@ int		quote_or_not(char *str);
 int		which_quote(char *str);
 void	removal(char *dest, char *src);
 void	remove_quote(char ***str);
-char	***check_quotes(char *str, t_pipe *cmds_list);
+// char	***check_quotes(char *str, t_pipe *cmds_list);
+char	***check_quotes(char *str, t_env *env);
 
 void	destroy_cmds_args(char ***cmd_args);
 char	***skip_isspace(char *str);
@@ -144,10 +145,13 @@ void	free_double_tab(char **str);
 int		check_pipe(char *str);
 int		check_syntax(char *str);
 int		check_syntax2(char *str);
-char	**ft_split_space(char const *s, char c);
 int	pipe_syntax(char *str);
 char	**ft_split_space(char const *s, char c);
 int	check_first_quote(char *str, char c, char db_quote);
 int characters_in_quote(char *str, char c);
+char	**ft_split_pipe(char const *s, char *c);
+int	countword_quote(char const *str);
+int	is_expand(char **cmds_list);
+void	expand_fct(char ***cmd_list, t_env *env);
 
 #endif
