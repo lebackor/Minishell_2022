@@ -1,2 +1,0 @@
-meme si acces trouve rien => donner a execve
-echo -n   rb | cat -e marche pas

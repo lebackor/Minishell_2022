@@ -20,7 +20,7 @@ void	handler(int signal)
 
 // }
 
-int	minishell_init(t_data *s, t_env *env)
+int	minishell_init(t_data *s, t_env *env, t_pipe *cmds_list)
 {
 	t_number	*nbr;
 	int			i;
@@ -53,7 +53,7 @@ int	minishell_init(t_data *s, t_env *env)
 		}
 		else
 		{
-			s->cmds_tab = check_quotes(s->rdline, env);
+			s->cmds_tab = check_quotes(s->rdline, cmds_list);
 			add_history(s->rdline);
 			nbr = create_listenb(nbr);
 			i = -1;
@@ -93,6 +93,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	*s;
 	t_env	*env;
+	t_pipe	cmds_list;
 
 	(void)av;
 	if (ac == 1)
@@ -104,7 +105,7 @@ int	main(int ac, char **av, char **envp)
 			*env = (t_env){0};
 		env = put_env(env, envp, s);
 		s->all = env;
-		if (minishell_init(s, env))
+		if (minishell_init(s, env, &cmds_list))
 			return (EXIT_SUCCESS);
 		ft_clean(env, s);
 	}

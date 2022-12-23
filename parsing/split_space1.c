@@ -1,7 +1,5 @@
 #include "../include/minishell.h"
 
-#include "../include/minishell.h"
-
 static	int	ischarset(char c, char charset)
 {
 	if (c == charset)
@@ -16,44 +14,29 @@ static	unsigned int	countword(char const *str, char charset)
 	unsigned int	i;
 	unsigned int	count;
 	int				quote;
-	int				sq;
 
-	sq = 0;
 	quote = 0;
 	count = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '"' && quote != 1)
-		{
-			i++;
+		if (str[i] == '"')
 			quote++;
+		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
+			i++;
+		if (str[i] && !ischarset(str[i], charset) && str[i] != '"')
 			count++;
-		}
+		while (str[i] && !ischarset(str[i], charset) && str[i] != '"')
+			i++;
 		while (quote == 1 && str[i])
 		{
 			if (str[i] == '"')
+			{
+				count++;
 				quote--;
+			}
 			i++;
 		}
-		if (str[i] == '\'' && quote != 1)
-		{
-			i++;
-			sq++;
-			count++;
-		}
-		while (sq == 1 && str[i])
-		{
-			if (str[i] == '\'')
-				sq--;
-			i++;
-		}
-		while (str[i] && ischarset(str[i], charset) && str[i] != '"')
-			i++;
-		if (str[i] && !ischarset(str[i], charset) && str[i] != '"' && quote != 1 && sq != 1)
-			count++;
-		while (str[i] && !ischarset(str[i], charset) && str[i] != '"' && quote != 1 && sq != 1)
-			i++;
 	}
 	return (count);
 }
@@ -113,6 +96,7 @@ char	**ft_split_space(char const *s, char c)
 		return (NULL);
 	i = 0;
 	x = 0;
+	// printf("%d\n", countword(s, c));
 	while (result && x < countword(s, c))
 	{
 		k = 0;
@@ -138,6 +122,5 @@ char	**ft_split_space(char const *s, char c)
 		result[x][k] = '\0';
 		x++;
 	}
-	result[x] = NULL;
 	return (result);
 }

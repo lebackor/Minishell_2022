@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:17:20 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/23 15:54:01 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:12:05 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,11 @@ int	ft_env(t_env *envp, t_data *s)
 	{
 		if (tmp->content)
 		{
-			//printf("%s", tmp->content);
-			ft_putstr_fd(tmp->content, STDOUT_FILENO);
-			ft_putstr_fd("x=", STDOUT_FILENO);
-	//		printf("=");
+			printf("%s", tmp->content);
+			printf("=");
 		}
 		if (tmp->value)
-			ft_putendl_fd(tmp->value, STDOUT_FILENO);
-		//	printf("%s\n", tmp->value);
+			printf("%s\n", tmp->value);
 		tmp = tmp->next;
 	}
 	return (0);

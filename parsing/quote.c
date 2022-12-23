@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:33:06 by vchan             #+#    #+#             */
-/*   Updated: 2022/12/23 15:46:54 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:49:43 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	removal(char *dest, char *src)
 	printf("src = %s\n", src);
 	while (src[i])
 	{
-		while (src[i] && src[i] != '"' && double_quote == 1 && quote == 0)
+		while (src[i] && double_quote == 1 && quote == 0)
 		{
 			dest[j++] = src[i++];
 			if (src[i] == '"')
@@ -75,12 +75,19 @@ void	removal(char *dest, char *src)
 				quote--;
 			}
 		}
+		// A enlever !
+		// if ((src[i] == '"' && double_quote == 0) || (src[i] == '\'' && quote  == 0))
+		// {
+		// 	if (if_double_quote(src[i], double_quote))
+		// 		double_quote++;
+		// 	else if (if_quote(src[i], quote))
+		// 		quote++;
+		// 	i++;
+		// }
 		if (src[i] == '"' && double_quote == 0)
 		{
 			i++;
 			double_quote++;
-			if (src[i] == '"')
-				break;
 		}
 		else if (src[i] == '\'' && quote == 0)
 		{
@@ -99,7 +106,6 @@ void	removal(char *dest, char *src)
 	return ;
 }
 
-//"" chaine vide = '\0' , taille 1 charactere
 void	remove_quote(char ***str)
 {
 	int	i;
@@ -125,61 +131,12 @@ void	remove_quote(char ***str)
 	return ;
 }
 
-char	***check_quotes(char *str, t_env *env)
+char	***check_quotes(char *str, t_pipe *cmds_list)
 {
 	char	***cmds_args;
 
-	cmds_args = NULL;
+	(void)cmds_list;
 	cmds_args = skip_isspace(str);
-	expand_fct(cmds_args, env);
-	//expand check sans double quote et avec double quote
 	remove_quote(cmds_args);
-	// int	j = 0;
-	// int x = 0;
-	// while (cmds_args[x])
-	// {
-	// 	while (cmds_args[x][j])
-	// 	{
-	// 		printf("cmds_args[%d][%d] = %s\n", x, j, cmds_args[x][j]);
-	// 		j++;
-	// 	}
-	// 	x++;
-	// }
-	printf("C'4est bon , on passe a l'execution\n");
 	return (cmds_args);
-}
-
-int	check_first_quote(char *str, char c, char db_quote)
-{
-	int	i;
-	int	count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		while ((str[i] != c && str[i] != db_quote) && str[i])
-			i++;
-		if (str[i] == c)
-		{
-			count++;
-			i++;
-			while (str[i] != c && str[i])
-				i++;
-			if (str[i] == c)
-			{
-				count++;
-				i++;
-			}
-		}
-		else if (str[i] == db_quote)
-		{
-			i++;
-			while (str[i] != db_quote && str[i])
-				i++;
-			if (str[i] == db_quote)
-				i++;
-		}
-	}
-	return (count);
 }
