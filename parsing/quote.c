@@ -6,7 +6,7 @@
 /*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:33:06 by vchan             #+#    #+#             */
-/*   Updated: 2022/12/22 16:11:13 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/22 17:46:17 by vchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	removal(char *dest, char *src)
 		}
 	}
 	dest[j] = '\0';
-	printf("dest = %s\n", dest);
+	printf("dest = %s8\n", dest);
 	return ;
 }
 
@@ -145,6 +145,7 @@ char	***check_quotes(char *str, t_env *env)
 	// 	}
 	// 	x++;
 	// }
+	printf("C BON\n");
 	return (cmds_args);
 }
 
