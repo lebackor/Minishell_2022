@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   searchcmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchan <vchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:00:50 by lebackor          #+#    #+#             */
-/*   Updated: 2022/12/02 18:38:50 by vchan            ###   ########.fr       */
+/*   Updated: 2022/12/13 18:14:14 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_execution(t_env *env, t_data *s)
 	i = fork();
 	if (i == 0)
 	{
-		execve(s->pathexec, s->cmds_tab[s->i_split], env_node_to_str(env));
+	//	printf("%s\n", s->pathexec);
+		execve(s->pathexec, s->cmds_tab[s->exec], env_node_to_str(env));
 		perror("execve");
 		return (0);
 	}
@@ -77,11 +78,24 @@ char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
 	while (s->cmd[++i] && j != 0)
 	{
 		str = ft_strjoin(s->cmd[i], "/");
+		if (!str)
+		{
+			printf("Malloc issue, exit\n");
+			exit(1);
+		}
 		fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][0]); // 0 = car la commande se trouve au [0]
+		if (!fini)
+		{
+			printf("fini is not malloc\n");
+			exit(1);
+		}
+
 		str = NULL;
 		j = access(fini, X_OK);
+			printf("ya soucis %s\n", fini);
 		if (j == 0)
 		{
+			printf("ya pas de soucis %s\n", fini);
 			return (fini);
 		}
 		free(fini);
@@ -90,7 +104,7 @@ char	*lookforpaths(t_env *env, t_data *s, t_number *nb)
 	return (NULL);
 }
 
-char	*lookforpaths_give(t_env *env, t_data *s, int x)//redir input < >
+char	*lookforpaths_give(t_env *env, t_data *s, int x, t_number *nb)//redir input < >
 {
 	int		i;
 	int		j;
@@ -108,9 +122,9 @@ char	*lookforpaths_give(t_env *env, t_data *s, int x)//redir input < >
 	{
 		str = ft_strjoin(s->cmd[i], "/");
 		if (x == 0)
-			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x + 2]);
+			fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][x + 2]);
 		else
-			fini = ft_strjoin(str, s->cmds_tab[s->i_split][x - 1]);
+			fini = ft_strjoin(str, s->cmds_tab[nb->number - 1][x - 1]);
 		//free(str);
 		str = NULL;
 		j = access(fini, X_OK);

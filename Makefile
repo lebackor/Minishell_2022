@@ -28,6 +28,7 @@ SRCS =		pipex/multichilds.c \
 			srcs/search_bultins.c\
 			srcs/env.c\
 			srcs/liste.c\
+			srcs/heredoc.c\
 			srcs/export.c\
 			srcs/cleaning.c\
 			srcs/pathparse.c\
